@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String      @id @default(uuid())
+  role             Role
+  name             String
+  email            String      @unique
+  password         String
+  phone            String
+  department       String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  doctor           Doctor?
+  approvedFinances Finance[]   @relation("ApprovedByUser")
+  labResults       LabResult[] @relation("LabTechnicianUser")
+  nurse            Nurse?
+  patient          Patient?
+  pharmacy         Pharmacy[]  @relation("PharmacistUser")
+  submittedTriages Triage[]    @relation("SubmittedByUser")
+}
+
+model Patient {
+  id               String         @id @default(uuid())
+  userId           String         @unique
+  dateOfBirth      DateTime
+  gender           String
+  address          String
+  phoneNumber      String
+  emergencyContact String
+  appointments     Appointment[]
+  labRequests      LabRequest[]
+  medicalRecord    MedicalRecord?
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prescriptions    Prescription[]
+  triages          Triage[]
+}
+
+model Doctor {
+  id             String         @id @default(uuid())
+  userId         String         @unique
+  specialization String
+  availabilities Availability[]
+  appointments   Appointment[]
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  labRequests    LabRequest[]
+  prescriptions  Prescription[]
+}
+
+model Availability {
+  id        String   @id @default(uuid())
+  doctorId  String
+  day       Weekday
+  startTime String
+  endTime   String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+}
+
+model Nurse {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Appointment {
+  id              String            @id @default(uuid())
+  patientId       String
+  doctorId        String
+  status          AppointmentStatus
+  reason          String
+  dateTime        DateTime
+  rescheduledFrom String?
+  createdAt       DateTime          @default(now())
+  doctor          Doctor            @relation(fields: [doctorId], references: [id])
+  patient         Patient           @relation(fields: [patientId], references: [id])
+  reschedule      Appointment?      @relation("Reschedule", fields: [rescheduledFrom], references: [id])
+  rescheduledTo   Appointment[]     @relation("Reschedule")
+  finance         Finance?
+}
+
+model Triage {
+  id              String        @id @default(uuid())
+  patientId       String
+  submittedBy     SubmitterRole
+  submittedById   String
+  symptoms        String[]
+  vitals          Json
+  notes           String
+  timestamp       DateTime
+  patient         Patient       @relation(fields: [patientId], references: [id])
+  submittedByUser User          @relation("SubmittedByUser", fields: [submittedById], references: [id])
+}
+
+model Prescription {
+  id          String             @id @default(uuid())
+  doctorId    String
+  patientId   String
+  medications Json[]
+  status      PrescriptionStatus
+  createdAt   DateTime           @default(now())
+  pharmacy    Pharmacy?
+  doctor      Doctor             @relation(fields: [doctorId], references: [id])
+  patient     Patient            @relation(fields: [patientId], references: [id])
+}
+
+model LabRequest {
+  id          String           @id @default(uuid())
+  doctorId    String
+  patientId   String
+  testType    String
+  status      LabRequestStatus
+  requestedAt DateTime         @default(now())
+  completedAt DateTime?
+  doctor      Doctor           @relation(fields: [doctorId], references: [id])
+  patient     Patient          @relation(fields: [patientId], references: [id])
+  labResult   LabResult?
+}
+
+model LabResult {
+  id              String     @id @default(uuid())
+  labRequestId    String     @unique
+  labTechnicianId String
+  resultUrl       String
+  notes           String
+  createdAt       DateTime   @default(now())
+  labRequest      LabRequest @relation(fields: [labRequestId], references: [id])
+  labTechnician   User       @relation("LabTechnicianUser", fields: [labTechnicianId], references: [id])
+}
+
+model Pharmacy {
+  id             String         @id @default(uuid())
+  prescriptionId String         @unique
+  pharmacistId   String
+  status         PharmacyStatus
+  updatedAt      DateTime       @updatedAt
+  pharmacist     User           @relation("PharmacistUser", fields: [pharmacistId], references: [id])
+  prescription   Prescription   @relation(fields: [prescriptionId], references: [id])
+}
+
+model Finance {
+  id             String         @id @default(uuid())
+  appointmentId  String         @unique
+  amount         Decimal
+  approvalStatus ApprovalStatus
+  approvedBy     String
+  approvedAt     DateTime
+  appointment    Appointment    @relation(fields: [appointmentId], references: [id])
+  approver       User           @relation("ApprovedByUser", fields: [approvedBy], references: [id])
+}
+
+model MedicalRecord {
+  id              String   @id @default(uuid())
+  patientId       String   @unique
+  triageIds       String[]
+  prescriptionIds String[]
+  labResultIds    String[]
+  createdAt       DateTime @default(now())
+  patient         Patient  @relation(fields: [patientId], references: [id])
+}
+
+enum Role {
+  receptionist
+  nurse
+  doctor
+  lab_technician
+  pharmacist
+  finance
+  patient
+  admin
+}
+
+enum Weekday {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum AppointmentStatus {
+  pending
+  confirmed
+  cancelled
+  completed
+  rescheduled
+}
+
+enum SubmitterRole {
+  nurse
+  patient
+}
+
+enum PrescriptionStatus {
+  pending
+  fulfilled
+  cancelled
+}
+
+enum LabRequestStatus {
+  requested
+  completed
+}
+
+enum PharmacyStatus {
+  approved
+  dispensed
+  rejected
+}
+
+enum ApprovalStatus {
+  pending
+  approved
+  rejected
+}
