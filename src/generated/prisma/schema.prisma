@@ -9,22 +9,26 @@ datasource db {
 }
 
 model User {
-  id               String      @id @default(uuid())
+  id               String         @id @default(uuid())
   role             Role
   name             String
-  email            String      @unique
+  email            String         @unique
   password         String
   phone            String
   department       String?
-  createdAt        DateTime    @default(now())
-  updatedAt        DateTime    @updatedAt
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
   doctor           Doctor?
-  approvedFinances Finance[]   @relation("ApprovedByUser")
-  labResults       LabResult[] @relation("LabTechnicianUser")
   nurse            Nurse?
   patient          Patient?
-  pharmacy         Pharmacy[]  @relation("PharmacistUser")
-  submittedTriages Triage[]    @relation("SubmittedByUser")
+  labTechnician    LabTechnician?
+  pharmacist       Pharmacist?
+  financeStaff     FinanceStaff?
+  receptionist     Receptionist?
+  approvedFinances Finance[]      @relation("ApprovedByUser")
+  labResults       LabResult[]    @relation("LabTechnicianUser")
+  pharmacy         Pharmacy[]     @relation("PharmacistUser")
+  submittedTriages Triage[]       @relation("SubmittedByUser")
 }
 
 model Patient {
@@ -54,6 +58,36 @@ model Doctor {
   prescriptions  Prescription[]
 }
 
+model Nurse {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LabTechnician {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Pharmacist {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FinanceStaff {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Receptionist {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model DoctorAvailability {
   id        String  @id @default(uuid())
   doctorId  String
@@ -74,12 +108,6 @@ model DoctorSlot {
   doctor   Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@unique([doctorId, day, slotTime])
-}
-
-model Nurse {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Appointment {
@@ -104,7 +132,7 @@ model Triage {
   submittedBy     SubmitterRole
   submittedById   String
   symptoms        String[]
-  vitals          Json
+  vitals          Json?
   notes           String
   timestamp       DateTime
   patient         Patient       @relation(fields: [patientId], references: [id])

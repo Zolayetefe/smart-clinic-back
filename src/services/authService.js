@@ -70,7 +70,7 @@ exports.registerPatient = async (data) => {
   try {
     // Validate required fields
     const { name, email, password, phone, department, dateOfBirth, gender, address, emergencyContact } = data;
-    console.log("from service", data)
+    // console.log("from service", data)
 
     if (!name || !email || !password || !phone || !dateOfBirth || !gender || !address || !emergencyContact) {
       throw new Error('All fields are required: name, email, password, phone, dateOfBirth, gender, address, emergencyContact');
@@ -95,7 +95,7 @@ exports.registerPatient = async (data) => {
       console.error('Error hashing password:', error);
       throw new Error('Error processing password');
     });
-console.log("before creating patient")
+// console.log("before creating patient")
     const user = await prisma.user.create({
       data: { 
         name,
@@ -137,12 +137,13 @@ console.log("before creating patient")
       throw new Error(`Failed to create user: ${error.message}`);
     });
 
-    // Generate token for immediate login
-    const token = jwt.sign(
-      { id: user.id, role: user.role, name: user.name, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1d' }
-    );
+// set cookie
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day
+    // });
+   
 
     return { 
       message: 'Patient registered successfully', 
@@ -153,7 +154,7 @@ console.log("before creating patient")
         role: user.role,
         patient: user.patient
       },
-      token 
+      // token 
     };
   } catch (error) {
     console.error('Registration error:', error);

@@ -147,6 +147,31 @@ exports.Prisma.DoctorScalarFieldEnum = {
   specialization: 'specialization'
 };
 
+exports.Prisma.NurseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.LabTechnicianScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.PharmacistScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.FinanceStaffScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.ReceptionistScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
 exports.Prisma.DoctorAvailabilityScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
@@ -161,11 +186,6 @@ exports.Prisma.DoctorSlotScalarFieldEnum = {
   day: 'day',
   slotTime: 'slotTime',
   isBooked: 'isBooked'
-};
-
-exports.Prisma.NurseScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId'
 };
 
 exports.Prisma.AppointmentScalarFieldEnum = {
@@ -249,7 +269,8 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
 };
 
@@ -329,9 +350,13 @@ exports.Prisma.ModelName = {
   User: 'User',
   Patient: 'Patient',
   Doctor: 'Doctor',
+  Nurse: 'Nurse',
+  LabTechnician: 'LabTechnician',
+  Pharmacist: 'Pharmacist',
+  FinanceStaff: 'FinanceStaff',
+  Receptionist: 'Receptionist',
   DoctorAvailability: 'DoctorAvailability',
   DoctorSlot: 'DoctorSlot',
-  Nurse: 'Nurse',
   Appointment: 'Appointment',
   Triage: 'Triage',
   Prescription: 'Prescription',

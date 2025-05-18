@@ -56,7 +56,8 @@ exports.getme = async (req, res) => {
 exports.registerPatient= async (req,res)=>{
   try {
     const{message,user}= await authService.registerPatient(req.body)
-    res.status(200).json(message,user)
+    // console.log("user from register patient",user)
+    res.status(200).json({message,user})
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

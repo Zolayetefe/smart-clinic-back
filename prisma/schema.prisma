@@ -9,22 +9,26 @@ datasource db {
 }
 
 model User {
-  id               String      @id @default(uuid())
+  id               String           @id @default(uuid())
   role             Role
   name             String
-  email            String      @unique
+  email            String           @unique
   password         String
   phone            String
   department       String?
-  createdAt        DateTime    @default(now())
-  updatedAt        DateTime    @updatedAt
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
   doctor           Doctor?
-  approvedFinances Finance[]   @relation("ApprovedByUser")
-  labResults       LabResult[] @relation("LabTechnicianUser")
   nurse            Nurse?
   patient          Patient?
-  pharmacy         Pharmacy[]  @relation("PharmacistUser")
-  submittedTriages Triage[]    @relation("SubmittedByUser")
+  labTechnician    LabTechnician?
+  pharmacist       Pharmacist?
+  financeStaff     FinanceStaff?
+  receptionist     Receptionist?
+  approvedFinances Finance[]        @relation("ApprovedByUser")
+  labResults       LabResult[]      @relation("LabTechnicianUser")
+  pharmacy         Pharmacy[]       @relation("PharmacistUser")
+  submittedTriages Triage[]         @relation("SubmittedByUser")
 }
 
 model Patient {
@@ -43,43 +47,67 @@ model Patient {
 }
 
 model Doctor {
-  id             String             @id @default(uuid())
-  userId         String             @unique
-  specialization String 
+  id             String               @id @default(uuid())
+  userId         String               @unique
+  specialization String
   availabilities DoctorAvailability[]
   slots          DoctorSlot[]
   appointments   Appointment[]
-  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
   labRequests    LabRequest[]
   prescriptions  Prescription[]
-}
-
-model DoctorAvailability {
-  id        String   @id @default(uuid())
-  doctorId  String
-  day       Weekday
-  startTime String
-  endTime   String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  @@unique([doctorId, day])
-}
-
-model DoctorSlot {
-  id        String   @id @default(uuid())
-  doctorId  String
-  day       Weekday
-  slotTime  String
-  isBooked  Boolean  @default(false)
-  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  @@unique([doctorId, day, slotTime])
 }
 
 model Nurse {
   id     String @id @default(uuid())
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LabTechnician {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Pharmacist {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FinanceStaff {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Receptionist {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DoctorAvailability {
+  id        String  @id @default(uuid())
+  doctorId  String
+  day       Weekday
+  startTime String
+  endTime   String
+  doctor    Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@unique([doctorId, day])
+}
+
+model DoctorSlot {
+  id       String  @id @default(uuid())
+  doctorId String
+  day      Weekday
+  slotTime String
+  isBooked Boolean @default(false)
+  doctor   Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@unique([doctorId, day, slotTime])
 }
 
 model Appointment {
