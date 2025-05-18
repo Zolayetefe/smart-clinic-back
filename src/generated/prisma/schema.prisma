@@ -15,7 +15,6 @@ model User {
   email            String         @unique
   password         String
   phone            String
-  department       String?
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   doctor           Doctor?
@@ -28,7 +27,6 @@ model User {
   approvedFinances Finance[]      @relation("ApprovedByUser")
   labResults       LabResult[]    @relation("LabTechnicianUser")
   pharmacy         Pharmacy[]     @relation("PharmacistUser")
-  submittedTriages Triage[]       @relation("SubmittedByUser")
 }
 
 model Patient {
@@ -59,9 +57,10 @@ model Doctor {
 }
 
 model Nurse {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id      String   @id @default(uuid())
+  userId  String   @unique
+  triages Triage[]
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model LabTechnician {
@@ -127,16 +126,15 @@ model Appointment {
 }
 
 model Triage {
-  id              String        @id @default(uuid())
-  patientId       String
-  submittedBy     SubmitterRole
-  submittedById   String
-  symptoms        String[]
-  vitals          Json?
-  notes           String
-  timestamp       DateTime
-  patient         Patient       @relation(fields: [patientId], references: [id])
-  submittedByUser User          @relation("SubmittedByUser", fields: [submittedById], references: [id])
+  id        String   @id @default(uuid())
+  patientId String
+  nurseId   String?
+  symptoms  String[]
+  vitals    Json?
+  notes     String?
+  timestamp DateTime
+  patient   Patient  @relation(fields: [patientId], references: [id])
+  nurse     Nurse?   @relation(fields: [nurseId], references: [id])
 }
 
 model Prescription {

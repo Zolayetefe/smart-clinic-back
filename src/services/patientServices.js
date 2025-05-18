@@ -287,7 +287,6 @@ exports.getDoctorsBySpeciality = async (speciality) => {
                         name: true,
                         email: true,
                         phone: true,
-                        department: true
                     }
                 },
                 slots: {
@@ -340,7 +339,6 @@ exports.bookAppointment = async (appointmentData, user) => {
         slotId, 
         reason, 
         symptoms = [],
-        vitals = {} 
     } = appointmentData;
 
     const {id, role} = user;
@@ -432,21 +430,17 @@ exports.bookAppointment = async (appointmentData, user) => {
             // 6. Create the triage record
             const triage = await prisma.triage.create({
                 data: {
-                    patientId:patientId,
-                    submittedBy: role === 'nurse' ? 'nurse' : 'patient',
-                    submittedById: id,
+                    patientId: patientId,
                     symptoms: Array.isArray(symptoms) ? symptoms : [symptoms],
-                    vitals: typeof vitals === 'object' ? vitals : {},
-                    notes: reason,
-                    timestamp: appointmentDate
+                    timestamp: appointmentDate,
+                    notes: reason
                 },
                 include: {
                     patient: {
                         include: {
                             user: true
                         }
-                    },
-                    submittedByUser: true
+                    }
                 }
             });
 

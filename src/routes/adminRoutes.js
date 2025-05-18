@@ -4,8 +4,10 @@ const { isAuthenticated, isAdmin } = require('../middlewares/authMiddleware');
 const adminController = require('../controllers/adminController');
 
 // Protected Admin Route (only accessible to admins)
-router.get('/dashboard', isAuthenticated, isAdmin, adminController.dashboard);
+// router.get('/dashboard', isAuthenticated, isAdmin, adminController.dashboard);
 router.post('/staff/register', isAuthenticated, isAdmin, adminController.register);
+
+
 router.get('/staff', isAuthenticated, isAdmin, adminController.getStaff);
 router.delete('/staff/:id', isAuthenticated, isAdmin, adminController.deleteStaff);
 

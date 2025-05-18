@@ -127,7 +127,6 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   phone: 'phone',
-  department: 'department',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -202,8 +201,7 @@ exports.Prisma.AppointmentScalarFieldEnum = {
 exports.Prisma.TriageScalarFieldEnum = {
   id: 'id',
   patientId: 'patientId',
-  submittedBy: 'submittedBy',
-  submittedById: 'submittedById',
+  nurseId: 'nurseId',
   symptoms: 'symptoms',
   vitals: 'vitals',
   notes: 'notes',
@@ -316,11 +314,6 @@ exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
   cancelled: 'cancelled',
   completed: 'completed',
   rescheduled: 'rescheduled'
-};
-
-exports.SubmitterRole = exports.$Enums.SubmitterRole = {
-  nurse: 'nurse',
-  patient: 'patient'
 };
 
 exports.PrescriptionStatus = exports.$Enums.PrescriptionStatus = {

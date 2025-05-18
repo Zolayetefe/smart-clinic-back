@@ -44,14 +44,13 @@ exports.register = async (data) => {
       password, 
       role, 
       phone, 
-      department, 
       specialization, 
       availabilities 
     } = data;
     
     console.log("Registration data:", data);
 
-    if (!name || !email || !password || !role || !phone || !department) {
+    if (!name || !email || !password || !role || !phone ) {
       throw new Error('All fields are required: name, email, password, role, phone, department');
     }
 
@@ -134,7 +133,6 @@ exports.register = async (data) => {
       password: hashedPassword,
       role,
       phone,
-      department
     };
 
     // Add role-specific relations
@@ -219,7 +217,6 @@ exports.register = async (data) => {
         email: user.email,
         role: user.role,
         phone: user.phone,
-        department: user.department,
         // Include role-specific data
         ...(user.doctor && { 
           doctor: {
@@ -297,7 +294,6 @@ exports.getStaff = async () => {
       email: staff.email,
       role: staff.role,
       phone: staff.phone,
-      department: staff.department,
       doctor: staff.doctor ? {
         ...staff.doctor,
         availabilities: staff.doctor.availabilities.map(availability => ({

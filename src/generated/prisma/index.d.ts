@@ -2537,14 +2537,12 @@ export namespace Prisma {
     approvedFinances: number
     labResults: number
     pharmacy: number
-    submittedTriages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     approvedFinances?: boolean | UserCountOutputTypeCountApprovedFinancesArgs
     labResults?: boolean | UserCountOutputTypeCountLabResultsArgs
     pharmacy?: boolean | UserCountOutputTypeCountPharmacyArgs
-    submittedTriages?: boolean | UserCountOutputTypeCountSubmittedTriagesArgs
   }
 
   // Custom InputTypes
@@ -2577,13 +2575,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPharmacyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PharmacyWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSubmittedTriagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TriageWhereInput
   }
 
 
@@ -2713,6 +2704,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type NurseCountOutputType
+   */
+
+  export type NurseCountOutputType = {
+    triages: number
+  }
+
+  export type NurseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    triages?: boolean | NurseCountOutputTypeCountTriagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NurseCountOutputType without action
+   */
+  export type NurseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NurseCountOutputType
+     */
+    select?: NurseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NurseCountOutputType without action
+   */
+  export type NurseCountOutputTypeCountTriagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TriageWhereInput
+  }
+
+
+  /**
    * Count Type AppointmentCountOutputType
    */
 
@@ -2764,7 +2786,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
-    department: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2776,7 +2797,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
-    department: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2788,7 +2808,6 @@ export namespace Prisma {
     email: number
     password: number
     phone: number
-    department: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2802,7 +2821,6 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
-    department?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2814,7 +2832,6 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
-    department?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2826,7 +2843,6 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
-    department?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2911,7 +2927,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2940,7 +2955,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
-    department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     doctor?: boolean | User$doctorArgs<ExtArgs>
@@ -2953,7 +2967,6 @@ export namespace Prisma {
     approvedFinances?: boolean | User$approvedFinancesArgs<ExtArgs>
     labResults?: boolean | User$labResultsArgs<ExtArgs>
     pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
-    submittedTriages?: boolean | User$submittedTriagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2964,7 +2977,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
-    department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2976,7 +2988,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
-    department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2988,12 +2999,11 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
-    department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     doctor?: boolean | User$doctorArgs<ExtArgs>
     nurse?: boolean | User$nurseArgs<ExtArgs>
@@ -3005,7 +3015,6 @@ export namespace Prisma {
     approvedFinances?: boolean | User$approvedFinancesArgs<ExtArgs>
     labResults?: boolean | User$labResultsArgs<ExtArgs>
     pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
-    submittedTriages?: boolean | User$submittedTriagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3024,7 +3033,6 @@ export namespace Prisma {
       approvedFinances: Prisma.$FinancePayload<ExtArgs>[]
       labResults: Prisma.$LabResultPayload<ExtArgs>[]
       pharmacy: Prisma.$PharmacyPayload<ExtArgs>[]
-      submittedTriages: Prisma.$TriagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3033,7 +3041,6 @@ export namespace Prisma {
       email: string
       password: string
       phone: string
-      department: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3440,7 +3447,6 @@ export namespace Prisma {
     approvedFinances<T extends User$approvedFinancesArgs<ExtArgs> = {}>(args?: Subset<T, User$approvedFinancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     labResults<T extends User$labResultsArgs<ExtArgs> = {}>(args?: Subset<T, User$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pharmacy<T extends User$pharmacyArgs<ExtArgs> = {}>(args?: Subset<T, User$pharmacyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PharmacyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    submittedTriages<T extends User$submittedTriagesArgs<ExtArgs> = {}>(args?: Subset<T, User$submittedTriagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3476,7 +3482,6 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
-    readonly department: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -4069,30 +4074,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PharmacyScalarFieldEnum | PharmacyScalarFieldEnum[]
-  }
-
-  /**
-   * User.submittedTriages
-   */
-  export type User$submittedTriagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Triage
-     */
-    select?: TriageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Triage
-     */
-    omit?: TriageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TriageInclude<ExtArgs> | null
-    where?: TriageWhereInput
-    orderBy?: TriageOrderByWithRelationInput | TriageOrderByWithRelationInput[]
-    cursor?: TriageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TriageScalarFieldEnum | TriageScalarFieldEnum[]
   }
 
   /**
@@ -6636,7 +6617,9 @@ export namespace Prisma {
   export type NurseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    triages?: boolean | Nurse$triagesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | NurseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["nurse"]>
 
   export type NurseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6658,7 +6641,9 @@ export namespace Prisma {
 
   export type NurseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["nurse"]>
   export type NurseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    triages?: boolean | Nurse$triagesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | NurseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type NurseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6670,6 +6655,7 @@ export namespace Prisma {
   export type $NursePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Nurse"
     objects: {
+      triages: Prisma.$TriagePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7069,6 +7055,7 @@ export namespace Prisma {
    */
   export interface Prisma__NurseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    triages<T extends Nurse$triagesArgs<ExtArgs> = {}>(args?: Subset<T, Nurse$triagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TriagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7494,6 +7481,30 @@ export namespace Prisma {
      * Limit how many Nurses to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Nurse.triages
+   */
+  export type Nurse$triagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Triage
+     */
+    select?: TriageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Triage
+     */
+    omit?: TriageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageInclude<ExtArgs> | null
+    where?: TriageWhereInput
+    orderBy?: TriageOrderByWithRelationInput | TriageOrderByWithRelationInput[]
+    cursor?: TriageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TriageScalarFieldEnum | TriageScalarFieldEnum[]
   }
 
   /**
@@ -14905,8 +14916,7 @@ export namespace Prisma {
   export type TriageMinAggregateOutputType = {
     id: string | null
     patientId: string | null
-    submittedBy: $Enums.SubmitterRole | null
-    submittedById: string | null
+    nurseId: string | null
     notes: string | null
     timestamp: Date | null
   }
@@ -14914,8 +14924,7 @@ export namespace Prisma {
   export type TriageMaxAggregateOutputType = {
     id: string | null
     patientId: string | null
-    submittedBy: $Enums.SubmitterRole | null
-    submittedById: string | null
+    nurseId: string | null
     notes: string | null
     timestamp: Date | null
   }
@@ -14923,8 +14932,7 @@ export namespace Prisma {
   export type TriageCountAggregateOutputType = {
     id: number
     patientId: number
-    submittedBy: number
-    submittedById: number
+    nurseId: number
     symptoms: number
     vitals: number
     notes: number
@@ -14936,8 +14944,7 @@ export namespace Prisma {
   export type TriageMinAggregateInputType = {
     id?: true
     patientId?: true
-    submittedBy?: true
-    submittedById?: true
+    nurseId?: true
     notes?: true
     timestamp?: true
   }
@@ -14945,8 +14952,7 @@ export namespace Prisma {
   export type TriageMaxAggregateInputType = {
     id?: true
     patientId?: true
-    submittedBy?: true
-    submittedById?: true
+    nurseId?: true
     notes?: true
     timestamp?: true
   }
@@ -14954,8 +14960,7 @@ export namespace Prisma {
   export type TriageCountAggregateInputType = {
     id?: true
     patientId?: true
-    submittedBy?: true
-    submittedById?: true
+    nurseId?: true
     symptoms?: true
     vitals?: true
     notes?: true
@@ -15038,11 +15043,10 @@ export namespace Prisma {
   export type TriageGroupByOutputType = {
     id: string
     patientId: string
-    submittedBy: $Enums.SubmitterRole
-    submittedById: string
+    nurseId: string | null
     symptoms: string[]
     vitals: JsonValue | null
-    notes: string
+    notes: string | null
     timestamp: Date
     _count: TriageCountAggregateOutputType | null
     _min: TriageMinAggregateOutputType | null
@@ -15066,81 +15070,76 @@ export namespace Prisma {
   export type TriageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
-    submittedBy?: boolean
-    submittedById?: boolean
+    nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
   export type TriageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
-    submittedBy?: boolean
-    submittedById?: boolean
+    nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
   export type TriageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
-    submittedBy?: boolean
-    submittedById?: boolean
+    nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
   export type TriageSelectScalar = {
     id?: boolean
     patientId?: boolean
-    submittedBy?: boolean
-    submittedById?: boolean
+    nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
   }
 
-  export type TriageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "submittedBy" | "submittedById" | "symptoms" | "vitals" | "notes" | "timestamp", ExtArgs["result"]["triage"]>
+  export type TriageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "nurseId" | "symptoms" | "vitals" | "notes" | "timestamp", ExtArgs["result"]["triage"]>
   export type TriageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
-    submittedByUser?: boolean | UserDefaultArgs<ExtArgs>
+    nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
 
   export type $TriagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Triage"
     objects: {
       patient: Prisma.$PatientPayload<ExtArgs>
-      submittedByUser: Prisma.$UserPayload<ExtArgs>
+      nurse: Prisma.$NursePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       patientId: string
-      submittedBy: $Enums.SubmitterRole
-      submittedById: string
+      nurseId: string | null
       symptoms: string[]
       vitals: Prisma.JsonValue | null
-      notes: string
+      notes: string | null
       timestamp: Date
     }, ExtArgs["result"]["triage"]>
     composites: {}
@@ -15537,7 +15536,7 @@ export namespace Prisma {
   export interface Prisma__TriageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    submittedByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    nurse<T extends Triage$nurseArgs<ExtArgs> = {}>(args?: Subset<T, Triage$nurseArgs<ExtArgs>>): Prisma__NurseClient<$Result.GetResult<Prisma.$NursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15569,8 +15568,7 @@ export namespace Prisma {
   interface TriageFieldRefs {
     readonly id: FieldRef<"Triage", 'String'>
     readonly patientId: FieldRef<"Triage", 'String'>
-    readonly submittedBy: FieldRef<"Triage", 'SubmitterRole'>
-    readonly submittedById: FieldRef<"Triage", 'String'>
+    readonly nurseId: FieldRef<"Triage", 'String'>
     readonly symptoms: FieldRef<"Triage", 'String[]'>
     readonly vitals: FieldRef<"Triage", 'Json'>
     readonly notes: FieldRef<"Triage", 'String'>
@@ -15968,6 +15966,25 @@ export namespace Prisma {
      * Limit how many Triages to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Triage.nurse
+   */
+  export type Triage$nurseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nurse
+     */
+    select?: NurseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nurse
+     */
+    omit?: NurseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NurseInclude<ExtArgs> | null
+    where?: NurseWhereInput
   }
 
   /**
@@ -22540,7 +22557,6 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     phone: 'phone',
-    department: 'department',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -22648,8 +22664,7 @@ export namespace Prisma {
   export const TriageScalarFieldEnum: {
     id: 'id',
     patientId: 'patientId',
-    submittedBy: 'submittedBy',
-    submittedById: 'submittedById',
+    nurseId: 'nurseId',
     symptoms: 'symptoms',
     vitals: 'vitals',
     notes: 'notes',
@@ -22855,20 +22870,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'SubmitterRole'
-   */
-  export type EnumSubmitterRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmitterRole'>
-    
-
-
-  /**
-   * Reference to a field of type 'SubmitterRole[]'
-   */
-  export type ListEnumSubmitterRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubmitterRole[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -22986,7 +22987,6 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
-    department?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -22999,7 +22999,6 @@ export namespace Prisma {
     approvedFinances?: FinanceListRelationFilter
     labResults?: LabResultListRelationFilter
     pharmacy?: PharmacyListRelationFilter
-    submittedTriages?: TriageListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23009,7 +23008,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
-    department?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     doctor?: DoctorOrderByWithRelationInput
@@ -23022,7 +23020,6 @@ export namespace Prisma {
     approvedFinances?: FinanceOrderByRelationAggregateInput
     labResults?: LabResultOrderByRelationAggregateInput
     pharmacy?: PharmacyOrderByRelationAggregateInput
-    submittedTriages?: TriageOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -23035,7 +23032,6 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
-    department?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -23048,7 +23044,6 @@ export namespace Prisma {
     approvedFinances?: FinanceListRelationFilter
     labResults?: LabResultListRelationFilter
     pharmacy?: PharmacyListRelationFilter
-    submittedTriages?: TriageListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -23058,7 +23053,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
-    department?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -23076,7 +23070,6 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
-    department?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -23222,12 +23215,14 @@ export namespace Prisma {
     NOT?: NurseWhereInput | NurseWhereInput[]
     id?: StringFilter<"Nurse"> | string
     userId?: StringFilter<"Nurse"> | string
+    triages?: TriageListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type NurseOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    triages?: TriageOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -23237,6 +23232,7 @@ export namespace Prisma {
     AND?: NurseWhereInput | NurseWhereInput[]
     OR?: NurseWhereInput[]
     NOT?: NurseWhereInput | NurseWhereInput[]
+    triages?: TriageListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -23616,27 +23612,25 @@ export namespace Prisma {
     NOT?: TriageWhereInput | TriageWhereInput[]
     id?: StringFilter<"Triage"> | string
     patientId?: StringFilter<"Triage"> | string
-    submittedBy?: EnumSubmitterRoleFilter<"Triage"> | $Enums.SubmitterRole
-    submittedById?: StringFilter<"Triage"> | string
+    nurseId?: StringNullableFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableFilter<"Triage">
-    notes?: StringFilter<"Triage"> | string
+    notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
-    submittedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+    nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
   }
 
   export type TriageOrderByWithRelationInput = {
     id?: SortOrder
     patientId?: SortOrder
-    submittedBy?: SortOrder
-    submittedById?: SortOrder
+    nurseId?: SortOrderInput | SortOrder
     symptoms?: SortOrder
     vitals?: SortOrderInput | SortOrder
-    notes?: SortOrder
+    notes?: SortOrderInput | SortOrder
     timestamp?: SortOrder
     patient?: PatientOrderByWithRelationInput
-    submittedByUser?: UserOrderByWithRelationInput
+    nurse?: NurseOrderByWithRelationInput
   }
 
   export type TriageWhereUniqueInput = Prisma.AtLeast<{
@@ -23645,24 +23639,22 @@ export namespace Prisma {
     OR?: TriageWhereInput[]
     NOT?: TriageWhereInput | TriageWhereInput[]
     patientId?: StringFilter<"Triage"> | string
-    submittedBy?: EnumSubmitterRoleFilter<"Triage"> | $Enums.SubmitterRole
-    submittedById?: StringFilter<"Triage"> | string
+    nurseId?: StringNullableFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableFilter<"Triage">
-    notes?: StringFilter<"Triage"> | string
+    notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
-    submittedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+    nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
   }, "id">
 
   export type TriageOrderByWithAggregationInput = {
     id?: SortOrder
     patientId?: SortOrder
-    submittedBy?: SortOrder
-    submittedById?: SortOrder
+    nurseId?: SortOrderInput | SortOrder
     symptoms?: SortOrder
     vitals?: SortOrderInput | SortOrder
-    notes?: SortOrder
+    notes?: SortOrderInput | SortOrder
     timestamp?: SortOrder
     _count?: TriageCountOrderByAggregateInput
     _max?: TriageMaxOrderByAggregateInput
@@ -23675,11 +23667,10 @@ export namespace Prisma {
     NOT?: TriageScalarWhereWithAggregatesInput | TriageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Triage"> | string
     patientId?: StringWithAggregatesFilter<"Triage"> | string
-    submittedBy?: EnumSubmitterRoleWithAggregatesFilter<"Triage"> | $Enums.SubmitterRole
-    submittedById?: StringWithAggregatesFilter<"Triage"> | string
+    nurseId?: StringNullableWithAggregatesFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableWithAggregatesFilter<"Triage">
-    notes?: StringWithAggregatesFilter<"Triage"> | string
+    notes?: StringNullableWithAggregatesFilter<"Triage"> | string | null
     timestamp?: DateTimeWithAggregatesFilter<"Triage"> | Date | string
   }
 
@@ -24073,7 +24064,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -24086,7 +24076,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -24096,7 +24085,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -24109,7 +24097,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUpdateInput = {
@@ -24119,7 +24106,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -24132,7 +24118,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -24142,7 +24127,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -24155,7 +24139,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -24165,7 +24148,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24177,7 +24159,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24189,7 +24170,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24339,22 +24319,26 @@ export namespace Prisma {
 
   export type NurseCreateInput = {
     id?: string
+    triages?: TriageCreateNestedManyWithoutNurseInput
     user: UserCreateNestedOneWithoutNurseInput
   }
 
   export type NurseUncheckedCreateInput = {
     id?: string
     userId: string
+    triages?: TriageUncheckedCreateNestedManyWithoutNurseInput
   }
 
   export type NurseUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    triages?: TriageUpdateManyWithoutNurseNestedInput
     user?: UserUpdateOneRequiredWithoutNurseNestedInput
   }
 
   export type NurseUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    triages?: TriageUncheckedUpdateManyWithoutNurseNestedInput
   }
 
   export type NurseCreateManyInput = {
@@ -24701,76 +24685,69 @@ export namespace Prisma {
 
   export type TriageCreateInput = {
     id?: string
-    submittedBy: $Enums.SubmitterRole
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
     patient: PatientCreateNestedOneWithoutTriagesInput
-    submittedByUser: UserCreateNestedOneWithoutSubmittedTriagesInput
+    nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
 
   export type TriageUncheckedCreateInput = {
     id?: string
     patientId: string
-    submittedBy: $Enums.SubmitterRole
-    submittedById: string
+    nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
   }
 
   export type TriageUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
-    submittedByUser?: UserUpdateOneRequiredWithoutSubmittedTriagesNestedInput
+    nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
 
   export type TriageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    submittedById?: StringFieldUpdateOperationsInput | string
+    nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TriageCreateManyInput = {
     id?: string
     patientId: string
-    submittedBy: $Enums.SubmitterRole
-    submittedById: string
+    nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
   }
 
   export type TriageUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TriageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    submittedById?: StringFieldUpdateOperationsInput | string
+    nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -25171,21 +25148,6 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -25250,17 +25212,6 @@ export namespace Prisma {
     none?: PharmacyWhereInput
   }
 
-  export type TriageListRelationFilter = {
-    every?: TriageWhereInput
-    some?: TriageWhereInput
-    none?: TriageWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type FinanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -25273,10 +25224,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type TriageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     role?: SortOrder
@@ -25284,7 +25231,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
-    department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25296,7 +25242,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
-    department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25308,7 +25253,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
-    department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25339,24 +25283,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -25401,6 +25327,12 @@ export namespace Prisma {
     none?: PrescriptionWhereInput
   }
 
+  export type TriageListRelationFilter = {
+    every?: TriageWhereInput
+    some?: TriageWhereInput
+    none?: TriageWhereInput
+  }
+
   export type AppointmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -25410,6 +25342,10 @@ export namespace Prisma {
   }
 
   export type PrescriptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TriageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25654,6 +25590,21 @@ export namespace Prisma {
     not?: NestedEnumAppointmentStatusFilter<$PrismaModel> | $Enums.AppointmentStatus
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type PatientScalarRelationFilter = {
     is?: PatientWhereInput
     isNot?: PatientWhereInput
@@ -25667,6 +25618,11 @@ export namespace Prisma {
   export type FinanceNullableScalarRelationFilter = {
     is?: FinanceWhereInput | null
     isNot?: FinanceWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type AppointmentCountOrderByAggregateInput = {
@@ -25712,11 +25668,22 @@ export namespace Prisma {
     _max?: NestedEnumAppointmentStatusFilter<$PrismaModel>
   }
 
-  export type EnumSubmitterRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubmitterRole | EnumSubmitterRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumSubmitterRoleFilter<$PrismaModel> | $Enums.SubmitterRole
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -25753,8 +25720,7 @@ export namespace Prisma {
   export type TriageCountOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
-    submittedBy?: SortOrder
-    submittedById?: SortOrder
+    nurseId?: SortOrder
     symptoms?: SortOrder
     vitals?: SortOrder
     notes?: SortOrder
@@ -25764,8 +25730,7 @@ export namespace Prisma {
   export type TriageMaxOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
-    submittedBy?: SortOrder
-    submittedById?: SortOrder
+    nurseId?: SortOrder
     notes?: SortOrder
     timestamp?: SortOrder
   }
@@ -25773,20 +25738,9 @@ export namespace Prisma {
   export type TriageMinOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
-    submittedBy?: SortOrder
-    submittedById?: SortOrder
+    nurseId?: SortOrder
     notes?: SortOrder
     timestamp?: SortOrder
-  }
-
-  export type EnumSubmitterRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubmitterRole | EnumSubmitterRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumSubmitterRoleWithAggregatesFilter<$PrismaModel> | $Enums.SubmitterRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubmitterRoleFilter<$PrismaModel>
-    _max?: NestedEnumSubmitterRoleFilter<$PrismaModel>
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -26199,13 +26153,6 @@ export namespace Prisma {
     connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
   }
 
-  export type TriageCreateNestedManyWithoutSubmittedByUserInput = {
-    create?: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput> | TriageCreateWithoutSubmittedByUserInput[] | TriageUncheckedCreateWithoutSubmittedByUserInput[]
-    connectOrCreate?: TriageCreateOrConnectWithoutSubmittedByUserInput | TriageCreateOrConnectWithoutSubmittedByUserInput[]
-    createMany?: TriageCreateManySubmittedByUserInputEnvelope
-    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-  }
-
   export type DoctorUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<DoctorCreateWithoutUserInput, DoctorUncheckedCreateWithoutUserInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutUserInput
@@ -26269,23 +26216,12 @@ export namespace Prisma {
     connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
   }
 
-  export type TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput = {
-    create?: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput> | TriageCreateWithoutSubmittedByUserInput[] | TriageUncheckedCreateWithoutSubmittedByUserInput[]
-    connectOrCreate?: TriageCreateOrConnectWithoutSubmittedByUserInput | TriageCreateOrConnectWithoutSubmittedByUserInput[]
-    createMany?: TriageCreateManySubmittedByUserInputEnvelope
-    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -26404,20 +26340,6 @@ export namespace Prisma {
     deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
   }
 
-  export type TriageUpdateManyWithoutSubmittedByUserNestedInput = {
-    create?: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput> | TriageCreateWithoutSubmittedByUserInput[] | TriageUncheckedCreateWithoutSubmittedByUserInput[]
-    connectOrCreate?: TriageCreateOrConnectWithoutSubmittedByUserInput | TriageCreateOrConnectWithoutSubmittedByUserInput[]
-    upsert?: TriageUpsertWithWhereUniqueWithoutSubmittedByUserInput | TriageUpsertWithWhereUniqueWithoutSubmittedByUserInput[]
-    createMany?: TriageCreateManySubmittedByUserInputEnvelope
-    set?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    disconnect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    delete?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    update?: TriageUpdateWithWhereUniqueWithoutSubmittedByUserInput | TriageUpdateWithWhereUniqueWithoutSubmittedByUserInput[]
-    updateMany?: TriageUpdateManyWithWhereWithoutSubmittedByUserInput | TriageUpdateManyWithWhereWithoutSubmittedByUserInput[]
-    deleteMany?: TriageScalarWhereInput | TriageScalarWhereInput[]
-  }
-
   export type DoctorUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<DoctorCreateWithoutUserInput, DoctorUncheckedCreateWithoutUserInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutUserInput
@@ -26528,20 +26450,6 @@ export namespace Prisma {
     update?: PharmacyUpdateWithWhereUniqueWithoutPharmacistInput | PharmacyUpdateWithWhereUniqueWithoutPharmacistInput[]
     updateMany?: PharmacyUpdateManyWithWhereWithoutPharmacistInput | PharmacyUpdateManyWithWhereWithoutPharmacistInput[]
     deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
-  }
-
-  export type TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput = {
-    create?: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput> | TriageCreateWithoutSubmittedByUserInput[] | TriageUncheckedCreateWithoutSubmittedByUserInput[]
-    connectOrCreate?: TriageCreateOrConnectWithoutSubmittedByUserInput | TriageCreateOrConnectWithoutSubmittedByUserInput[]
-    upsert?: TriageUpsertWithWhereUniqueWithoutSubmittedByUserInput | TriageUpsertWithWhereUniqueWithoutSubmittedByUserInput[]
-    createMany?: TriageCreateManySubmittedByUserInputEnvelope
-    set?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    disconnect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    delete?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
-    update?: TriageUpdateWithWhereUniqueWithoutSubmittedByUserInput | TriageUpdateWithWhereUniqueWithoutSubmittedByUserInput[]
-    updateMany?: TriageUpdateManyWithWhereWithoutSubmittedByUserInput | TriageUpdateManyWithWhereWithoutSubmittedByUserInput[]
-    deleteMany?: TriageScalarWhereInput | TriageScalarWhereInput[]
   }
 
   export type AppointmentCreateNestedManyWithoutPatientInput = {
@@ -26982,10 +26890,38 @@ export namespace Prisma {
     deleteMany?: PrescriptionScalarWhereInput | PrescriptionScalarWhereInput[]
   }
 
+  export type TriageCreateNestedManyWithoutNurseInput = {
+    create?: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput> | TriageCreateWithoutNurseInput[] | TriageUncheckedCreateWithoutNurseInput[]
+    connectOrCreate?: TriageCreateOrConnectWithoutNurseInput | TriageCreateOrConnectWithoutNurseInput[]
+    createMany?: TriageCreateManyNurseInputEnvelope
+    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutNurseInput = {
     create?: XOR<UserCreateWithoutNurseInput, UserUncheckedCreateWithoutNurseInput>
     connectOrCreate?: UserCreateOrConnectWithoutNurseInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type TriageUncheckedCreateNestedManyWithoutNurseInput = {
+    create?: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput> | TriageCreateWithoutNurseInput[] | TriageUncheckedCreateWithoutNurseInput[]
+    connectOrCreate?: TriageCreateOrConnectWithoutNurseInput | TriageCreateOrConnectWithoutNurseInput[]
+    createMany?: TriageCreateManyNurseInputEnvelope
+    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+  }
+
+  export type TriageUpdateManyWithoutNurseNestedInput = {
+    create?: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput> | TriageCreateWithoutNurseInput[] | TriageUncheckedCreateWithoutNurseInput[]
+    connectOrCreate?: TriageCreateOrConnectWithoutNurseInput | TriageCreateOrConnectWithoutNurseInput[]
+    upsert?: TriageUpsertWithWhereUniqueWithoutNurseInput | TriageUpsertWithWhereUniqueWithoutNurseInput[]
+    createMany?: TriageCreateManyNurseInputEnvelope
+    set?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    disconnect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    delete?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    update?: TriageUpdateWithWhereUniqueWithoutNurseInput | TriageUpdateWithWhereUniqueWithoutNurseInput[]
+    updateMany?: TriageUpdateManyWithWhereWithoutNurseInput | TriageUpdateManyWithWhereWithoutNurseInput[]
+    deleteMany?: TriageScalarWhereInput | TriageScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutNurseNestedInput = {
@@ -26994,6 +26930,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutNurseInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNurseInput, UserUpdateWithoutNurseInput>, UserUncheckedUpdateWithoutNurseInput>
+  }
+
+  export type TriageUncheckedUpdateManyWithoutNurseNestedInput = {
+    create?: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput> | TriageCreateWithoutNurseInput[] | TriageUncheckedCreateWithoutNurseInput[]
+    connectOrCreate?: TriageCreateOrConnectWithoutNurseInput | TriageCreateOrConnectWithoutNurseInput[]
+    upsert?: TriageUpsertWithWhereUniqueWithoutNurseInput | TriageUpsertWithWhereUniqueWithoutNurseInput[]
+    createMany?: TriageCreateManyNurseInputEnvelope
+    set?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    disconnect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    delete?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    connect?: TriageWhereUniqueInput | TriageWhereUniqueInput[]
+    update?: TriageUpdateWithWhereUniqueWithoutNurseInput | TriageUpdateWithWhereUniqueWithoutNurseInput[]
+    updateMany?: TriageUpdateManyWithWhereWithoutNurseInput | TriageUpdateManyWithWhereWithoutNurseInput[]
+    deleteMany?: TriageScalarWhereInput | TriageScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutLabTechnicianInput = {
@@ -27186,6 +27136,10 @@ export namespace Prisma {
     update?: XOR<XOR<FinanceUpdateToOneWithWhereWithoutAppointmentInput, FinanceUpdateWithoutAppointmentInput>, FinanceUncheckedUpdateWithoutAppointmentInput>
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput = {
     create?: XOR<AppointmentCreateWithoutRescheduleInput, AppointmentUncheckedCreateWithoutRescheduleInput> | AppointmentCreateWithoutRescheduleInput[] | AppointmentUncheckedCreateWithoutRescheduleInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutRescheduleInput | AppointmentCreateOrConnectWithoutRescheduleInput[]
@@ -27220,14 +27174,10 @@ export namespace Prisma {
     connect?: PatientWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSubmittedTriagesInput = {
-    create?: XOR<UserCreateWithoutSubmittedTriagesInput, UserUncheckedCreateWithoutSubmittedTriagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSubmittedTriagesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type EnumSubmitterRoleFieldUpdateOperationsInput = {
-    set?: $Enums.SubmitterRole
+  export type NurseCreateNestedOneWithoutTriagesInput = {
+    create?: XOR<NurseCreateWithoutTriagesInput, NurseUncheckedCreateWithoutTriagesInput>
+    connectOrCreate?: NurseCreateOrConnectWithoutTriagesInput
+    connect?: NurseWhereUniqueInput
   }
 
   export type TriageUpdatesymptomsInput = {
@@ -27243,12 +27193,14 @@ export namespace Prisma {
     update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutTriagesInput, PatientUpdateWithoutTriagesInput>, PatientUncheckedUpdateWithoutTriagesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutSubmittedTriagesNestedInput = {
-    create?: XOR<UserCreateWithoutSubmittedTriagesInput, UserUncheckedCreateWithoutSubmittedTriagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSubmittedTriagesInput
-    upsert?: UserUpsertWithoutSubmittedTriagesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSubmittedTriagesInput, UserUpdateWithoutSubmittedTriagesInput>, UserUncheckedUpdateWithoutSubmittedTriagesInput>
+  export type NurseUpdateOneWithoutTriagesNestedInput = {
+    create?: XOR<NurseCreateWithoutTriagesInput, NurseUncheckedCreateWithoutTriagesInput>
+    connectOrCreate?: NurseCreateOrConnectWithoutTriagesInput
+    upsert?: NurseUpsertWithoutTriagesInput
+    disconnect?: NurseWhereInput | boolean
+    delete?: NurseWhereInput | boolean
+    connect?: NurseWhereUniqueInput
+    update?: XOR<XOR<NurseUpdateToOneWithWhereWithoutTriagesInput, NurseUpdateWithoutTriagesInput>, NurseUncheckedUpdateWithoutTriagesInput>
   }
 
   export type PrescriptionCreatemedicationsInput = {
@@ -27554,20 +27506,6 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -27615,34 +27553,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -27696,6 +27606,20 @@ export namespace Prisma {
     not?: NestedEnumAppointmentStatusFilter<$PrismaModel> | $Enums.AppointmentStatus
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumAppointmentStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.AppointmentStatus | EnumAppointmentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.AppointmentStatus[] | ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
@@ -27706,21 +27630,32 @@ export namespace Prisma {
     _max?: NestedEnumAppointmentStatusFilter<$PrismaModel>
   }
 
-  export type NestedEnumSubmitterRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubmitterRole | EnumSubmitterRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumSubmitterRoleFilter<$PrismaModel> | $Enums.SubmitterRole
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumSubmitterRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubmitterRole | EnumSubmitterRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SubmitterRole[] | ListEnumSubmitterRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumSubmitterRoleWithAggregatesFilter<$PrismaModel> | $Enums.SubmitterRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubmitterRoleFilter<$PrismaModel>
-    _max?: NestedEnumSubmitterRoleFilter<$PrismaModel>
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -27893,10 +27828,12 @@ export namespace Prisma {
 
   export type NurseCreateWithoutUserInput = {
     id?: string
+    triages?: TriageCreateNestedManyWithoutNurseInput
   }
 
   export type NurseUncheckedCreateWithoutUserInput = {
     id?: string
+    triages?: TriageUncheckedCreateNestedManyWithoutNurseInput
   }
 
   export type NurseCreateOrConnectWithoutUserInput = {
@@ -28063,36 +28000,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type TriageCreateWithoutSubmittedByUserInput = {
-    id?: string
-    submittedBy: $Enums.SubmitterRole
-    symptoms?: TriageCreatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
-    timestamp: Date | string
-    patient: PatientCreateNestedOneWithoutTriagesInput
-  }
-
-  export type TriageUncheckedCreateWithoutSubmittedByUserInput = {
-    id?: string
-    patientId: string
-    submittedBy: $Enums.SubmitterRole
-    symptoms?: TriageCreatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
-    timestamp: Date | string
-  }
-
-  export type TriageCreateOrConnectWithoutSubmittedByUserInput = {
-    where: TriageWhereUniqueInput
-    create: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput>
-  }
-
-  export type TriageCreateManySubmittedByUserInputEnvelope = {
-    data: TriageCreateManySubmittedByUserInput | TriageCreateManySubmittedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type DoctorUpsertWithoutUserInput = {
     update: XOR<DoctorUpdateWithoutUserInput, DoctorUncheckedUpdateWithoutUserInput>
     create: XOR<DoctorCreateWithoutUserInput, DoctorUncheckedCreateWithoutUserInput>
@@ -28137,10 +28044,12 @@ export namespace Prisma {
 
   export type NurseUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    triages?: TriageUpdateManyWithoutNurseNestedInput
   }
 
   export type NurseUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    triages?: TriageUncheckedUpdateManyWithoutNurseNestedInput
   }
 
   export type PatientUpsertWithoutUserInput = {
@@ -28339,36 +28248,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Pharmacy"> | Date | string
   }
 
-  export type TriageUpsertWithWhereUniqueWithoutSubmittedByUserInput = {
-    where: TriageWhereUniqueInput
-    update: XOR<TriageUpdateWithoutSubmittedByUserInput, TriageUncheckedUpdateWithoutSubmittedByUserInput>
-    create: XOR<TriageCreateWithoutSubmittedByUserInput, TriageUncheckedCreateWithoutSubmittedByUserInput>
-  }
-
-  export type TriageUpdateWithWhereUniqueWithoutSubmittedByUserInput = {
-    where: TriageWhereUniqueInput
-    data: XOR<TriageUpdateWithoutSubmittedByUserInput, TriageUncheckedUpdateWithoutSubmittedByUserInput>
-  }
-
-  export type TriageUpdateManyWithWhereWithoutSubmittedByUserInput = {
-    where: TriageScalarWhereInput
-    data: XOR<TriageUpdateManyMutationInput, TriageUncheckedUpdateManyWithoutSubmittedByUserInput>
-  }
-
-  export type TriageScalarWhereInput = {
-    AND?: TriageScalarWhereInput | TriageScalarWhereInput[]
-    OR?: TriageScalarWhereInput[]
-    NOT?: TriageScalarWhereInput | TriageScalarWhereInput[]
-    id?: StringFilter<"Triage"> | string
-    patientId?: StringFilter<"Triage"> | string
-    submittedBy?: EnumSubmitterRoleFilter<"Triage"> | $Enums.SubmitterRole
-    submittedById?: StringFilter<"Triage"> | string
-    symptoms?: StringNullableListFilter<"Triage">
-    vitals?: JsonNullableFilter<"Triage">
-    notes?: StringFilter<"Triage"> | string
-    timestamp?: DateTimeFilter<"Triage"> | Date | string
-  }
-
   export type AppointmentCreateWithoutPatientInput = {
     id?: string
     status: $Enums.AppointmentStatus
@@ -28461,7 +28340,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -28473,7 +28351,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutPatientInput = {
@@ -28483,7 +28360,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -28495,7 +28371,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutPatientInput = {
@@ -28533,21 +28408,19 @@ export namespace Prisma {
 
   export type TriageCreateWithoutPatientInput = {
     id?: string
-    submittedBy: $Enums.SubmitterRole
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
-    submittedByUser: UserCreateNestedOneWithoutSubmittedTriagesInput
+    nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
 
   export type TriageUncheckedCreateWithoutPatientInput = {
     id?: string
-    submittedBy: $Enums.SubmitterRole
-    submittedById: string
+    nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
   }
 
@@ -28665,7 +28538,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -28677,7 +28549,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPatientInput = {
@@ -28687,7 +28558,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -28699,7 +28569,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type PrescriptionUpsertWithWhereUniqueWithoutPatientInput = {
@@ -28744,6 +28613,19 @@ export namespace Prisma {
   export type TriageUpdateManyWithWhereWithoutPatientInput = {
     where: TriageScalarWhereInput
     data: XOR<TriageUpdateManyMutationInput, TriageUncheckedUpdateManyWithoutPatientInput>
+  }
+
+  export type TriageScalarWhereInput = {
+    AND?: TriageScalarWhereInput | TriageScalarWhereInput[]
+    OR?: TriageScalarWhereInput[]
+    NOT?: TriageScalarWhereInput | TriageScalarWhereInput[]
+    id?: StringFilter<"Triage"> | string
+    patientId?: StringFilter<"Triage"> | string
+    nurseId?: StringNullableFilter<"Triage"> | string | null
+    symptoms?: StringNullableListFilter<"Triage">
+    vitals?: JsonNullableFilter<"Triage">
+    notes?: StringNullableFilter<"Triage"> | string | null
+    timestamp?: DateTimeFilter<"Triage"> | Date | string
   }
 
   export type DoctorAvailabilityCreateWithoutDoctorInput = {
@@ -28835,7 +28717,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseCreateNestedOneWithoutUserInput
@@ -28847,7 +28728,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutDoctorInput = {
@@ -28857,7 +28737,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
@@ -28869,7 +28748,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutDoctorInput = {
@@ -29023,7 +28901,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUpdateOneWithoutUserNestedInput
@@ -29035,7 +28912,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDoctorInput = {
@@ -29045,7 +28921,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
@@ -29057,7 +28932,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type LabRequestUpsertWithWhereUniqueWithoutDoctorInput = {
@@ -29092,6 +28966,34 @@ export namespace Prisma {
     data: XOR<PrescriptionUpdateManyMutationInput, PrescriptionUncheckedUpdateManyWithoutDoctorInput>
   }
 
+  export type TriageCreateWithoutNurseInput = {
+    id?: string
+    symptoms?: TriageCreatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    timestamp: Date | string
+    patient: PatientCreateNestedOneWithoutTriagesInput
+  }
+
+  export type TriageUncheckedCreateWithoutNurseInput = {
+    id?: string
+    patientId: string
+    symptoms?: TriageCreatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    timestamp: Date | string
+  }
+
+  export type TriageCreateOrConnectWithoutNurseInput = {
+    where: TriageWhereUniqueInput
+    create: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput>
+  }
+
+  export type TriageCreateManyNurseInputEnvelope = {
+    data: TriageCreateManyNurseInput | TriageCreateManyNurseInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserCreateWithoutNurseInput = {
     id?: string
     role: $Enums.Role
@@ -29099,7 +29001,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -29111,7 +29012,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutNurseInput = {
@@ -29121,7 +29021,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -29133,12 +29032,27 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutNurseInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutNurseInput, UserUncheckedCreateWithoutNurseInput>
+  }
+
+  export type TriageUpsertWithWhereUniqueWithoutNurseInput = {
+    where: TriageWhereUniqueInput
+    update: XOR<TriageUpdateWithoutNurseInput, TriageUncheckedUpdateWithoutNurseInput>
+    create: XOR<TriageCreateWithoutNurseInput, TriageUncheckedCreateWithoutNurseInput>
+  }
+
+  export type TriageUpdateWithWhereUniqueWithoutNurseInput = {
+    where: TriageWhereUniqueInput
+    data: XOR<TriageUpdateWithoutNurseInput, TriageUncheckedUpdateWithoutNurseInput>
+  }
+
+  export type TriageUpdateManyWithWhereWithoutNurseInput = {
+    where: TriageScalarWhereInput
+    data: XOR<TriageUpdateManyMutationInput, TriageUncheckedUpdateManyWithoutNurseInput>
   }
 
   export type UserUpsertWithoutNurseInput = {
@@ -29159,7 +29073,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -29171,7 +29084,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNurseInput = {
@@ -29181,7 +29093,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -29193,7 +29104,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateWithoutLabTechnicianInput = {
@@ -29203,7 +29113,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -29215,7 +29124,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutLabTechnicianInput = {
@@ -29225,7 +29133,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -29237,7 +29144,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutLabTechnicianInput = {
@@ -29263,7 +29169,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -29275,7 +29180,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLabTechnicianInput = {
@@ -29285,7 +29189,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -29297,7 +29200,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateWithoutPharmacistInput = {
@@ -29307,7 +29209,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -29319,7 +29220,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutPharmacistInput = {
@@ -29329,7 +29229,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -29341,7 +29240,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutPharmacistInput = {
@@ -29367,7 +29265,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -29379,7 +29276,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPharmacistInput = {
@@ -29389,7 +29285,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -29401,7 +29296,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateWithoutFinanceStaffInput = {
@@ -29411,7 +29305,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -29423,7 +29316,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutFinanceStaffInput = {
@@ -29433,7 +29325,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -29445,7 +29336,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutFinanceStaffInput = {
@@ -29471,7 +29361,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -29483,7 +29372,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFinanceStaffInput = {
@@ -29493,7 +29381,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -29505,7 +29392,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateWithoutReceptionistInput = {
@@ -29515,7 +29401,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -29527,7 +29412,6 @@ export namespace Prisma {
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutReceptionistInput = {
@@ -29537,7 +29421,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -29549,7 +29432,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutReceptionistInput = {
@@ -29575,7 +29457,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -29587,7 +29468,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceptionistInput = {
@@ -29597,7 +29477,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -29609,7 +29488,6 @@ export namespace Prisma {
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type DoctorCreateWithoutAvailabilitiesInput = {
@@ -30041,53 +29919,19 @@ export namespace Prisma {
     create: XOR<PatientCreateWithoutTriagesInput, PatientUncheckedCreateWithoutTriagesInput>
   }
 
-  export type UserCreateWithoutSubmittedTriagesInput = {
+  export type NurseCreateWithoutTriagesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    department?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorCreateNestedOneWithoutUserInput
-    nurse?: NurseCreateNestedOneWithoutUserInput
-    patient?: PatientCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
+    user: UserCreateNestedOneWithoutNurseInput
   }
 
-  export type UserUncheckedCreateWithoutSubmittedTriagesInput = {
+  export type NurseUncheckedCreateWithoutTriagesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    department?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
-    nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
-    patient?: PatientUncheckedCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
+    userId: string
   }
 
-  export type UserCreateOrConnectWithoutSubmittedTriagesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSubmittedTriagesInput, UserUncheckedCreateWithoutSubmittedTriagesInput>
+  export type NurseCreateOrConnectWithoutTriagesInput = {
+    where: NurseWhereUniqueInput
+    create: XOR<NurseCreateWithoutTriagesInput, NurseUncheckedCreateWithoutTriagesInput>
   }
 
   export type PatientUpsertWithoutTriagesInput = {
@@ -30127,59 +29971,25 @@ export namespace Prisma {
     prescriptions?: PrescriptionUncheckedUpdateManyWithoutPatientNestedInput
   }
 
-  export type UserUpsertWithoutSubmittedTriagesInput = {
-    update: XOR<UserUpdateWithoutSubmittedTriagesInput, UserUncheckedUpdateWithoutSubmittedTriagesInput>
-    create: XOR<UserCreateWithoutSubmittedTriagesInput, UserUncheckedCreateWithoutSubmittedTriagesInput>
-    where?: UserWhereInput
+  export type NurseUpsertWithoutTriagesInput = {
+    update: XOR<NurseUpdateWithoutTriagesInput, NurseUncheckedUpdateWithoutTriagesInput>
+    create: XOR<NurseCreateWithoutTriagesInput, NurseUncheckedCreateWithoutTriagesInput>
+    where?: NurseWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSubmittedTriagesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSubmittedTriagesInput, UserUncheckedUpdateWithoutSubmittedTriagesInput>
+  export type NurseUpdateToOneWithWhereWithoutTriagesInput = {
+    where?: NurseWhereInput
+    data: XOR<NurseUpdateWithoutTriagesInput, NurseUncheckedUpdateWithoutTriagesInput>
   }
 
-  export type UserUpdateWithoutSubmittedTriagesInput = {
+  export type NurseUpdateWithoutTriagesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUpdateOneWithoutUserNestedInput
-    nurse?: NurseUpdateOneWithoutUserNestedInput
-    patient?: PatientUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
+    user?: UserUpdateOneRequiredWithoutNurseNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSubmittedTriagesInput = {
+  export type NurseUncheckedUpdateWithoutTriagesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
-    nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
-    patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PharmacyCreateWithoutPrescriptionInput = {
@@ -30554,7 +30364,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -30566,7 +30375,6 @@ export namespace Prisma {
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutLabResultsInput = {
@@ -30576,7 +30384,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -30588,7 +30395,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutLabResultsInput = {
@@ -30645,7 +30451,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -30657,7 +30462,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLabResultsInput = {
@@ -30667,7 +30471,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -30679,7 +30482,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserCreateWithoutPharmacyInput = {
@@ -30689,7 +30491,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -30701,7 +30502,6 @@ export namespace Prisma {
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
     approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutPharmacyInput = {
@@ -30711,7 +30511,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -30723,7 +30522,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
     approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutPharmacyInput = {
@@ -30772,7 +30570,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -30784,7 +30581,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
     approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPharmacyInput = {
@@ -30794,7 +30590,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -30806,7 +30601,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
     approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type PrescriptionUpsertWithoutPharmacyInput = {
@@ -30874,7 +30668,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -30886,7 +30679,6 @@ export namespace Prisma {
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserUncheckedCreateWithoutApprovedFinancesInput = {
@@ -30896,7 +30688,6 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
-    department?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -30908,7 +30699,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
-    submittedTriages?: TriageUncheckedCreateNestedManyWithoutSubmittedByUserInput
   }
 
   export type UserCreateOrConnectWithoutApprovedFinancesInput = {
@@ -30969,7 +30759,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -30981,7 +30770,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApprovedFinancesInput = {
@@ -30991,7 +30779,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    department?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31003,7 +30790,6 @@ export namespace Prisma {
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
-    submittedTriages?: TriageUncheckedUpdateManyWithoutSubmittedByUserNestedInput
   }
 
   export type PatientCreateWithoutMedicalRecordInput = {
@@ -31097,16 +30883,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type TriageCreateManySubmittedByUserInput = {
-    id?: string
-    patientId: string
-    submittedBy: $Enums.SubmitterRole
-    symptoms?: TriageCreatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
-    timestamp: Date | string
-  }
-
   export type FinanceUpdateWithoutApproverInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -31176,36 +30952,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TriageUpdateWithoutSubmittedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    symptoms?: TriageUpdatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
-  }
-
-  export type TriageUncheckedUpdateWithoutSubmittedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    patientId?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    symptoms?: TriageUpdatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TriageUncheckedUpdateManyWithoutSubmittedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    patientId?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    symptoms?: TriageUpdatesymptomsInput | string[]
-    vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type AppointmentCreateManyPatientInput = {
     id?: string
     doctorId: string
@@ -31235,11 +30981,10 @@ export namespace Prisma {
 
   export type TriageCreateManyPatientInput = {
     id?: string
-    submittedBy: $Enums.SubmitterRole
-    submittedById: string
+    nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes: string
+    notes?: string | null
     timestamp: Date | string
   }
 
@@ -31334,31 +31079,28 @@ export namespace Prisma {
 
   export type TriageUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    submittedByUser?: UserUpdateOneRequiredWithoutSubmittedTriagesNestedInput
+    nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
 
   export type TriageUncheckedUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    submittedById?: StringFieldUpdateOperationsInput | string
+    nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TriageUncheckedUpdateManyWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
-    submittedBy?: EnumSubmitterRoleFieldUpdateOperationsInput | $Enums.SubmitterRole
-    submittedById?: StringFieldUpdateOperationsInput | string
+    nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
-    notes?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -31532,6 +31274,42 @@ export namespace Prisma {
     medications?: PrescriptionUpdatemedicationsInput | InputJsonValue[]
     status?: EnumPrescriptionStatusFieldUpdateOperationsInput | $Enums.PrescriptionStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageCreateManyNurseInput = {
+    id?: string
+    patientId: string
+    symptoms?: TriageCreatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    timestamp: Date | string
+  }
+
+  export type TriageUpdateWithoutNurseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    symptoms?: TriageUpdatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
+  }
+
+  export type TriageUncheckedUpdateWithoutNurseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    symptoms?: TriageUpdatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TriageUncheckedUpdateManyWithoutNurseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    symptoms?: TriageUpdatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentCreateManyRescheduleInput = {
