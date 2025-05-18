@@ -5,3 +5,19 @@ exports.getDoctors = async (req, res) => {
     console.log("doctors", doctors);
     res.status(200).json(doctors);
 };
+
+exports.getDoctorsBySpeciality = async (req, res) => {
+    const speciality = req.params.speciality;
+    const doctors = await patientService.getDoctorsBySpeciality(speciality);
+    res.status(200).json(doctors);
+};
+
+exports.bookAppointment = async (req, res) => {
+    const appointment = await patientService.bookAppointment(req.body,req.user);
+    res.status(200).json(appointment);
+};  
+
+exports.getAppointments = async (req, res) => {
+    const appointments = await patientService.getAppointments(req.user);
+    res.status(200).json(appointments);
+};

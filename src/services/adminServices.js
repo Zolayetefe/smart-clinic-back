@@ -5,6 +5,36 @@ const prisma = new PrismaClient();
 // Valid weekdays from the enum
 const VALID_WEEKDAYS = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
 
+// Function to generate time slots
+function generateTimeSlots(day, startTime, endTime) {
+  const slots = [];
+  const [startHour, startMinute] = startTime.split(':').map(Number);
+  const [endHour, endMinute] = endTime.split(':').map(Number);
+
+  let currentHour = startHour;
+  let currentMinute = startMinute;
+
+  while (currentHour < endHour || (currentHour === endHour && currentMinute < endMinute)) {
+    // Format the time as HH:mm
+    const timeString = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
+    
+    slots.push({
+      day,
+      slotTime: timeString,
+      isBooked: false
+    });
+
+    // Increment by 10 minutes
+    currentMinute += 10;
+    if (currentMinute >= 60) {
+      currentHour += 1;
+      currentMinute = currentMinute - 60;
+    }
+  }
+
+  return slots;
+}
+
 exports.register = async (data) => {
   try {
     // Validate required fields
@@ -97,11 +127,21 @@ exports.register = async (data) => {
     // Add role-specific relations
     switch (role) {
       case 'doctor':
+        // Create both availabilities and slots
         userData.doctor = {
           create: {
             specialization,
             availabilities: {
               create: availabilities
+            },
+            slots: {
+              create: availabilities.flatMap(availability => 
+                generateTimeSlots(
+                  availability.day,
+                  availability.startTime,
+                  availability.endTime
+                )
+              )
             }
           }
         };
@@ -118,7 +158,8 @@ exports.register = async (data) => {
       include: {
         doctor: {
           include: {
-            availabilities: true
+            availabilities: true,
+            slots: true
           }
         },
         nurse: true
@@ -135,7 +176,7 @@ exports.register = async (data) => {
       }
       throw new Error(`Failed to create user: ${error.message}`);
     });
-
+    console.log("from service", user)
     return { message: 'Staff member registered successfully', user };
   } catch (error) {
     console.error('Registration error:', error);
@@ -153,7 +194,11 @@ exports.getStaff = async () => {
     include: {
       doctor: {
         include: {
-          availabilities: true
+          availabilities: {
+            orderBy: [
+              { day: 'asc' }
+            ]
+          }
         }
       },
       nurse: true
@@ -168,7 +213,15 @@ exports.getStaff = async () => {
       role: staff.role,
       phone: staff.phone,
       department: staff.department,
-      doctor: staff.doctor,
+      doctor: staff.doctor ? {
+        ...staff.doctor,
+        availabilities: staff.doctor.availabilities.map(availability => ({
+          id: availability.id,
+          day: availability.day,
+          startTime: availability.startTime,
+          endTime: availability.endTime
+        }))
+      } : null,
       nurse: staff.nurse
     }))
   };
@@ -183,4 +236,49 @@ exports.deleteStaff = async (id) => {
     console.error('Error deleting staff:', error);
     throw new Error('Error deleting staff');
   }
+};
+
+exports.getDoctorSlots = async (doctorId) => {
+  try {
+    const slots = await prisma.doctorSlot.findMany({
+      where: {
+        doctorId
+      },
+      orderBy: [
+        { day: 'asc' },
+        { slotTime: 'asc' }
+      ]
+    });
+
+    // Group slots by day
+    const groupedSlots = slots.reduce((acc, slot) => {
+      if (!acc[slot.day]) {
+        acc[slot.day] = [];
+      }
+      acc[slot.day].push({
+        id: slot.id,
+        time: slot.slotTime,
+        isBooked: slot.isBooked
+      });
+      return acc;
+    }, {});
+
+    return {
+      doctorId,
+      schedule: Object.entries(groupedSlots).map(([day, slots]) => ({
+        day,
+        slots
+      }))
+    };
+  } catch (error) {
+    console.error('Error fetching doctor slots:', error);
+    throw new Error('Failed to fetch doctor slots');
+  }
+};
+
+exports.getPatients = async () => {
+  const patients = await prisma.user.findMany({
+    where: { role: 'patient' }
+  });
+  return patients;
 };

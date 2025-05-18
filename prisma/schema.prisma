@@ -33,7 +33,6 @@ model Patient {
   dateOfBirth      DateTime
   gender           String
   address          String
-  phoneNumber      String
   emergencyContact String
   appointments     Appointment[]
   labRequests      LabRequest[]
@@ -44,23 +43,37 @@ model Patient {
 }
 
 model Doctor {
-  id             String         @id @default(uuid())
-  userId         String         @unique
-  specialization String
-  availabilities Availability[]
+  id             String             @id @default(uuid())
+  userId         String             @unique
+  specialization String 
+  availabilities DoctorAvailability[]
+  slots          DoctorSlot[]
   appointments   Appointment[]
-  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   labRequests    LabRequest[]
   prescriptions  Prescription[]
 }
 
-model Availability {
+model DoctorAvailability {
   id        String   @id @default(uuid())
   doctorId  String
   day       Weekday
   startTime String
   endTime   String
   doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@unique([doctorId, day])
+}
+
+model DoctorSlot {
+  id        String   @id @default(uuid())
+  doctorId  String
+  day       Weekday
+  slotTime  String
+  isBooked  Boolean  @default(false)
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@unique([doctorId, day, slotTime])
 }
 
 model Nurse {
@@ -91,7 +104,7 @@ model Triage {
   submittedBy     SubmitterRole
   submittedById   String
   symptoms        String[]
-  vitals          Json
+  vitals          Json?
   notes           String
   timestamp       DateTime
   patient         Patient       @relation(fields: [patientId], references: [id])

@@ -25,4 +25,9 @@ exports.dashboard = (req, res) => {
     const result = await adminService.deleteStaff(req.params.id);
     res.status(200).json(result);
   };
-  
+
+  exports.getPatients = async (req, res) => {
+    const result = await adminService.getPatients();
+    res.status(200).json(result);
+  };
+

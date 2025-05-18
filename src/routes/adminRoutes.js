@@ -10,6 +10,7 @@ router.get('/staff', isAuthenticated, isAdmin, adminController.getStaff);
 router.delete('/staff/:id', isAuthenticated, isAdmin, adminController.deleteStaff);
 
 // router.get('/users', isAuthenticated, isAdmin, adminController.getUsers);
+router.get('/patients', isAuthenticated, isAdmin, adminController.getPatients);
 
 // router.get('/users/:id', isAuthenticated, isAdmin, adminController.getUserById);
 // router.put('/users/:id', isAuthenticated, isAdmin, adminController.updateUserById);

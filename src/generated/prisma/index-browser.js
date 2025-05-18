@@ -138,7 +138,6 @@ exports.Prisma.PatientScalarFieldEnum = {
   dateOfBirth: 'dateOfBirth',
   gender: 'gender',
   address: 'address',
-  phoneNumber: 'phoneNumber',
   emergencyContact: 'emergencyContact'
 };
 
@@ -148,12 +147,20 @@ exports.Prisma.DoctorScalarFieldEnum = {
   specialization: 'specialization'
 };
 
-exports.Prisma.AvailabilityScalarFieldEnum = {
+exports.Prisma.DoctorAvailabilityScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
   day: 'day',
   startTime: 'startTime',
   endTime: 'endTime'
+};
+
+exports.Prisma.DoctorSlotScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  day: 'day',
+  slotTime: 'slotTime',
+  isBooked: 'isBooked'
 };
 
 exports.Prisma.NurseScalarFieldEnum = {
@@ -322,7 +329,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Patient: 'Patient',
   Doctor: 'Doctor',
-  Availability: 'Availability',
+  DoctorAvailability: 'DoctorAvailability',
+  DoctorSlot: 'DoctorSlot',
   Nurse: 'Nurse',
   Appointment: 'Appointment',
   Triage: 'Triage',
