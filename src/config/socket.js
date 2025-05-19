@@ -16,15 +16,15 @@ const initializeSocket = (server) => {
   });
 
   // Middleware to handle authentication
-  io.use((socket, next) => {
-    const token = socket.handshake.auth.token;
-    if (!token) {
-      return next(new Error('Authentication error'));
-    }
-    // You can verify the token here if needed
-    socket.token = token;
-    next();
-  });
+  // io.use((socket, next) => {
+  //   const token = socket.handshake.auth.token;
+  //   if (!token) {
+  //     return next(new Error('Authentication error'));
+  //   }
+  //   // You can verify the token here if needed
+  //   socket.token = token;
+  //   next();
+  // });
 
   io.on('connection', (socket) => {
     console.log('User connected:', socket.id);

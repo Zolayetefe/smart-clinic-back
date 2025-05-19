@@ -13906,6 +13906,7 @@ export namespace Prisma {
     dateTime?: boolean
     rescheduledFrom?: boolean
     createdAt?: boolean
+    triage?: boolean | Appointment$triageArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     reschedule?: boolean | Appointment$rescheduleArgs<ExtArgs>
@@ -13955,6 +13956,7 @@ export namespace Prisma {
 
   export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "doctorId" | "status" | "reason" | "dateTime" | "rescheduledFrom" | "createdAt", ExtArgs["result"]["appointment"]>
   export type AppointmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    triage?: boolean | Appointment$triageArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     reschedule?: boolean | Appointment$rescheduleArgs<ExtArgs>
@@ -13976,6 +13978,7 @@ export namespace Prisma {
   export type $AppointmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Appointment"
     objects: {
+      triage: Prisma.$TriagePayload<ExtArgs> | null
       doctor: Prisma.$DoctorPayload<ExtArgs>
       patient: Prisma.$PatientPayload<ExtArgs>
       reschedule: Prisma.$AppointmentPayload<ExtArgs> | null
@@ -14385,6 +14388,7 @@ export namespace Prisma {
    */
   export interface Prisma__AppointmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    triage<T extends Appointment$triageArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$triageArgs<ExtArgs>>): Prisma__TriageClient<$Result.GetResult<Prisma.$TriagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     doctor<T extends DoctorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DoctorDefaultArgs<ExtArgs>>): Prisma__DoctorClient<$Result.GetResult<Prisma.$DoctorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reschedule<T extends Appointment$rescheduleArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$rescheduleArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -14823,6 +14827,25 @@ export namespace Prisma {
   }
 
   /**
+   * Appointment.triage
+   */
+  export type Appointment$triageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Triage
+     */
+    select?: TriageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Triage
+     */
+    omit?: TriageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TriageInclude<ExtArgs> | null
+    where?: TriageWhereInput
+  }
+
+  /**
    * Appointment.reschedule
    */
   export type Appointment$rescheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14916,6 +14939,7 @@ export namespace Prisma {
   export type TriageMinAggregateOutputType = {
     id: string | null
     patientId: string | null
+    appointmentId: string | null
     nurseId: string | null
     notes: string | null
     timestamp: Date | null
@@ -14924,6 +14948,7 @@ export namespace Prisma {
   export type TriageMaxAggregateOutputType = {
     id: string | null
     patientId: string | null
+    appointmentId: string | null
     nurseId: string | null
     notes: string | null
     timestamp: Date | null
@@ -14932,6 +14957,7 @@ export namespace Prisma {
   export type TriageCountAggregateOutputType = {
     id: number
     patientId: number
+    appointmentId: number
     nurseId: number
     symptoms: number
     vitals: number
@@ -14944,6 +14970,7 @@ export namespace Prisma {
   export type TriageMinAggregateInputType = {
     id?: true
     patientId?: true
+    appointmentId?: true
     nurseId?: true
     notes?: true
     timestamp?: true
@@ -14952,6 +14979,7 @@ export namespace Prisma {
   export type TriageMaxAggregateInputType = {
     id?: true
     patientId?: true
+    appointmentId?: true
     nurseId?: true
     notes?: true
     timestamp?: true
@@ -14960,6 +14988,7 @@ export namespace Prisma {
   export type TriageCountAggregateInputType = {
     id?: true
     patientId?: true
+    appointmentId?: true
     nurseId?: true
     symptoms?: true
     vitals?: true
@@ -15043,6 +15072,7 @@ export namespace Prisma {
   export type TriageGroupByOutputType = {
     id: string
     patientId: string
+    appointmentId: string | null
     nurseId: string | null
     symptoms: string[]
     vitals: JsonValue | null
@@ -15070,11 +15100,13 @@ export namespace Prisma {
   export type TriageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
+    appointmentId?: boolean
     nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
@@ -15082,11 +15114,13 @@ export namespace Prisma {
   export type TriageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
+    appointmentId?: boolean
     nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
@@ -15094,11 +15128,13 @@ export namespace Prisma {
   export type TriageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
+    appointmentId?: boolean
     nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
     notes?: boolean
     timestamp?: boolean
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
@@ -15106,6 +15142,7 @@ export namespace Prisma {
   export type TriageSelectScalar = {
     id?: boolean
     patientId?: boolean
+    appointmentId?: boolean
     nurseId?: boolean
     symptoms?: boolean
     vitals?: boolean
@@ -15113,16 +15150,19 @@ export namespace Prisma {
     timestamp?: boolean
   }
 
-  export type TriageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "nurseId" | "symptoms" | "vitals" | "notes" | "timestamp", ExtArgs["result"]["triage"]>
+  export type TriageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "appointmentId" | "nurseId" | "symptoms" | "vitals" | "notes" | "timestamp", ExtArgs["result"]["triage"]>
   export type TriageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | Triage$appointmentArgs<ExtArgs>
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
@@ -15130,12 +15170,14 @@ export namespace Prisma {
   export type $TriagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Triage"
     objects: {
+      appointment: Prisma.$AppointmentPayload<ExtArgs> | null
       patient: Prisma.$PatientPayload<ExtArgs>
       nurse: Prisma.$NursePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       patientId: string
+      appointmentId: string | null
       nurseId: string | null
       symptoms: string[]
       vitals: Prisma.JsonValue | null
@@ -15535,6 +15577,7 @@ export namespace Prisma {
    */
   export interface Prisma__TriageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    appointment<T extends Triage$appointmentArgs<ExtArgs> = {}>(args?: Subset<T, Triage$appointmentArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     nurse<T extends Triage$nurseArgs<ExtArgs> = {}>(args?: Subset<T, Triage$nurseArgs<ExtArgs>>): Prisma__NurseClient<$Result.GetResult<Prisma.$NursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -15568,6 +15611,7 @@ export namespace Prisma {
   interface TriageFieldRefs {
     readonly id: FieldRef<"Triage", 'String'>
     readonly patientId: FieldRef<"Triage", 'String'>
+    readonly appointmentId: FieldRef<"Triage", 'String'>
     readonly nurseId: FieldRef<"Triage", 'String'>
     readonly symptoms: FieldRef<"Triage", 'String[]'>
     readonly vitals: FieldRef<"Triage", 'Json'>
@@ -15966,6 +16010,25 @@ export namespace Prisma {
      * Limit how many Triages to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Triage.appointment
+   */
+  export type Triage$appointmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Appointment
+     */
+    select?: AppointmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Appointment
+     */
+    omit?: AppointmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentInclude<ExtArgs> | null
+    where?: AppointmentWhereInput
   }
 
   /**
@@ -22664,6 +22727,7 @@ export namespace Prisma {
   export const TriageScalarFieldEnum: {
     id: 'id',
     patientId: 'patientId',
+    appointmentId: 'appointmentId',
     nurseId: 'nurseId',
     symptoms: 'symptoms',
     vitals: 'vitals',
@@ -23536,6 +23600,7 @@ export namespace Prisma {
     dateTime?: DateTimeFilter<"Appointment"> | Date | string
     rescheduledFrom?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
+    triage?: XOR<TriageNullableScalarRelationFilter, TriageWhereInput> | null
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     reschedule?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
@@ -23552,6 +23617,7 @@ export namespace Prisma {
     dateTime?: SortOrder
     rescheduledFrom?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    triage?: TriageOrderByWithRelationInput
     doctor?: DoctorOrderByWithRelationInput
     patient?: PatientOrderByWithRelationInput
     reschedule?: AppointmentOrderByWithRelationInput
@@ -23571,6 +23637,7 @@ export namespace Prisma {
     dateTime?: DateTimeFilter<"Appointment"> | Date | string
     rescheduledFrom?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
+    triage?: XOR<TriageNullableScalarRelationFilter, TriageWhereInput> | null
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     reschedule?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
@@ -23612,11 +23679,13 @@ export namespace Prisma {
     NOT?: TriageWhereInput | TriageWhereInput[]
     id?: StringFilter<"Triage"> | string
     patientId?: StringFilter<"Triage"> | string
+    appointmentId?: StringNullableFilter<"Triage"> | string | null
     nurseId?: StringNullableFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableFilter<"Triage">
     notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
+    appointment?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
   }
@@ -23624,17 +23693,20 @@ export namespace Prisma {
   export type TriageOrderByWithRelationInput = {
     id?: SortOrder
     patientId?: SortOrder
+    appointmentId?: SortOrderInput | SortOrder
     nurseId?: SortOrderInput | SortOrder
     symptoms?: SortOrder
     vitals?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     timestamp?: SortOrder
+    appointment?: AppointmentOrderByWithRelationInput
     patient?: PatientOrderByWithRelationInput
     nurse?: NurseOrderByWithRelationInput
   }
 
   export type TriageWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    appointmentId?: string
     AND?: TriageWhereInput | TriageWhereInput[]
     OR?: TriageWhereInput[]
     NOT?: TriageWhereInput | TriageWhereInput[]
@@ -23644,13 +23716,15 @@ export namespace Prisma {
     vitals?: JsonNullableFilter<"Triage">
     notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
+    appointment?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
-  }, "id">
+  }, "id" | "appointmentId">
 
   export type TriageOrderByWithAggregationInput = {
     id?: SortOrder
     patientId?: SortOrder
+    appointmentId?: SortOrderInput | SortOrder
     nurseId?: SortOrderInput | SortOrder
     symptoms?: SortOrder
     vitals?: SortOrderInput | SortOrder
@@ -23667,6 +23741,7 @@ export namespace Prisma {
     NOT?: TriageScalarWhereWithAggregatesInput | TriageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Triage"> | string
     patientId?: StringWithAggregatesFilter<"Triage"> | string
+    appointmentId?: StringNullableWithAggregatesFilter<"Triage"> | string | null
     nurseId?: StringNullableWithAggregatesFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableWithAggregatesFilter<"Triage">
@@ -24607,6 +24682,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
@@ -24623,6 +24699,7 @@ export namespace Prisma {
     dateTime: Date | string
     rescheduledFrom?: string | null
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
     finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
@@ -24633,6 +24710,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
@@ -24649,6 +24727,7 @@ export namespace Prisma {
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
     finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
@@ -24689,6 +24768,7 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
     timestamp: Date | string
+    appointment?: AppointmentCreateNestedOneWithoutTriageInput
     patient: PatientCreateNestedOneWithoutTriagesInput
     nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
@@ -24696,6 +24776,7 @@ export namespace Prisma {
   export type TriageUncheckedCreateInput = {
     id?: string
     patientId: string
+    appointmentId?: string | null
     nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -24709,6 +24790,7 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneWithoutTriageNestedInput
     patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
     nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
@@ -24716,6 +24798,7 @@ export namespace Prisma {
   export type TriageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -24726,6 +24809,7 @@ export namespace Prisma {
   export type TriageCreateManyInput = {
     id?: string
     patientId: string
+    appointmentId?: string | null
     nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -24744,6 +24828,7 @@ export namespace Prisma {
   export type TriageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -25605,6 +25690,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type TriageNullableScalarRelationFilter = {
+    is?: TriageWhereInput | null
+    isNot?: TriageWhereInput | null
+  }
+
   export type PatientScalarRelationFilter = {
     is?: PatientWhereInput
     isNot?: PatientWhereInput
@@ -25720,6 +25810,7 @@ export namespace Prisma {
   export type TriageCountOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
+    appointmentId?: SortOrder
     nurseId?: SortOrder
     symptoms?: SortOrder
     vitals?: SortOrder
@@ -25730,6 +25821,7 @@ export namespace Prisma {
   export type TriageMaxOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
+    appointmentId?: SortOrder
     nurseId?: SortOrder
     notes?: SortOrder
     timestamp?: SortOrder
@@ -25738,6 +25830,7 @@ export namespace Prisma {
   export type TriageMinOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
+    appointmentId?: SortOrder
     nurseId?: SortOrder
     notes?: SortOrder
     timestamp?: SortOrder
@@ -27038,6 +27131,12 @@ export namespace Prisma {
     update?: XOR<XOR<DoctorUpdateToOneWithWhereWithoutSlotsInput, DoctorUpdateWithoutSlotsInput>, DoctorUncheckedUpdateWithoutSlotsInput>
   }
 
+  export type TriageCreateNestedOneWithoutAppointmentInput = {
+    create?: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: TriageCreateOrConnectWithoutAppointmentInput
+    connect?: TriageWhereUniqueInput
+  }
+
   export type DoctorCreateNestedOneWithoutAppointmentsInput = {
     create?: XOR<DoctorCreateWithoutAppointmentsInput, DoctorUncheckedCreateWithoutAppointmentsInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutAppointmentsInput
@@ -27069,6 +27168,12 @@ export namespace Prisma {
     connect?: FinanceWhereUniqueInput
   }
 
+  export type TriageUncheckedCreateNestedOneWithoutAppointmentInput = {
+    create?: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: TriageCreateOrConnectWithoutAppointmentInput
+    connect?: TriageWhereUniqueInput
+  }
+
   export type AppointmentUncheckedCreateNestedManyWithoutRescheduleInput = {
     create?: XOR<AppointmentCreateWithoutRescheduleInput, AppointmentUncheckedCreateWithoutRescheduleInput> | AppointmentCreateWithoutRescheduleInput[] | AppointmentUncheckedCreateWithoutRescheduleInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutRescheduleInput | AppointmentCreateOrConnectWithoutRescheduleInput[]
@@ -27084,6 +27189,16 @@ export namespace Prisma {
 
   export type EnumAppointmentStatusFieldUpdateOperationsInput = {
     set?: $Enums.AppointmentStatus
+  }
+
+  export type TriageUpdateOneWithoutAppointmentNestedInput = {
+    create?: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: TriageCreateOrConnectWithoutAppointmentInput
+    upsert?: TriageUpsertWithoutAppointmentInput
+    disconnect?: TriageWhereInput | boolean
+    delete?: TriageWhereInput | boolean
+    connect?: TriageWhereUniqueInput
+    update?: XOR<XOR<TriageUpdateToOneWithWhereWithoutAppointmentInput, TriageUpdateWithoutAppointmentInput>, TriageUncheckedUpdateWithoutAppointmentInput>
   }
 
   export type DoctorUpdateOneRequiredWithoutAppointmentsNestedInput = {
@@ -27140,6 +27255,16 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type TriageUncheckedUpdateOneWithoutAppointmentNestedInput = {
+    create?: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: TriageCreateOrConnectWithoutAppointmentInput
+    upsert?: TriageUpsertWithoutAppointmentInput
+    disconnect?: TriageWhereInput | boolean
+    delete?: TriageWhereInput | boolean
+    connect?: TriageWhereUniqueInput
+    update?: XOR<XOR<TriageUpdateToOneWithWhereWithoutAppointmentInput, TriageUpdateWithoutAppointmentInput>, TriageUncheckedUpdateWithoutAppointmentInput>
+  }
+
   export type AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput = {
     create?: XOR<AppointmentCreateWithoutRescheduleInput, AppointmentUncheckedCreateWithoutRescheduleInput> | AppointmentCreateWithoutRescheduleInput[] | AppointmentUncheckedCreateWithoutRescheduleInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutRescheduleInput | AppointmentCreateOrConnectWithoutRescheduleInput[]
@@ -27168,6 +27293,12 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type AppointmentCreateNestedOneWithoutTriageInput = {
+    create?: XOR<AppointmentCreateWithoutTriageInput, AppointmentUncheckedCreateWithoutTriageInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutTriageInput
+    connect?: AppointmentWhereUniqueInput
+  }
+
   export type PatientCreateNestedOneWithoutTriagesInput = {
     create?: XOR<PatientCreateWithoutTriagesInput, PatientUncheckedCreateWithoutTriagesInput>
     connectOrCreate?: PatientCreateOrConnectWithoutTriagesInput
@@ -27183,6 +27314,16 @@ export namespace Prisma {
   export type TriageUpdatesymptomsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type AppointmentUpdateOneWithoutTriageNestedInput = {
+    create?: XOR<AppointmentCreateWithoutTriageInput, AppointmentUncheckedCreateWithoutTriageInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutTriageInput
+    upsert?: AppointmentUpsertWithoutTriageInput
+    disconnect?: AppointmentWhereInput | boolean
+    delete?: AppointmentWhereInput | boolean
+    connect?: AppointmentWhereUniqueInput
+    update?: XOR<XOR<AppointmentUpdateToOneWithWhereWithoutTriageInput, AppointmentUpdateWithoutTriageInput>, AppointmentUncheckedUpdateWithoutTriageInput>
   }
 
   export type PatientUpdateOneRequiredWithoutTriagesNestedInput = {
@@ -28254,6 +28395,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
@@ -28268,6 +28410,7 @@ export namespace Prisma {
     dateTime: Date | string
     rescheduledFrom?: string | null
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
     finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
@@ -28412,11 +28555,13 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
     timestamp: Date | string
+    appointment?: AppointmentCreateNestedOneWithoutTriageInput
     nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
 
   export type TriageUncheckedCreateWithoutPatientInput = {
     id?: string
+    appointmentId?: string | null
     nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -28621,6 +28766,7 @@ export namespace Prisma {
     NOT?: TriageScalarWhereInput | TriageScalarWhereInput[]
     id?: StringFilter<"Triage"> | string
     patientId?: StringFilter<"Triage"> | string
+    appointmentId?: StringNullableFilter<"Triage"> | string | null
     nurseId?: StringNullableFilter<"Triage"> | string | null
     symptoms?: StringNullableListFilter<"Triage">
     vitals?: JsonNullableFilter<"Triage">
@@ -28682,6 +28828,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
@@ -28696,6 +28843,7 @@ export namespace Prisma {
     dateTime: Date | string
     rescheduledFrom?: string | null
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
     finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
@@ -28972,12 +29120,14 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
     timestamp: Date | string
+    appointment?: AppointmentCreateNestedOneWithoutTriageInput
     patient: PatientCreateNestedOneWithoutTriagesInput
   }
 
   export type TriageUncheckedCreateWithoutNurseInput = {
     id?: string
     patientId: string
+    appointmentId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
@@ -29602,6 +29752,31 @@ export namespace Prisma {
     prescriptions?: PrescriptionUncheckedUpdateManyWithoutDoctorNestedInput
   }
 
+  export type TriageCreateWithoutAppointmentInput = {
+    id?: string
+    symptoms?: TriageCreatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    timestamp: Date | string
+    patient: PatientCreateNestedOneWithoutTriagesInput
+    nurse?: NurseCreateNestedOneWithoutTriagesInput
+  }
+
+  export type TriageUncheckedCreateWithoutAppointmentInput = {
+    id?: string
+    patientId: string
+    nurseId?: string | null
+    symptoms?: TriageCreatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: string | null
+    timestamp: Date | string
+  }
+
+  export type TriageCreateOrConnectWithoutAppointmentInput = {
+    where: TriageWhereUniqueInput
+    create: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+  }
+
   export type DoctorCreateWithoutAppointmentsInput = {
     id?: string
     specialization: string
@@ -29664,6 +29839,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
@@ -29679,6 +29855,7 @@ export namespace Prisma {
     dateTime: Date | string
     rescheduledFrom?: string | null
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
@@ -29693,6 +29870,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
@@ -29707,6 +29885,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
     finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
@@ -29740,6 +29919,37 @@ export namespace Prisma {
   export type FinanceCreateOrConnectWithoutAppointmentInput = {
     where: FinanceWhereUniqueInput
     create: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
+  }
+
+  export type TriageUpsertWithoutAppointmentInput = {
+    update: XOR<TriageUpdateWithoutAppointmentInput, TriageUncheckedUpdateWithoutAppointmentInput>
+    create: XOR<TriageCreateWithoutAppointmentInput, TriageUncheckedCreateWithoutAppointmentInput>
+    where?: TriageWhereInput
+  }
+
+  export type TriageUpdateToOneWithWhereWithoutAppointmentInput = {
+    where?: TriageWhereInput
+    data: XOR<TriageUpdateWithoutAppointmentInput, TriageUncheckedUpdateWithoutAppointmentInput>
+  }
+
+  export type TriageUpdateWithoutAppointmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    symptoms?: TriageUpdatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
+    nurse?: NurseUpdateOneWithoutTriagesNestedInput
+  }
+
+  export type TriageUncheckedUpdateWithoutAppointmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    nurseId?: NullableStringFieldUpdateOperationsInput | string | null
+    symptoms?: TriageUpdatesymptomsInput | string[]
+    vitals?: NullableJsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DoctorUpsertWithoutAppointmentsInput = {
@@ -29827,6 +30037,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
@@ -29842,6 +30053,7 @@ export namespace Prisma {
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
@@ -29888,6 +30100,37 @@ export namespace Prisma {
     approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AppointmentCreateWithoutTriageInput = {
+    id?: string
+    status: $Enums.AppointmentStatus
+    reason: string
+    dateTime: Date | string
+    createdAt?: Date | string
+    doctor: DoctorCreateNestedOneWithoutAppointmentsInput
+    patient: PatientCreateNestedOneWithoutAppointmentsInput
+    reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
+    rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
+    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+  }
+
+  export type AppointmentUncheckedCreateWithoutTriageInput = {
+    id?: string
+    patientId: string
+    doctorId: string
+    status: $Enums.AppointmentStatus
+    reason: string
+    dateTime: Date | string
+    rescheduledFrom?: string | null
+    createdAt?: Date | string
+    rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
+    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+  }
+
+  export type AppointmentCreateOrConnectWithoutTriageInput = {
+    where: AppointmentWhereUniqueInput
+    create: XOR<AppointmentCreateWithoutTriageInput, AppointmentUncheckedCreateWithoutTriageInput>
+  }
+
   export type PatientCreateWithoutTriagesInput = {
     id?: string
     dateOfBirth: Date | string
@@ -29932,6 +30175,43 @@ export namespace Prisma {
   export type NurseCreateOrConnectWithoutTriagesInput = {
     where: NurseWhereUniqueInput
     create: XOR<NurseCreateWithoutTriagesInput, NurseUncheckedCreateWithoutTriagesInput>
+  }
+
+  export type AppointmentUpsertWithoutTriageInput = {
+    update: XOR<AppointmentUpdateWithoutTriageInput, AppointmentUncheckedUpdateWithoutTriageInput>
+    create: XOR<AppointmentCreateWithoutTriageInput, AppointmentUncheckedCreateWithoutTriageInput>
+    where?: AppointmentWhereInput
+  }
+
+  export type AppointmentUpdateToOneWithWhereWithoutTriageInput = {
+    where?: AppointmentWhereInput
+    data: XOR<AppointmentUpdateWithoutTriageInput, AppointmentUncheckedUpdateWithoutTriageInput>
+  }
+
+  export type AppointmentUpdateWithoutTriageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+    reason?: StringFieldUpdateOperationsInput | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
+    patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
+    reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
+    rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
+    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+  }
+
+  export type AppointmentUncheckedUpdateWithoutTriageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    doctorId?: StringFieldUpdateOperationsInput | string
+    status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+    reason?: StringFieldUpdateOperationsInput | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
+    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type PatientUpsertWithoutTriagesInput = {
@@ -30638,6 +30918,7 @@ export namespace Prisma {
     reason: string
     dateTime: Date | string
     createdAt?: Date | string
+    triage?: TriageCreateNestedOneWithoutAppointmentInput
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
@@ -30653,6 +30934,7 @@ export namespace Prisma {
     dateTime: Date | string
     rescheduledFrom?: string | null
     createdAt?: Date | string
+    triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
   }
 
@@ -30723,6 +31005,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
@@ -30738,6 +31021,7 @@ export namespace Prisma {
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
   }
 
@@ -30981,6 +31265,7 @@ export namespace Prisma {
 
   export type TriageCreateManyPatientInput = {
     id?: string
+    appointmentId?: string | null
     nurseId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -30994,6 +31279,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
@@ -31008,6 +31294,7 @@ export namespace Prisma {
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
     finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
@@ -31083,11 +31370,13 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneWithoutTriageNestedInput
     nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
 
   export type TriageUncheckedUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -31097,6 +31386,7 @@ export namespace Prisma {
 
   export type TriageUncheckedUpdateManyWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     nurseId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
@@ -31193,6 +31483,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
@@ -31207,6 +31498,7 @@ export namespace Prisma {
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
     finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
@@ -31279,6 +31571,7 @@ export namespace Prisma {
   export type TriageCreateManyNurseInput = {
     id?: string
     patientId: string
+    appointmentId?: string | null
     symptoms?: TriageCreatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
@@ -31291,12 +31584,14 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneWithoutTriageNestedInput
     patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
   }
 
   export type TriageUncheckedUpdateWithoutNurseInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31306,6 +31601,7 @@ export namespace Prisma {
   export type TriageUncheckedUpdateManyWithoutNurseInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
+    appointmentId?: NullableStringFieldUpdateOperationsInput | string | null
     symptoms?: TriageUpdatesymptomsInput | string[]
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31328,6 +31624,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUpdateOneWithoutAppointmentNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
@@ -31342,6 +31639,7 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
     finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }

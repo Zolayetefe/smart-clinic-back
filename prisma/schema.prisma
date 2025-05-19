@@ -116,9 +116,10 @@ model Appointment {
   status          AppointmentStatus
   reason          String
   dateTime        DateTime
+  triage          Triage?
   rescheduledFrom String?
   createdAt       DateTime          @default(now())
-  doctor          Doctor            @relation(fields: [doctorId], references: [id])
+  doctor          Doctor            @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   patient         Patient           @relation(fields: [patientId], references: [id])
   reschedule      Appointment?      @relation("Reschedule", fields: [rescheduledFrom], references: [id])
   rescheduledTo   Appointment[]     @relation("Reschedule")
@@ -128,10 +129,12 @@ model Appointment {
 model Triage {
   id              String        @id @default(uuid())
   patientId       String
+  appointmentId   String?        @unique
   nurseId         String?
   symptoms        String[]
   vitals          Json?
   notes           String?
+  appointment     Appointment?   @relation(fields: [appointmentId],references: [id])
   timestamp       DateTime
   patient         Patient       @relation(fields: [patientId], references: [id])
   nurse           Nurse?        @relation(fields: [nurseId], references: [id])

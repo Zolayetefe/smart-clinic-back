@@ -272,7 +272,7 @@ exports.getDoctorSlots = async (doctorId) => {
 // get doctors name,speciality, and slotstime
 exports.getDoctorsBySpeciality = async (speciality) => {
     try {
-        console.log("speciality", speciality);
+     
         const doctors = await prisma.doctor.findMany({
             where: speciality ? {
                 specialization: {
@@ -304,7 +304,7 @@ exports.getDoctorsBySpeciality = async (speciality) => {
             }
         });
 
-        console.log("doctors", doctors);
+     
         return {
             doctors: doctors.map(doctor => ({
                 userId: doctor.user.id,
@@ -332,7 +332,7 @@ exports.getDoctorsBySpeciality = async (speciality) => {
     }
 };
   
-exports.bookAppointment = async (appointmentData, user) => {
+exports.bookAppointment = async (appointmentData) => {
     const { 
         patientId, 
         doctorId, 
@@ -341,8 +341,12 @@ exports.bookAppointment = async (appointmentData, user) => {
         symptoms = [],
     } = appointmentData;
 
-    const {id, role} = user;
-  
+    // const {id, role} = user;
+  console.log("doctorId", doctorId);
+  console.log("slotId", slotId);
+  console.log("reason", reason);
+  console.log("symptoms", symptoms);
+  console.log("patientId", patientId);
 
     // Validate required fields
     // if (!patientId || !doctorId || !slotId || !reason) {
@@ -407,11 +411,18 @@ exports.bookAppointment = async (appointmentData, user) => {
             // 5. Create the appointment
             const appointment = await prisma.appointment.create({
                 data: {
-                    patientId:patientId,
+                    patientId: patientId,
                     doctorId,
                     dateTime: appointmentDate,
                     reason,
-                    status: 'pending'
+                    status: 'pending',
+                    triage: {
+                        create: {
+                            patientId: patientId,
+                            symptoms: symptoms,
+                            timestamp: new Date()
+                        }
+                    }
                 },
                 include: {
                     patient: {
@@ -423,24 +434,8 @@ exports.bookAppointment = async (appointmentData, user) => {
                         include: {
                             user: true
                         }
-                    }
-                }
-            });
-
-            // 6. Create the triage record
-            const triage = await prisma.triage.create({
-                data: {
-                    patientId: patientId,
-                    symptoms: Array.isArray(symptoms) ? symptoms : [symptoms],
-                    timestamp: appointmentDate,
-                    notes: reason
-                },
-                include: {
-                    patient: {
-                        include: {
-                            user: true
-                        }
-                    }
+                    },
+                    triage: true
                 }
             });
 
@@ -456,16 +451,15 @@ exports.bookAppointment = async (appointmentData, user) => {
 
             return { 
                 appointment, 
-                triage, 
                 updatedSlot,
-                message: 'Appointment booked successfully'
+                message: 'Appointment booked successfully',
+                appointmentId: appointment.id
             };
         });
-
+         console.log("rbook appointment result", result);
         // Emit real-time update after successful transaction
         emitAppointmentUpdate(
             result.appointment,
-            result.triage,
             result.updatedSlot
         );
 
@@ -521,7 +515,6 @@ exports.getAppointments = async (user) => {
                                 name: true,
                                 email: true,
                                 phone: true,
-                                department: true
                             }
                         }
                     }

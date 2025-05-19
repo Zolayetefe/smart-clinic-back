@@ -83,7 +83,13 @@ exports.bookAppointment = async (appointmentData) => {
                     doctorId,
                     dateTime: appointmentDate,
                     reason,
-                    status: 'pending'
+                    status: 'pending',
+                    triage: {
+                        create: {
+                            patientId: patientId,
+                            symptoms: symptoms
+                        }
+                    }
                 },
                 include: {
                     patient: {

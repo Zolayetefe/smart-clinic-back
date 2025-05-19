@@ -9,7 +9,11 @@ exports.login = async ({ email, password }) => {
     include: {
       patient: true,
       doctor: true,
-      nurse: true
+      nurse: true,
+      labTechnician: true,
+      pharmacist: true,
+      financeStaff: true,
+      receptionist: true
     }
   });
   if (!user) {
@@ -29,6 +33,7 @@ exports.login = async ({ email, password }) => {
 
   // Return what controller needs
   return {
+
     user: {
       id: user.id,
       name: user.name,   
@@ -36,9 +41,14 @@ exports.login = async ({ email, password }) => {
       role: user.role,
       patient: user.patient,
       doctor: user.doctor,
-      nurse: user.nurse
+      nurse: user.nurse,
+      labTechnician: user.labTechnician,
+      pharmacist: user.pharmacist,
+      financeStaff: user.financeStaff,
+      receptionist: user.receptionist,
     },
-    token: token
+    token: token,
+    message: 'Login successful',
   };
 };
 

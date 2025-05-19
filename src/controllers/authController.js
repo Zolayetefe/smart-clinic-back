@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
       sameSite: 'lax',
     });
 
-    res.status(200).json({ message, token, user });
+    res.status(200).json({ message, user });
 
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -32,10 +32,9 @@ exports.logout = async (req, res) => {
 exports.getme = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log("userId from getme",userId)
     // console.log("req.user from getme",req.user.id)
     const {user} = await authService.getme(userId)
-    console.log("user GET ME",user)
+ 
     // return {
 
     //   user: {

@@ -201,6 +201,7 @@ exports.Prisma.AppointmentScalarFieldEnum = {
 exports.Prisma.TriageScalarFieldEnum = {
   id: 'id',
   patientId: 'patientId',
+  appointmentId: 'appointmentId',
   nurseId: 'nurseId',
   symptoms: 'symptoms',
   vitals: 'vitals',
