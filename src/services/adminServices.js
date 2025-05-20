@@ -309,7 +309,7 @@ exports.getStaff = async () => {
 };
 
 exports.deleteStaff = async (id) => {
-  console.log("from service", id)
+
   try {
     const staff = await prisma.user.delete({ where: { id } });
     return { message: 'Staff deleted successfully' };

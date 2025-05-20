@@ -1,10 +1,25 @@
 const { PrismaClient, Prisma } = require('../generated/prisma');
-const { emitAppointmentUpdate } = require('../config/socket');
+// const { emitAppointmentUpdate } = require('../config/socket');
 const prisma = new PrismaClient();
 
 exports.getPatients = async () => {
-    const patients = await prisma.patient.findMany();
-    return patients;
+    const patients = await prisma.patient.findMany({
+        include: {
+            user: true
+        }
+    });
+    console.log("patients", patients);
+    return {patients: patients.map(patient => ({
+        id: patient.id,
+        userId: patient.userId,
+        dateOfBirth: patient.dateOfBirth,
+        gender: patient.gender,
+        address: patient.address,
+        gender: patient.gender,
+        name: patient.user.name,
+        email: patient.user.email,
+        phone: patient.user.phone
+        }))}
 };
 
 exports.getAppointments = async () => {
@@ -267,5 +282,43 @@ exports.getAppointments = async (user) => {
             throw error;
         }
         throw new Error('Failed to fetch appointments');
+    }
+};
+
+exports.getPatientById = async (id) => {
+    try {
+        const patient = await prisma.patient.findUnique({
+            where: { id },
+            include: {
+                user: {
+                    select: {
+                        name: true,
+                        email: true,
+                        phone: true
+                    }
+                }
+            }
+        });
+
+        if (!patient) {
+            throw new Error('Patient not found');
+        }
+
+        return {
+            id: patient.id,
+            userId: patient.userId,
+            name: patient.user.name,
+            email: patient.user.email,
+            phone: patient.user.phone,
+            address: patient.address,
+            dateOfBirth: patient.dateOfBirth,
+            gender: patient.gender
+        };
+    } catch (error) {
+        console.error('Error fetching patient:', error);
+        if (error.message === 'Patient not found') {
+            throw error;
+        }
+        throw new Error('Failed to fetch patient');
     }
 };

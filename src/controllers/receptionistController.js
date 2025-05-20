@@ -17,4 +17,8 @@ exports.bookAppointment = async (req, res) => {
     res.status(200).json(appointment);
 };
 
+exports.getPatientById = async (req, res) => {
+    const patient = await receptionistService.getPatientById(req.params.id);
+    res.status(200).json(patient);
+};
 

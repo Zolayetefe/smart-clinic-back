@@ -1,5 +1,5 @@
 const { PrismaClient, Prisma } = require('../generated/prisma');
-const { emitAppointmentUpdate } = require('../config/socket');
+// const { emitAppointmentUpdate } = require('../config/socket');
 const prisma = new PrismaClient();
 
 // Helper function to get weekday enum value
@@ -83,55 +83,6 @@ exports.getDoctors = async () => {
         throw new Error('Failed to fetch doctors');
     }
 };
-// exports.getDoctors = async () => {
-//     try {
-//         const doctors = await prisma.user.findMany({
-//             where: {
-//                 role: 'doctor'
-//             },
-//             include: {
-//                 doctor: {
-//                     include: {
-//                         slots: {
-//                             select: {
-//                                 id: true,
-//                                 day: true,
-//                                 slotTime: true,
-//                                 isBooked: true
-//                             },
-//                             orderBy: [
-//                                 { day: 'asc' },
-//                                 { slotTime: 'asc' }
-//                             ]
-//                         }
-//                     }
-//                 }
-//             }
-//         });
-
-//         return {
-//             doctors: doctors.map(user => ({
-//                 userId: user.id,
-//                 name: user.name,
-//                 email: user.email,
-//                 phone: user.phone,
-//                 department: user.department,
-//                 doctorId: user.doctor.id,
-//                 specialization: user.doctor.specialization,
-//                 slots: user.doctor.slots.map(slot => ({
-//                     id: slot.id,
-//                     day: slot.day,
-//                     time: slot.slotTime,
-//                     isBooked: slot.isBooked
-//                 }))
-//             }))
-//         };
-//     } catch (error) {
-//         console.error('Error fetching doctors:', error);
-//         throw new Error('Failed to fetch doctors');
-//     }
-// };
-
 
 exports.getDoctorById = async (userId) => {
     try {
@@ -341,17 +292,10 @@ exports.bookAppointment = async (appointmentData) => {
         symptoms = [],
     } = appointmentData;
 
-    // const {id, role} = user;
-  console.log("doctorId", doctorId);
-  console.log("slotId", slotId);
-  console.log("reason", reason);
-  console.log("symptoms", symptoms);
-  console.log("patientId", patientId);
-
     // Validate required fields
-    // if (!patientId || !doctorId || !slotId || !reason) {
-    //     throw new Error('Missing required fields');
-    // }
+    if (!patientId || !doctorId || !slotId ) {
+        throw new Error('Missing required fields');
+    }
 
     try {
         // Start a transaction to ensure data consistency
@@ -402,12 +346,6 @@ exports.bookAppointment = async (appointmentData) => {
                 throw new Error('Cannot book appointments in the past');
             }
 
-            // console.log('Booking appointment for:', {
-            //     weekday: slot.day,
-            //     time: slot.slotTime,
-            //     calculatedDateTime: appointmentDate
-            // });
-
             // 5. Create the appointment
             const appointment = await prisma.appointment.create({
                 data: {
@@ -455,13 +393,12 @@ exports.bookAppointment = async (appointmentData) => {
                 message: 'Appointment booked successfully',
                 appointmentId: appointment.id
             };
-        });
-         console.log("rbook appointment result", result);
+        })
         // Emit real-time update after successful transaction
-        emitAppointmentUpdate(
-            result.appointment,
-            result.updatedSlot
-        );
+        // emitAppointmentUpdate(
+        //     result.appointment,
+        //     result.updatedSlot
+        // );
 
         return result;
 
