@@ -175,7 +175,7 @@ exports.register = async (data) => {
         };
         break;
 
-      case 'finance':
+      case 'financeStaff':
         userData.financeStaff = {
           create: {}
         };
