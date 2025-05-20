@@ -245,13 +245,15 @@ exports.Prisma.PharmacyScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.FinanceScalarFieldEnum = {
+exports.Prisma.AppointmentFinanceScalarFieldEnum = {
   id: 'id',
   appointmentId: 'appointmentId',
   amount: 'amount',
   approvalStatus: 'approvalStatus',
-  approvedBy: 'approvedBy',
-  approvedAt: 'approvedAt'
+  financeStaffId: 'financeStaffId',
+  approvedAt: 'approvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MedicalRecordScalarFieldEnum = {
@@ -357,7 +359,7 @@ exports.Prisma.ModelName = {
   LabRequest: 'LabRequest',
   LabResult: 'LabResult',
   Pharmacy: 'Pharmacy',
-  Finance: 'Finance',
+  AppointmentFinance: 'AppointmentFinance',
   MedicalRecord: 'MedicalRecord'
 };
 

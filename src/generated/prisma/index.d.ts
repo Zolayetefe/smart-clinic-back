@@ -94,10 +94,10 @@ export type LabResult = $Result.DefaultSelection<Prisma.$LabResultPayload>
  */
 export type Pharmacy = $Result.DefaultSelection<Prisma.$PharmacyPayload>
 /**
- * Model Finance
+ * Model AppointmentFinance
  * 
  */
-export type Finance = $Result.DefaultSelection<Prisma.$FinancePayload>
+export type AppointmentFinance = $Result.DefaultSelection<Prisma.$AppointmentFinancePayload>
 /**
  * Model MedicalRecord
  * 
@@ -508,14 +508,14 @@ export class PrismaClient<
   get pharmacy(): Prisma.PharmacyDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.finance`: Exposes CRUD operations for the **Finance** model.
+   * `prisma.appointmentFinance`: Exposes CRUD operations for the **AppointmentFinance** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Finances
-    * const finances = await prisma.finance.findMany()
+    * // Fetch zero or more AppointmentFinances
+    * const appointmentFinances = await prisma.appointmentFinance.findMany()
     * ```
     */
-  get finance(): Prisma.FinanceDelegate<ExtArgs, ClientOptions>;
+  get appointmentFinance(): Prisma.AppointmentFinanceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.medicalRecord`: Exposes CRUD operations for the **MedicalRecord** model.
@@ -982,7 +982,7 @@ export namespace Prisma {
     LabRequest: 'LabRequest',
     LabResult: 'LabResult',
     Pharmacy: 'Pharmacy',
-    Finance: 'Finance',
+    AppointmentFinance: 'AppointmentFinance',
     MedicalRecord: 'MedicalRecord'
   };
 
@@ -1002,7 +1002,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "patient" | "doctor" | "nurse" | "labTechnician" | "pharmacist" | "financeStaff" | "receptionist" | "doctorAvailability" | "doctorSlot" | "appointment" | "triage" | "prescription" | "labRequest" | "labResult" | "pharmacy" | "finance" | "medicalRecord"
+      modelProps: "user" | "patient" | "doctor" | "nurse" | "labTechnician" | "pharmacist" | "financeStaff" | "receptionist" | "doctorAvailability" | "doctorSlot" | "appointment" | "triage" | "prescription" | "labRequest" | "labResult" | "pharmacy" | "appointmentFinance" | "medicalRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2190,77 +2190,77 @@ export namespace Prisma {
           }
         }
       }
-      Finance: {
-        payload: Prisma.$FinancePayload<ExtArgs>
-        fields: Prisma.FinanceFieldRefs
+      AppointmentFinance: {
+        payload: Prisma.$AppointmentFinancePayload<ExtArgs>
+        fields: Prisma.AppointmentFinanceFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FinanceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload> | null
+            args: Prisma.AppointmentFinanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FinanceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           findFirst: {
-            args: Prisma.FinanceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload> | null
+            args: Prisma.AppointmentFinanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FinanceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           findMany: {
-            args: Prisma.FinanceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>[]
+            args: Prisma.AppointmentFinanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>[]
           }
           create: {
-            args: Prisma.FinanceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           createMany: {
-            args: Prisma.FinanceCreateManyArgs<ExtArgs>
+            args: Prisma.AppointmentFinanceCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FinanceCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>[]
+            args: Prisma.AppointmentFinanceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>[]
           }
           delete: {
-            args: Prisma.FinanceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           update: {
-            args: Prisma.FinanceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           deleteMany: {
-            args: Prisma.FinanceDeleteManyArgs<ExtArgs>
+            args: Prisma.AppointmentFinanceDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FinanceUpdateManyArgs<ExtArgs>
+            args: Prisma.AppointmentFinanceUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FinanceUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>[]
+            args: Prisma.AppointmentFinanceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>[]
           }
           upsert: {
-            args: Prisma.FinanceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FinancePayload>
+            args: Prisma.AppointmentFinanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentFinancePayload>
           }
           aggregate: {
-            args: Prisma.FinanceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFinance>
+            args: Prisma.AppointmentFinanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAppointmentFinance>
           }
           groupBy: {
-            args: Prisma.FinanceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FinanceGroupByOutputType>[]
+            args: Prisma.AppointmentFinanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentFinanceGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FinanceCountArgs<ExtArgs>
-            result: $Utils.Optional<FinanceCountAggregateOutputType> | number
+            args: Prisma.AppointmentFinanceCountArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentFinanceCountAggregateOutputType> | number
           }
         }
       }
@@ -2438,7 +2438,7 @@ export namespace Prisma {
     labRequest?: LabRequestOmit
     labResult?: LabResultOmit
     pharmacy?: PharmacyOmit
-    finance?: FinanceOmit
+    appointmentFinance?: AppointmentFinanceOmit
     medicalRecord?: MedicalRecordOmit
   }
 
@@ -2534,13 +2534,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    approvedFinances: number
     labResults: number
     pharmacy: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    approvedFinances?: boolean | UserCountOutputTypeCountApprovedFinancesArgs
     labResults?: boolean | UserCountOutputTypeCountLabResultsArgs
     pharmacy?: boolean | UserCountOutputTypeCountPharmacyArgs
   }
@@ -2554,13 +2552,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountApprovedFinancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FinanceWhereInput
   }
 
   /**
@@ -2731,6 +2722,37 @@ export namespace Prisma {
    */
   export type NurseCountOutputTypeCountTriagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TriageWhereInput
+  }
+
+
+  /**
+   * Count Type FinanceStaffCountOutputType
+   */
+
+  export type FinanceStaffCountOutputType = {
+    approvedFinances: number
+  }
+
+  export type FinanceStaffCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    approvedFinances?: boolean | FinanceStaffCountOutputTypeCountApprovedFinancesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FinanceStaffCountOutputType without action
+   */
+  export type FinanceStaffCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FinanceStaffCountOutputType
+     */
+    select?: FinanceStaffCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FinanceStaffCountOutputType without action
+   */
+  export type FinanceStaffCountOutputTypeCountApprovedFinancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentFinanceWhereInput
   }
 
 
@@ -2964,7 +2986,6 @@ export namespace Prisma {
     pharmacist?: boolean | User$pharmacistArgs<ExtArgs>
     financeStaff?: boolean | User$financeStaffArgs<ExtArgs>
     receptionist?: boolean | User$receptionistArgs<ExtArgs>
-    approvedFinances?: boolean | User$approvedFinancesArgs<ExtArgs>
     labResults?: boolean | User$labResultsArgs<ExtArgs>
     pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -3012,7 +3033,6 @@ export namespace Prisma {
     pharmacist?: boolean | User$pharmacistArgs<ExtArgs>
     financeStaff?: boolean | User$financeStaffArgs<ExtArgs>
     receptionist?: boolean | User$receptionistArgs<ExtArgs>
-    approvedFinances?: boolean | User$approvedFinancesArgs<ExtArgs>
     labResults?: boolean | User$labResultsArgs<ExtArgs>
     pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -3030,7 +3050,6 @@ export namespace Prisma {
       pharmacist: Prisma.$PharmacistPayload<ExtArgs> | null
       financeStaff: Prisma.$FinanceStaffPayload<ExtArgs> | null
       receptionist: Prisma.$ReceptionistPayload<ExtArgs> | null
-      approvedFinances: Prisma.$FinancePayload<ExtArgs>[]
       labResults: Prisma.$LabResultPayload<ExtArgs>[]
       pharmacy: Prisma.$PharmacyPayload<ExtArgs>[]
     }
@@ -3444,7 +3463,6 @@ export namespace Prisma {
     pharmacist<T extends User$pharmacistArgs<ExtArgs> = {}>(args?: Subset<T, User$pharmacistArgs<ExtArgs>>): Prisma__PharmacistClient<$Result.GetResult<Prisma.$PharmacistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     financeStaff<T extends User$financeStaffArgs<ExtArgs> = {}>(args?: Subset<T, User$financeStaffArgs<ExtArgs>>): Prisma__FinanceStaffClient<$Result.GetResult<Prisma.$FinanceStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     receptionist<T extends User$receptionistArgs<ExtArgs> = {}>(args?: Subset<T, User$receptionistArgs<ExtArgs>>): Prisma__ReceptionistClient<$Result.GetResult<Prisma.$ReceptionistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    approvedFinances<T extends User$approvedFinancesArgs<ExtArgs> = {}>(args?: Subset<T, User$approvedFinancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     labResults<T extends User$labResultsArgs<ExtArgs> = {}>(args?: Subset<T, User$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pharmacy<T extends User$pharmacyArgs<ExtArgs> = {}>(args?: Subset<T, User$pharmacyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PharmacyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -4002,30 +4020,6 @@ export namespace Prisma {
      */
     include?: ReceptionistInclude<ExtArgs> | null
     where?: ReceptionistWhereInput
-  }
-
-  /**
-   * User.approvedFinances
-   */
-  export type User$approvedFinancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Finance
-     */
-    select?: FinanceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Finance
-     */
-    omit?: FinanceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FinanceInclude<ExtArgs> | null
-    where?: FinanceWhereInput
-    orderBy?: FinanceOrderByWithRelationInput | FinanceOrderByWithRelationInput[]
-    cursor?: FinanceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FinanceScalarFieldEnum | FinanceScalarFieldEnum[]
   }
 
   /**
@@ -9704,7 +9698,9 @@ export namespace Prisma {
   export type FinanceStaffSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    approvedFinances?: boolean | FinanceStaff$approvedFinancesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | FinanceStaffCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["financeStaff"]>
 
   export type FinanceStaffSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9726,7 +9722,9 @@ export namespace Prisma {
 
   export type FinanceStaffOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["financeStaff"]>
   export type FinanceStaffInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    approvedFinances?: boolean | FinanceStaff$approvedFinancesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | FinanceStaffCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FinanceStaffIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9738,6 +9736,7 @@ export namespace Prisma {
   export type $FinanceStaffPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FinanceStaff"
     objects: {
+      approvedFinances: Prisma.$AppointmentFinancePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -10137,6 +10136,7 @@ export namespace Prisma {
    */
   export interface Prisma__FinanceStaffClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    approvedFinances<T extends FinanceStaff$approvedFinancesArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaff$approvedFinancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10562,6 +10562,30 @@ export namespace Prisma {
      * Limit how many FinanceStaffs to delete.
      */
     limit?: number
+  }
+
+  /**
+   * FinanceStaff.approvedFinances
+   */
+  export type FinanceStaff$approvedFinancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentFinance
+     */
+    select?: AppointmentFinanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentFinance
+     */
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentFinanceInclude<ExtArgs> | null
+    where?: AppointmentFinanceWhereInput
+    orderBy?: AppointmentFinanceOrderByWithRelationInput | AppointmentFinanceOrderByWithRelationInput[]
+    cursor?: AppointmentFinanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AppointmentFinanceScalarFieldEnum | AppointmentFinanceScalarFieldEnum[]
   }
 
   /**
@@ -13983,7 +14007,7 @@ export namespace Prisma {
       patient: Prisma.$PatientPayload<ExtArgs>
       reschedule: Prisma.$AppointmentPayload<ExtArgs> | null
       rescheduledTo: Prisma.$AppointmentPayload<ExtArgs>[]
-      finance: Prisma.$FinancePayload<ExtArgs> | null
+      finance: Prisma.$AppointmentFinancePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14393,7 +14417,7 @@ export namespace Prisma {
     patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reschedule<T extends Appointment$rescheduleArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$rescheduleArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     rescheduledTo<T extends Appointment$rescheduledToArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$rescheduledToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    finance<T extends Appointment$financeArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$financeArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    finance<T extends Appointment$financeArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$financeArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14893,18 +14917,18 @@ export namespace Prisma {
    */
   export type Appointment$financeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
-    where?: FinanceWhereInput
+    include?: AppointmentFinanceInclude<ExtArgs> | null
+    where?: AppointmentFinanceWhereInput
   }
 
   /**
@@ -20428,403 +20452,427 @@ export namespace Prisma {
 
 
   /**
-   * Model Finance
+   * Model AppointmentFinance
    */
 
-  export type AggregateFinance = {
-    _count: FinanceCountAggregateOutputType | null
-    _avg: FinanceAvgAggregateOutputType | null
-    _sum: FinanceSumAggregateOutputType | null
-    _min: FinanceMinAggregateOutputType | null
-    _max: FinanceMaxAggregateOutputType | null
+  export type AggregateAppointmentFinance = {
+    _count: AppointmentFinanceCountAggregateOutputType | null
+    _avg: AppointmentFinanceAvgAggregateOutputType | null
+    _sum: AppointmentFinanceSumAggregateOutputType | null
+    _min: AppointmentFinanceMinAggregateOutputType | null
+    _max: AppointmentFinanceMaxAggregateOutputType | null
   }
 
-  export type FinanceAvgAggregateOutputType = {
+  export type AppointmentFinanceAvgAggregateOutputType = {
     amount: Decimal | null
   }
 
-  export type FinanceSumAggregateOutputType = {
+  export type AppointmentFinanceSumAggregateOutputType = {
     amount: Decimal | null
   }
 
-  export type FinanceMinAggregateOutputType = {
+  export type AppointmentFinanceMinAggregateOutputType = {
     id: string | null
     appointmentId: string | null
     amount: Decimal | null
     approvalStatus: $Enums.ApprovalStatus | null
-    approvedBy: string | null
+    financeStaffId: string | null
     approvedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type FinanceMaxAggregateOutputType = {
+  export type AppointmentFinanceMaxAggregateOutputType = {
     id: string | null
     appointmentId: string | null
     amount: Decimal | null
     approvalStatus: $Enums.ApprovalStatus | null
-    approvedBy: string | null
+    financeStaffId: string | null
     approvedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type FinanceCountAggregateOutputType = {
+  export type AppointmentFinanceCountAggregateOutputType = {
     id: number
     appointmentId: number
     amount: number
     approvalStatus: number
-    approvedBy: number
+    financeStaffId: number
     approvedAt: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type FinanceAvgAggregateInputType = {
+  export type AppointmentFinanceAvgAggregateInputType = {
     amount?: true
   }
 
-  export type FinanceSumAggregateInputType = {
+  export type AppointmentFinanceSumAggregateInputType = {
     amount?: true
   }
 
-  export type FinanceMinAggregateInputType = {
+  export type AppointmentFinanceMinAggregateInputType = {
     id?: true
     appointmentId?: true
     amount?: true
     approvalStatus?: true
-    approvedBy?: true
+    financeStaffId?: true
     approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type FinanceMaxAggregateInputType = {
+  export type AppointmentFinanceMaxAggregateInputType = {
     id?: true
     appointmentId?: true
     amount?: true
     approvalStatus?: true
-    approvedBy?: true
+    financeStaffId?: true
     approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type FinanceCountAggregateInputType = {
+  export type AppointmentFinanceCountAggregateInputType = {
     id?: true
     appointmentId?: true
     amount?: true
     approvalStatus?: true
-    approvedBy?: true
+    financeStaffId?: true
     approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type FinanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Finance to aggregate.
+     * Filter which AppointmentFinance to aggregate.
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Finances to fetch.
+     * Determine the order of AppointmentFinances to fetch.
      */
-    orderBy?: FinanceOrderByWithRelationInput | FinanceOrderByWithRelationInput[]
+    orderBy?: AppointmentFinanceOrderByWithRelationInput | AppointmentFinanceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FinanceWhereUniqueInput
+    cursor?: AppointmentFinanceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Finances from the position of the cursor.
+     * Take `±n` AppointmentFinances from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Finances.
+     * Skip the first `n` AppointmentFinances.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Finances
+     * Count returned AppointmentFinances
     **/
-    _count?: true | FinanceCountAggregateInputType
+    _count?: true | AppointmentFinanceCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: FinanceAvgAggregateInputType
+    _avg?: AppointmentFinanceAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: FinanceSumAggregateInputType
+    _sum?: AppointmentFinanceSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FinanceMinAggregateInputType
+    _min?: AppointmentFinanceMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FinanceMaxAggregateInputType
+    _max?: AppointmentFinanceMaxAggregateInputType
   }
 
-  export type GetFinanceAggregateType<T extends FinanceAggregateArgs> = {
-        [P in keyof T & keyof AggregateFinance]: P extends '_count' | 'count'
+  export type GetAppointmentFinanceAggregateType<T extends AppointmentFinanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateAppointmentFinance]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFinance[P]>
-      : GetScalarType<T[P], AggregateFinance[P]>
+        : GetScalarType<T[P], AggregateAppointmentFinance[P]>
+      : GetScalarType<T[P], AggregateAppointmentFinance[P]>
   }
 
 
 
 
-  export type FinanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FinanceWhereInput
-    orderBy?: FinanceOrderByWithAggregationInput | FinanceOrderByWithAggregationInput[]
-    by: FinanceScalarFieldEnum[] | FinanceScalarFieldEnum
-    having?: FinanceScalarWhereWithAggregatesInput
+  export type AppointmentFinanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentFinanceWhereInput
+    orderBy?: AppointmentFinanceOrderByWithAggregationInput | AppointmentFinanceOrderByWithAggregationInput[]
+    by: AppointmentFinanceScalarFieldEnum[] | AppointmentFinanceScalarFieldEnum
+    having?: AppointmentFinanceScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FinanceCountAggregateInputType | true
-    _avg?: FinanceAvgAggregateInputType
-    _sum?: FinanceSumAggregateInputType
-    _min?: FinanceMinAggregateInputType
-    _max?: FinanceMaxAggregateInputType
+    _count?: AppointmentFinanceCountAggregateInputType | true
+    _avg?: AppointmentFinanceAvgAggregateInputType
+    _sum?: AppointmentFinanceSumAggregateInputType
+    _min?: AppointmentFinanceMinAggregateInputType
+    _max?: AppointmentFinanceMaxAggregateInputType
   }
 
-  export type FinanceGroupByOutputType = {
+  export type AppointmentFinanceGroupByOutputType = {
     id: string
     appointmentId: string
     amount: Decimal
     approvalStatus: $Enums.ApprovalStatus
-    approvedBy: string
-    approvedAt: Date
-    _count: FinanceCountAggregateOutputType | null
-    _avg: FinanceAvgAggregateOutputType | null
-    _sum: FinanceSumAggregateOutputType | null
-    _min: FinanceMinAggregateOutputType | null
-    _max: FinanceMaxAggregateOutputType | null
+    financeStaffId: string
+    approvedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AppointmentFinanceCountAggregateOutputType | null
+    _avg: AppointmentFinanceAvgAggregateOutputType | null
+    _sum: AppointmentFinanceSumAggregateOutputType | null
+    _min: AppointmentFinanceMinAggregateOutputType | null
+    _max: AppointmentFinanceMaxAggregateOutputType | null
   }
 
-  type GetFinanceGroupByPayload<T extends FinanceGroupByArgs> = Prisma.PrismaPromise<
+  type GetAppointmentFinanceGroupByPayload<T extends AppointmentFinanceGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FinanceGroupByOutputType, T['by']> &
+      PickEnumerable<AppointmentFinanceGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FinanceGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AppointmentFinanceGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FinanceGroupByOutputType[P]>
-            : GetScalarType<T[P], FinanceGroupByOutputType[P]>
+              : GetScalarType<T[P], AppointmentFinanceGroupByOutputType[P]>
+            : GetScalarType<T[P], AppointmentFinanceGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FinanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AppointmentFinanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     appointmentId?: boolean
     amount?: boolean
     approvalStatus?: boolean
-    approvedBy?: boolean
+    financeStaffId?: boolean
     approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["finance"]>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentFinance"]>
 
-  export type FinanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AppointmentFinanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     appointmentId?: boolean
     amount?: boolean
     approvalStatus?: boolean
-    approvedBy?: boolean
+    financeStaffId?: boolean
     approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["finance"]>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentFinance"]>
 
-  export type FinanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AppointmentFinanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     appointmentId?: boolean
     amount?: boolean
     approvalStatus?: boolean
-    approvedBy?: boolean
+    financeStaffId?: boolean
     approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["finance"]>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentFinance"]>
 
-  export type FinanceSelectScalar = {
+  export type AppointmentFinanceSelectScalar = {
     id?: boolean
     appointmentId?: boolean
     amount?: boolean
     approvalStatus?: boolean
-    approvedBy?: boolean
+    financeStaffId?: boolean
     approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type FinanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "appointmentId" | "amount" | "approvalStatus" | "approvedBy" | "approvedAt", ExtArgs["result"]["finance"]>
-  export type FinanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "appointmentId" | "amount" | "approvalStatus" | "financeStaffId" | "approvedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["appointmentFinance"]>
+  export type AppointmentFinanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
-  export type FinanceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
-  export type FinanceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
-    approver?: boolean | UserDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
 
-  export type $FinancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Finance"
+  export type $AppointmentFinancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AppointmentFinance"
     objects: {
       appointment: Prisma.$AppointmentPayload<ExtArgs>
-      approver: Prisma.$UserPayload<ExtArgs>
+      financeStaff: Prisma.$FinanceStaffPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       appointmentId: string
       amount: Prisma.Decimal
       approvalStatus: $Enums.ApprovalStatus
-      approvedBy: string
-      approvedAt: Date
-    }, ExtArgs["result"]["finance"]>
+      financeStaffId: string
+      approvedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["appointmentFinance"]>
     composites: {}
   }
 
-  type FinanceGetPayload<S extends boolean | null | undefined | FinanceDefaultArgs> = $Result.GetResult<Prisma.$FinancePayload, S>
+  type AppointmentFinanceGetPayload<S extends boolean | null | undefined | AppointmentFinanceDefaultArgs> = $Result.GetResult<Prisma.$AppointmentFinancePayload, S>
 
-  type FinanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FinanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FinanceCountAggregateInputType | true
+  type AppointmentFinanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AppointmentFinanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AppointmentFinanceCountAggregateInputType | true
     }
 
-  export interface FinanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Finance'], meta: { name: 'Finance' } }
+  export interface AppointmentFinanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AppointmentFinance'], meta: { name: 'AppointmentFinance' } }
     /**
-     * Find zero or one Finance that matches the filter.
-     * @param {FinanceFindUniqueArgs} args - Arguments to find a Finance
+     * Find zero or one AppointmentFinance that matches the filter.
+     * @param {AppointmentFinanceFindUniqueArgs} args - Arguments to find a AppointmentFinance
      * @example
-     * // Get one Finance
-     * const finance = await prisma.finance.findUnique({
+     * // Get one AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FinanceFindUniqueArgs>(args: SelectSubset<T, FinanceFindUniqueArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AppointmentFinanceFindUniqueArgs>(args: SelectSubset<T, AppointmentFinanceFindUniqueArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Finance that matches the filter or throw an error with `error.code='P2025'`
+     * Find one AppointmentFinance that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FinanceFindUniqueOrThrowArgs} args - Arguments to find a Finance
+     * @param {AppointmentFinanceFindUniqueOrThrowArgs} args - Arguments to find a AppointmentFinance
      * @example
-     * // Get one Finance
-     * const finance = await prisma.finance.findUniqueOrThrow({
+     * // Get one AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FinanceFindUniqueOrThrowArgs>(args: SelectSubset<T, FinanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AppointmentFinanceFindUniqueOrThrowArgs>(args: SelectSubset<T, AppointmentFinanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Finance that matches the filter.
+     * Find the first AppointmentFinance that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceFindFirstArgs} args - Arguments to find a Finance
+     * @param {AppointmentFinanceFindFirstArgs} args - Arguments to find a AppointmentFinance
      * @example
-     * // Get one Finance
-     * const finance = await prisma.finance.findFirst({
+     * // Get one AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FinanceFindFirstArgs>(args?: SelectSubset<T, FinanceFindFirstArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AppointmentFinanceFindFirstArgs>(args?: SelectSubset<T, AppointmentFinanceFindFirstArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Finance that matches the filter or
+     * Find the first AppointmentFinance that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceFindFirstOrThrowArgs} args - Arguments to find a Finance
+     * @param {AppointmentFinanceFindFirstOrThrowArgs} args - Arguments to find a AppointmentFinance
      * @example
-     * // Get one Finance
-     * const finance = await prisma.finance.findFirstOrThrow({
+     * // Get one AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FinanceFindFirstOrThrowArgs>(args?: SelectSubset<T, FinanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AppointmentFinanceFindFirstOrThrowArgs>(args?: SelectSubset<T, AppointmentFinanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Finances that matches the filter.
+     * Find zero or more AppointmentFinances that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AppointmentFinanceFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Finances
-     * const finances = await prisma.finance.findMany()
+     * // Get all AppointmentFinances
+     * const appointmentFinances = await prisma.appointmentFinance.findMany()
      * 
-     * // Get first 10 Finances
-     * const finances = await prisma.finance.findMany({ take: 10 })
+     * // Get first 10 AppointmentFinances
+     * const appointmentFinances = await prisma.appointmentFinance.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const financeWithIdOnly = await prisma.finance.findMany({ select: { id: true } })
+     * const appointmentFinanceWithIdOnly = await prisma.appointmentFinance.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FinanceFindManyArgs>(args?: SelectSubset<T, FinanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AppointmentFinanceFindManyArgs>(args?: SelectSubset<T, AppointmentFinanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Finance.
-     * @param {FinanceCreateArgs} args - Arguments to create a Finance.
+     * Create a AppointmentFinance.
+     * @param {AppointmentFinanceCreateArgs} args - Arguments to create a AppointmentFinance.
      * @example
-     * // Create one Finance
-     * const Finance = await prisma.finance.create({
+     * // Create one AppointmentFinance
+     * const AppointmentFinance = await prisma.appointmentFinance.create({
      *   data: {
-     *     // ... data to create a Finance
+     *     // ... data to create a AppointmentFinance
      *   }
      * })
      * 
      */
-    create<T extends FinanceCreateArgs>(args: SelectSubset<T, FinanceCreateArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AppointmentFinanceCreateArgs>(args: SelectSubset<T, AppointmentFinanceCreateArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Finances.
-     * @param {FinanceCreateManyArgs} args - Arguments to create many Finances.
+     * Create many AppointmentFinances.
+     * @param {AppointmentFinanceCreateManyArgs} args - Arguments to create many AppointmentFinances.
      * @example
-     * // Create many Finances
-     * const finance = await prisma.finance.createMany({
+     * // Create many AppointmentFinances
+     * const appointmentFinance = await prisma.appointmentFinance.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FinanceCreateManyArgs>(args?: SelectSubset<T, FinanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AppointmentFinanceCreateManyArgs>(args?: SelectSubset<T, AppointmentFinanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Finances and returns the data saved in the database.
-     * @param {FinanceCreateManyAndReturnArgs} args - Arguments to create many Finances.
+     * Create many AppointmentFinances and returns the data saved in the database.
+     * @param {AppointmentFinanceCreateManyAndReturnArgs} args - Arguments to create many AppointmentFinances.
      * @example
-     * // Create many Finances
-     * const finance = await prisma.finance.createManyAndReturn({
+     * // Create many AppointmentFinances
+     * const appointmentFinance = await prisma.appointmentFinance.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Finances and only return the `id`
-     * const financeWithIdOnly = await prisma.finance.createManyAndReturn({
+     * // Create many AppointmentFinances and only return the `id`
+     * const appointmentFinanceWithIdOnly = await prisma.appointmentFinance.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -20834,28 +20882,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FinanceCreateManyAndReturnArgs>(args?: SelectSubset<T, FinanceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends AppointmentFinanceCreateManyAndReturnArgs>(args?: SelectSubset<T, AppointmentFinanceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Finance.
-     * @param {FinanceDeleteArgs} args - Arguments to delete one Finance.
+     * Delete a AppointmentFinance.
+     * @param {AppointmentFinanceDeleteArgs} args - Arguments to delete one AppointmentFinance.
      * @example
-     * // Delete one Finance
-     * const Finance = await prisma.finance.delete({
+     * // Delete one AppointmentFinance
+     * const AppointmentFinance = await prisma.appointmentFinance.delete({
      *   where: {
-     *     // ... filter to delete one Finance
+     *     // ... filter to delete one AppointmentFinance
      *   }
      * })
      * 
      */
-    delete<T extends FinanceDeleteArgs>(args: SelectSubset<T, FinanceDeleteArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AppointmentFinanceDeleteArgs>(args: SelectSubset<T, AppointmentFinanceDeleteArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Finance.
-     * @param {FinanceUpdateArgs} args - Arguments to update one Finance.
+     * Update one AppointmentFinance.
+     * @param {AppointmentFinanceUpdateArgs} args - Arguments to update one AppointmentFinance.
      * @example
-     * // Update one Finance
-     * const finance = await prisma.finance.update({
+     * // Update one AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20865,30 +20913,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FinanceUpdateArgs>(args: SelectSubset<T, FinanceUpdateArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AppointmentFinanceUpdateArgs>(args: SelectSubset<T, AppointmentFinanceUpdateArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Finances.
-     * @param {FinanceDeleteManyArgs} args - Arguments to filter Finances to delete.
+     * Delete zero or more AppointmentFinances.
+     * @param {AppointmentFinanceDeleteManyArgs} args - Arguments to filter AppointmentFinances to delete.
      * @example
-     * // Delete a few Finances
-     * const { count } = await prisma.finance.deleteMany({
+     * // Delete a few AppointmentFinances
+     * const { count } = await prisma.appointmentFinance.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FinanceDeleteManyArgs>(args?: SelectSubset<T, FinanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AppointmentFinanceDeleteManyArgs>(args?: SelectSubset<T, AppointmentFinanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Finances.
+     * Update zero or more AppointmentFinances.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AppointmentFinanceUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Finances
-     * const finance = await prisma.finance.updateMany({
+     * // Update many AppointmentFinances
+     * const appointmentFinance = await prisma.appointmentFinance.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20898,14 +20946,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FinanceUpdateManyArgs>(args: SelectSubset<T, FinanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AppointmentFinanceUpdateManyArgs>(args: SelectSubset<T, AppointmentFinanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Finances and returns the data updated in the database.
-     * @param {FinanceUpdateManyAndReturnArgs} args - Arguments to update many Finances.
+     * Update zero or more AppointmentFinances and returns the data updated in the database.
+     * @param {AppointmentFinanceUpdateManyAndReturnArgs} args - Arguments to update many AppointmentFinances.
      * @example
-     * // Update many Finances
-     * const finance = await prisma.finance.updateManyAndReturn({
+     * // Update many AppointmentFinances
+     * const appointmentFinance = await prisma.appointmentFinance.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20914,8 +20962,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Finances and only return the `id`
-     * const financeWithIdOnly = await prisma.finance.updateManyAndReturn({
+     * // Update zero or more AppointmentFinances and only return the `id`
+     * const appointmentFinanceWithIdOnly = await prisma.appointmentFinance.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -20928,56 +20976,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FinanceUpdateManyAndReturnArgs>(args: SelectSubset<T, FinanceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends AppointmentFinanceUpdateManyAndReturnArgs>(args: SelectSubset<T, AppointmentFinanceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Finance.
-     * @param {FinanceUpsertArgs} args - Arguments to update or create a Finance.
+     * Create or update one AppointmentFinance.
+     * @param {AppointmentFinanceUpsertArgs} args - Arguments to update or create a AppointmentFinance.
      * @example
-     * // Update or create a Finance
-     * const finance = await prisma.finance.upsert({
+     * // Update or create a AppointmentFinance
+     * const appointmentFinance = await prisma.appointmentFinance.upsert({
      *   create: {
-     *     // ... data to create a Finance
+     *     // ... data to create a AppointmentFinance
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Finance we want to update
+     *     // ... the filter for the AppointmentFinance we want to update
      *   }
      * })
      */
-    upsert<T extends FinanceUpsertArgs>(args: SelectSubset<T, FinanceUpsertArgs<ExtArgs>>): Prisma__FinanceClient<$Result.GetResult<Prisma.$FinancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AppointmentFinanceUpsertArgs>(args: SelectSubset<T, AppointmentFinanceUpsertArgs<ExtArgs>>): Prisma__AppointmentFinanceClient<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Finances.
+     * Count the number of AppointmentFinances.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceCountArgs} args - Arguments to filter Finances to count.
+     * @param {AppointmentFinanceCountArgs} args - Arguments to filter AppointmentFinances to count.
      * @example
-     * // Count the number of Finances
-     * const count = await prisma.finance.count({
+     * // Count the number of AppointmentFinances
+     * const count = await prisma.appointmentFinance.count({
      *   where: {
-     *     // ... the filter for the Finances we want to count
+     *     // ... the filter for the AppointmentFinances we want to count
      *   }
      * })
     **/
-    count<T extends FinanceCountArgs>(
-      args?: Subset<T, FinanceCountArgs>,
+    count<T extends AppointmentFinanceCountArgs>(
+      args?: Subset<T, AppointmentFinanceCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FinanceCountAggregateOutputType>
+          : GetScalarType<T['select'], AppointmentFinanceCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Finance.
+     * Allows you to perform aggregations operations on a AppointmentFinance.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AppointmentFinanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -20997,13 +21045,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FinanceAggregateArgs>(args: Subset<T, FinanceAggregateArgs>): Prisma.PrismaPromise<GetFinanceAggregateType<T>>
+    aggregate<T extends AppointmentFinanceAggregateArgs>(args: Subset<T, AppointmentFinanceAggregateArgs>): Prisma.PrismaPromise<GetAppointmentFinanceAggregateType<T>>
 
     /**
-     * Group by Finance.
+     * Group by AppointmentFinance.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FinanceGroupByArgs} args - Group by arguments.
+     * @param {AppointmentFinanceGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -21018,14 +21066,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FinanceGroupByArgs,
+      T extends AppointmentFinanceGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FinanceGroupByArgs['orderBy'] }
-        : { orderBy?: FinanceGroupByArgs['orderBy'] },
+        ? { orderBy: AppointmentFinanceGroupByArgs['orderBy'] }
+        : { orderBy?: AppointmentFinanceGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -21074,23 +21122,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FinanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFinanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AppointmentFinanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppointmentFinanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Finance model
+   * Fields of the AppointmentFinance model
    */
-  readonly fields: FinanceFieldRefs;
+  readonly fields: AppointmentFinanceFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Finance.
+   * The delegate class that acts as a "Promise-like" for AppointmentFinance.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FinanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AppointmentFinanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     appointment<T extends AppointmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AppointmentDefaultArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    approver<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    financeStaff<T extends FinanceStaffDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaffDefaultArgs<ExtArgs>>): Prisma__FinanceStaffClient<$Result.GetResult<Prisma.$FinanceStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21117,426 +21165,428 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Finance model
+   * Fields of the AppointmentFinance model
    */
-  interface FinanceFieldRefs {
-    readonly id: FieldRef<"Finance", 'String'>
-    readonly appointmentId: FieldRef<"Finance", 'String'>
-    readonly amount: FieldRef<"Finance", 'Decimal'>
-    readonly approvalStatus: FieldRef<"Finance", 'ApprovalStatus'>
-    readonly approvedBy: FieldRef<"Finance", 'String'>
-    readonly approvedAt: FieldRef<"Finance", 'DateTime'>
+  interface AppointmentFinanceFieldRefs {
+    readonly id: FieldRef<"AppointmentFinance", 'String'>
+    readonly appointmentId: FieldRef<"AppointmentFinance", 'String'>
+    readonly amount: FieldRef<"AppointmentFinance", 'Decimal'>
+    readonly approvalStatus: FieldRef<"AppointmentFinance", 'ApprovalStatus'>
+    readonly financeStaffId: FieldRef<"AppointmentFinance", 'String'>
+    readonly approvedAt: FieldRef<"AppointmentFinance", 'DateTime'>
+    readonly createdAt: FieldRef<"AppointmentFinance", 'DateTime'>
+    readonly updatedAt: FieldRef<"AppointmentFinance", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Finance findUnique
+   * AppointmentFinance findUnique
    */
-  export type FinanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter, which Finance to fetch.
+     * Filter, which AppointmentFinance to fetch.
      */
-    where: FinanceWhereUniqueInput
+    where: AppointmentFinanceWhereUniqueInput
   }
 
   /**
-   * Finance findUniqueOrThrow
+   * AppointmentFinance findUniqueOrThrow
    */
-  export type FinanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter, which Finance to fetch.
+     * Filter, which AppointmentFinance to fetch.
      */
-    where: FinanceWhereUniqueInput
+    where: AppointmentFinanceWhereUniqueInput
   }
 
   /**
-   * Finance findFirst
+   * AppointmentFinance findFirst
    */
-  export type FinanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter, which Finance to fetch.
+     * Filter, which AppointmentFinance to fetch.
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Finances to fetch.
+     * Determine the order of AppointmentFinances to fetch.
      */
-    orderBy?: FinanceOrderByWithRelationInput | FinanceOrderByWithRelationInput[]
+    orderBy?: AppointmentFinanceOrderByWithRelationInput | AppointmentFinanceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Finances.
+     * Sets the position for searching for AppointmentFinances.
      */
-    cursor?: FinanceWhereUniqueInput
+    cursor?: AppointmentFinanceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Finances from the position of the cursor.
+     * Take `±n` AppointmentFinances from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Finances.
+     * Skip the first `n` AppointmentFinances.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Finances.
+     * Filter by unique combinations of AppointmentFinances.
      */
-    distinct?: FinanceScalarFieldEnum | FinanceScalarFieldEnum[]
+    distinct?: AppointmentFinanceScalarFieldEnum | AppointmentFinanceScalarFieldEnum[]
   }
 
   /**
-   * Finance findFirstOrThrow
+   * AppointmentFinance findFirstOrThrow
    */
-  export type FinanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter, which Finance to fetch.
+     * Filter, which AppointmentFinance to fetch.
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Finances to fetch.
+     * Determine the order of AppointmentFinances to fetch.
      */
-    orderBy?: FinanceOrderByWithRelationInput | FinanceOrderByWithRelationInput[]
+    orderBy?: AppointmentFinanceOrderByWithRelationInput | AppointmentFinanceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Finances.
+     * Sets the position for searching for AppointmentFinances.
      */
-    cursor?: FinanceWhereUniqueInput
+    cursor?: AppointmentFinanceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Finances from the position of the cursor.
+     * Take `±n` AppointmentFinances from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Finances.
+     * Skip the first `n` AppointmentFinances.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Finances.
+     * Filter by unique combinations of AppointmentFinances.
      */
-    distinct?: FinanceScalarFieldEnum | FinanceScalarFieldEnum[]
+    distinct?: AppointmentFinanceScalarFieldEnum | AppointmentFinanceScalarFieldEnum[]
   }
 
   /**
-   * Finance findMany
+   * AppointmentFinance findMany
    */
-  export type FinanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter, which Finances to fetch.
+     * Filter, which AppointmentFinances to fetch.
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Finances to fetch.
+     * Determine the order of AppointmentFinances to fetch.
      */
-    orderBy?: FinanceOrderByWithRelationInput | FinanceOrderByWithRelationInput[]
+    orderBy?: AppointmentFinanceOrderByWithRelationInput | AppointmentFinanceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Finances.
+     * Sets the position for listing AppointmentFinances.
      */
-    cursor?: FinanceWhereUniqueInput
+    cursor?: AppointmentFinanceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Finances from the position of the cursor.
+     * Take `±n` AppointmentFinances from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Finances.
+     * Skip the first `n` AppointmentFinances.
      */
     skip?: number
-    distinct?: FinanceScalarFieldEnum | FinanceScalarFieldEnum[]
+    distinct?: AppointmentFinanceScalarFieldEnum | AppointmentFinanceScalarFieldEnum[]
   }
 
   /**
-   * Finance create
+   * AppointmentFinance create
    */
-  export type FinanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * The data needed to create a Finance.
+     * The data needed to create a AppointmentFinance.
      */
-    data: XOR<FinanceCreateInput, FinanceUncheckedCreateInput>
+    data: XOR<AppointmentFinanceCreateInput, AppointmentFinanceUncheckedCreateInput>
   }
 
   /**
-   * Finance createMany
+   * AppointmentFinance createMany
    */
-  export type FinanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Finances.
+     * The data used to create many AppointmentFinances.
      */
-    data: FinanceCreateManyInput | FinanceCreateManyInput[]
+    data: AppointmentFinanceCreateManyInput | AppointmentFinanceCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Finance createManyAndReturn
+   * AppointmentFinance createManyAndReturn
    */
-  export type FinanceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelectCreateManyAndReturn<ExtArgs> | null
+    select?: AppointmentFinanceSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
-     * The data used to create many Finances.
+     * The data used to create many AppointmentFinances.
      */
-    data: FinanceCreateManyInput | FinanceCreateManyInput[]
+    data: AppointmentFinanceCreateManyInput | AppointmentFinanceCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: AppointmentFinanceIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Finance update
+   * AppointmentFinance update
    */
-  export type FinanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * The data needed to update a Finance.
+     * The data needed to update a AppointmentFinance.
      */
-    data: XOR<FinanceUpdateInput, FinanceUncheckedUpdateInput>
+    data: XOR<AppointmentFinanceUpdateInput, AppointmentFinanceUncheckedUpdateInput>
     /**
-     * Choose, which Finance to update.
+     * Choose, which AppointmentFinance to update.
      */
-    where: FinanceWhereUniqueInput
+    where: AppointmentFinanceWhereUniqueInput
   }
 
   /**
-   * Finance updateMany
+   * AppointmentFinance updateMany
    */
-  export type FinanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Finances.
+     * The data used to update AppointmentFinances.
      */
-    data: XOR<FinanceUpdateManyMutationInput, FinanceUncheckedUpdateManyInput>
+    data: XOR<AppointmentFinanceUpdateManyMutationInput, AppointmentFinanceUncheckedUpdateManyInput>
     /**
-     * Filter which Finances to update
+     * Filter which AppointmentFinances to update
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
-     * Limit how many Finances to update.
+     * Limit how many AppointmentFinances to update.
      */
     limit?: number
   }
 
   /**
-   * Finance updateManyAndReturn
+   * AppointmentFinance updateManyAndReturn
    */
-  export type FinanceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: AppointmentFinanceSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
-     * The data used to update Finances.
+     * The data used to update AppointmentFinances.
      */
-    data: XOR<FinanceUpdateManyMutationInput, FinanceUncheckedUpdateManyInput>
+    data: XOR<AppointmentFinanceUpdateManyMutationInput, AppointmentFinanceUncheckedUpdateManyInput>
     /**
-     * Filter which Finances to update
+     * Filter which AppointmentFinances to update
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
-     * Limit how many Finances to update.
+     * Limit how many AppointmentFinances to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: AppointmentFinanceIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Finance upsert
+   * AppointmentFinance upsert
    */
-  export type FinanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * The filter to search for the Finance to update in case it exists.
+     * The filter to search for the AppointmentFinance to update in case it exists.
      */
-    where: FinanceWhereUniqueInput
+    where: AppointmentFinanceWhereUniqueInput
     /**
-     * In case the Finance found by the `where` argument doesn't exist, create a new Finance with this data.
+     * In case the AppointmentFinance found by the `where` argument doesn't exist, create a new AppointmentFinance with this data.
      */
-    create: XOR<FinanceCreateInput, FinanceUncheckedCreateInput>
+    create: XOR<AppointmentFinanceCreateInput, AppointmentFinanceUncheckedCreateInput>
     /**
-     * In case the Finance was found with the provided `where` argument, update it with this data.
+     * In case the AppointmentFinance was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<FinanceUpdateInput, FinanceUncheckedUpdateInput>
+    update: XOR<AppointmentFinanceUpdateInput, AppointmentFinanceUncheckedUpdateInput>
   }
 
   /**
-   * Finance delete
+   * AppointmentFinance delete
    */
-  export type FinanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
     /**
-     * Filter which Finance to delete.
+     * Filter which AppointmentFinance to delete.
      */
-    where: FinanceWhereUniqueInput
+    where: AppointmentFinanceWhereUniqueInput
   }
 
   /**
-   * Finance deleteMany
+   * AppointmentFinance deleteMany
    */
-  export type FinanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Finances to delete
+     * Filter which AppointmentFinances to delete
      */
-    where?: FinanceWhereInput
+    where?: AppointmentFinanceWhereInput
     /**
-     * Limit how many Finances to delete.
+     * Limit how many AppointmentFinances to delete.
      */
     limit?: number
   }
 
   /**
-   * Finance without action
+   * AppointmentFinance without action
    */
-  export type FinanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AppointmentFinanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Finance
+     * Select specific fields to fetch from the AppointmentFinance
      */
-    select?: FinanceSelect<ExtArgs> | null
+    select?: AppointmentFinanceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Finance
+     * Omit specific fields from the AppointmentFinance
      */
-    omit?: FinanceOmit<ExtArgs> | null
+    omit?: AppointmentFinanceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FinanceInclude<ExtArgs> | null
+    include?: AppointmentFinanceInclude<ExtArgs> | null
   }
 
 
@@ -22786,16 +22836,18 @@ export namespace Prisma {
   export type PharmacyScalarFieldEnum = (typeof PharmacyScalarFieldEnum)[keyof typeof PharmacyScalarFieldEnum]
 
 
-  export const FinanceScalarFieldEnum: {
+  export const AppointmentFinanceScalarFieldEnum: {
     id: 'id',
     appointmentId: 'appointmentId',
     amount: 'amount',
     approvalStatus: 'approvalStatus',
-    approvedBy: 'approvedBy',
-    approvedAt: 'approvedAt'
+    financeStaffId: 'financeStaffId',
+    approvedAt: 'approvedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type FinanceScalarFieldEnum = (typeof FinanceScalarFieldEnum)[keyof typeof FinanceScalarFieldEnum]
+  export type AppointmentFinanceScalarFieldEnum = (typeof AppointmentFinanceScalarFieldEnum)[keyof typeof AppointmentFinanceScalarFieldEnum]
 
 
   export const MedicalRecordScalarFieldEnum: {
@@ -23060,7 +23112,6 @@ export namespace Prisma {
     pharmacist?: XOR<PharmacistNullableScalarRelationFilter, PharmacistWhereInput> | null
     financeStaff?: XOR<FinanceStaffNullableScalarRelationFilter, FinanceStaffWhereInput> | null
     receptionist?: XOR<ReceptionistNullableScalarRelationFilter, ReceptionistWhereInput> | null
-    approvedFinances?: FinanceListRelationFilter
     labResults?: LabResultListRelationFilter
     pharmacy?: PharmacyListRelationFilter
   }
@@ -23081,7 +23132,6 @@ export namespace Prisma {
     pharmacist?: PharmacistOrderByWithRelationInput
     financeStaff?: FinanceStaffOrderByWithRelationInput
     receptionist?: ReceptionistOrderByWithRelationInput
-    approvedFinances?: FinanceOrderByRelationAggregateInput
     labResults?: LabResultOrderByRelationAggregateInput
     pharmacy?: PharmacyOrderByRelationAggregateInput
   }
@@ -23105,7 +23155,6 @@ export namespace Prisma {
     pharmacist?: XOR<PharmacistNullableScalarRelationFilter, PharmacistWhereInput> | null
     financeStaff?: XOR<FinanceStaffNullableScalarRelationFilter, FinanceStaffWhereInput> | null
     receptionist?: XOR<ReceptionistNullableScalarRelationFilter, ReceptionistWhereInput> | null
-    approvedFinances?: FinanceListRelationFilter
     labResults?: LabResultListRelationFilter
     pharmacy?: PharmacyListRelationFilter
   }, "id" | "email">
@@ -23402,12 +23451,14 @@ export namespace Prisma {
     NOT?: FinanceStaffWhereInput | FinanceStaffWhereInput[]
     id?: StringFilter<"FinanceStaff"> | string
     userId?: StringFilter<"FinanceStaff"> | string
+    approvedFinances?: AppointmentFinanceListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type FinanceStaffOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    approvedFinances?: AppointmentFinanceOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -23417,6 +23468,7 @@ export namespace Prisma {
     AND?: FinanceStaffWhereInput | FinanceStaffWhereInput[]
     OR?: FinanceStaffWhereInput[]
     NOT?: FinanceStaffWhereInput | FinanceStaffWhereInput[]
+    approvedFinances?: AppointmentFinanceListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -23605,7 +23657,7 @@ export namespace Prisma {
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     reschedule?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
     rescheduledTo?: AppointmentListRelationFilter
-    finance?: XOR<FinanceNullableScalarRelationFilter, FinanceWhereInput> | null
+    finance?: XOR<AppointmentFinanceNullableScalarRelationFilter, AppointmentFinanceWhereInput> | null
   }
 
   export type AppointmentOrderByWithRelationInput = {
@@ -23622,7 +23674,7 @@ export namespace Prisma {
     patient?: PatientOrderByWithRelationInput
     reschedule?: AppointmentOrderByWithRelationInput
     rescheduledTo?: AppointmentOrderByRelationAggregateInput
-    finance?: FinanceOrderByWithRelationInput
+    finance?: AppointmentFinanceOrderByWithRelationInput
   }
 
   export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
@@ -23642,7 +23694,7 @@ export namespace Prisma {
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     reschedule?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
     rescheduledTo?: AppointmentListRelationFilter
-    finance?: XOR<FinanceNullableScalarRelationFilter, FinanceWhereInput> | null
+    finance?: XOR<AppointmentFinanceNullableScalarRelationFilter, AppointmentFinanceWhereInput> | null
   }, "id">
 
   export type AppointmentOrderByWithAggregationInput = {
@@ -24007,69 +24059,79 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Pharmacy"> | Date | string
   }
 
-  export type FinanceWhereInput = {
-    AND?: FinanceWhereInput | FinanceWhereInput[]
-    OR?: FinanceWhereInput[]
-    NOT?: FinanceWhereInput | FinanceWhereInput[]
-    id?: StringFilter<"Finance"> | string
-    appointmentId?: StringFilter<"Finance"> | string
-    amount?: DecimalFilter<"Finance"> | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFilter<"Finance"> | $Enums.ApprovalStatus
-    approvedBy?: StringFilter<"Finance"> | string
-    approvedAt?: DateTimeFilter<"Finance"> | Date | string
+  export type AppointmentFinanceWhereInput = {
+    AND?: AppointmentFinanceWhereInput | AppointmentFinanceWhereInput[]
+    OR?: AppointmentFinanceWhereInput[]
+    NOT?: AppointmentFinanceWhereInput | AppointmentFinanceWhereInput[]
+    id?: StringFilter<"AppointmentFinance"> | string
+    appointmentId?: StringFilter<"AppointmentFinance"> | string
+    amount?: DecimalFilter<"AppointmentFinance"> | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFilter<"AppointmentFinance"> | $Enums.ApprovalStatus
+    financeStaffId?: StringFilter<"AppointmentFinance"> | string
+    approvedAt?: DateTimeNullableFilter<"AppointmentFinance"> | Date | string | null
+    createdAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
+    updatedAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
     appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
-    approver?: XOR<UserScalarRelationFilter, UserWhereInput>
+    financeStaff?: XOR<FinanceStaffScalarRelationFilter, FinanceStaffWhereInput>
   }
 
-  export type FinanceOrderByWithRelationInput = {
+  export type AppointmentFinanceOrderByWithRelationInput = {
     id?: SortOrder
     appointmentId?: SortOrder
     amount?: SortOrder
     approvalStatus?: SortOrder
-    approvedBy?: SortOrder
-    approvedAt?: SortOrder
+    financeStaffId?: SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     appointment?: AppointmentOrderByWithRelationInput
-    approver?: UserOrderByWithRelationInput
+    financeStaff?: FinanceStaffOrderByWithRelationInput
   }
 
-  export type FinanceWhereUniqueInput = Prisma.AtLeast<{
+  export type AppointmentFinanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     appointmentId?: string
-    AND?: FinanceWhereInput | FinanceWhereInput[]
-    OR?: FinanceWhereInput[]
-    NOT?: FinanceWhereInput | FinanceWhereInput[]
-    amount?: DecimalFilter<"Finance"> | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFilter<"Finance"> | $Enums.ApprovalStatus
-    approvedBy?: StringFilter<"Finance"> | string
-    approvedAt?: DateTimeFilter<"Finance"> | Date | string
+    AND?: AppointmentFinanceWhereInput | AppointmentFinanceWhereInput[]
+    OR?: AppointmentFinanceWhereInput[]
+    NOT?: AppointmentFinanceWhereInput | AppointmentFinanceWhereInput[]
+    amount?: DecimalFilter<"AppointmentFinance"> | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFilter<"AppointmentFinance"> | $Enums.ApprovalStatus
+    financeStaffId?: StringFilter<"AppointmentFinance"> | string
+    approvedAt?: DateTimeNullableFilter<"AppointmentFinance"> | Date | string | null
+    createdAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
+    updatedAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
     appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
-    approver?: XOR<UserScalarRelationFilter, UserWhereInput>
+    financeStaff?: XOR<FinanceStaffScalarRelationFilter, FinanceStaffWhereInput>
   }, "id" | "appointmentId">
 
-  export type FinanceOrderByWithAggregationInput = {
+  export type AppointmentFinanceOrderByWithAggregationInput = {
     id?: SortOrder
     appointmentId?: SortOrder
     amount?: SortOrder
     approvalStatus?: SortOrder
-    approvedBy?: SortOrder
-    approvedAt?: SortOrder
-    _count?: FinanceCountOrderByAggregateInput
-    _avg?: FinanceAvgOrderByAggregateInput
-    _max?: FinanceMaxOrderByAggregateInput
-    _min?: FinanceMinOrderByAggregateInput
-    _sum?: FinanceSumOrderByAggregateInput
+    financeStaffId?: SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AppointmentFinanceCountOrderByAggregateInput
+    _avg?: AppointmentFinanceAvgOrderByAggregateInput
+    _max?: AppointmentFinanceMaxOrderByAggregateInput
+    _min?: AppointmentFinanceMinOrderByAggregateInput
+    _sum?: AppointmentFinanceSumOrderByAggregateInput
   }
 
-  export type FinanceScalarWhereWithAggregatesInput = {
-    AND?: FinanceScalarWhereWithAggregatesInput | FinanceScalarWhereWithAggregatesInput[]
-    OR?: FinanceScalarWhereWithAggregatesInput[]
-    NOT?: FinanceScalarWhereWithAggregatesInput | FinanceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Finance"> | string
-    appointmentId?: StringWithAggregatesFilter<"Finance"> | string
-    amount?: DecimalWithAggregatesFilter<"Finance"> | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusWithAggregatesFilter<"Finance"> | $Enums.ApprovalStatus
-    approvedBy?: StringWithAggregatesFilter<"Finance"> | string
-    approvedAt?: DateTimeWithAggregatesFilter<"Finance"> | Date | string
+  export type AppointmentFinanceScalarWhereWithAggregatesInput = {
+    AND?: AppointmentFinanceScalarWhereWithAggregatesInput | AppointmentFinanceScalarWhereWithAggregatesInput[]
+    OR?: AppointmentFinanceScalarWhereWithAggregatesInput[]
+    NOT?: AppointmentFinanceScalarWhereWithAggregatesInput | AppointmentFinanceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AppointmentFinance"> | string
+    appointmentId?: StringWithAggregatesFilter<"AppointmentFinance"> | string
+    amount?: DecimalWithAggregatesFilter<"AppointmentFinance"> | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusWithAggregatesFilter<"AppointmentFinance"> | $Enums.ApprovalStatus
+    financeStaffId?: StringWithAggregatesFilter<"AppointmentFinance"> | string
+    approvedAt?: DateTimeNullableWithAggregatesFilter<"AppointmentFinance"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AppointmentFinance"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AppointmentFinance"> | Date | string
   }
 
   export type MedicalRecordWhereInput = {
@@ -24148,7 +24210,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -24169,7 +24230,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -24190,7 +24250,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -24211,7 +24270,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -24500,22 +24558,26 @@ export namespace Prisma {
 
   export type FinanceStaffCreateInput = {
     id?: string
+    approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
     user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
   export type FinanceStaffUncheckedCreateInput = {
     id?: string
     userId: string
+    approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
     user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffCreateManyInput = {
@@ -24687,7 +24749,7 @@ export namespace Prisma {
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateInput = {
@@ -24701,7 +24763,7 @@ export namespace Prisma {
     createdAt?: Date | string
     triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUpdateInput = {
@@ -24715,7 +24777,7 @@ export namespace Prisma {
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateInput = {
@@ -24729,7 +24791,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentCreateManyInput = {
@@ -25088,65 +25150,79 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FinanceCreateInput = {
+  export type AppointmentFinanceCreateInput = {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedAt: Date | string
+    approvalStatus?: $Enums.ApprovalStatus
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     appointment: AppointmentCreateNestedOneWithoutFinanceInput
-    approver: UserCreateNestedOneWithoutApprovedFinancesInput
+    financeStaff: FinanceStaffCreateNestedOneWithoutApprovedFinancesInput
   }
 
-  export type FinanceUncheckedCreateInput = {
+  export type AppointmentFinanceUncheckedCreateInput = {
     id?: string
     appointmentId: string
     amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedBy: string
-    approvedAt: Date | string
+    approvalStatus?: $Enums.ApprovalStatus
+    financeStaffId: string
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type FinanceUpdateInput = {
+  export type AppointmentFinanceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneRequiredWithoutFinanceNestedInput
-    approver?: UserUpdateOneRequiredWithoutApprovedFinancesNestedInput
+    financeStaff?: FinanceStaffUpdateOneRequiredWithoutApprovedFinancesNestedInput
   }
 
-  export type FinanceUncheckedUpdateInput = {
+  export type AppointmentFinanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     appointmentId?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedBy?: StringFieldUpdateOperationsInput | string
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FinanceCreateManyInput = {
+  export type AppointmentFinanceCreateManyInput = {
     id?: string
     appointmentId: string
     amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedBy: string
-    approvedAt: Date | string
+    approvalStatus?: $Enums.ApprovalStatus
+    financeStaffId: string
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type FinanceUpdateManyMutationInput = {
+  export type AppointmentFinanceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FinanceUncheckedUpdateManyInput = {
+  export type AppointmentFinanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     appointmentId?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedBy?: StringFieldUpdateOperationsInput | string
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MedicalRecordCreateInput = {
@@ -25279,12 +25355,6 @@ export namespace Prisma {
     isNot?: ReceptionistWhereInput | null
   }
 
-  export type FinanceListRelationFilter = {
-    every?: FinanceWhereInput
-    some?: FinanceWhereInput
-    none?: FinanceWhereInput
-  }
-
   export type LabResultListRelationFilter = {
     every?: LabResultWhereInput
     some?: LabResultWhereInput
@@ -25295,10 +25365,6 @@ export namespace Prisma {
     every?: PharmacyWhereInput
     some?: PharmacyWhereInput
     none?: PharmacyWhereInput
-  }
-
-  export type FinanceOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type LabResultOrderByRelationAggregateInput = {
@@ -25544,6 +25610,16 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type AppointmentFinanceListRelationFilter = {
+    every?: AppointmentFinanceWhereInput
+    some?: AppointmentFinanceWhereInput
+    none?: AppointmentFinanceWhereInput
+  }
+
+  export type AppointmentFinanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FinanceStaffCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -25705,9 +25781,9 @@ export namespace Prisma {
     isNot?: AppointmentWhereInput | null
   }
 
-  export type FinanceNullableScalarRelationFilter = {
-    is?: FinanceWhereInput | null
-    isNot?: FinanceWhereInput | null
+  export type AppointmentFinanceNullableScalarRelationFilter = {
+    is?: AppointmentFinanceWhereInput | null
+    isNot?: AppointmentFinanceWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -26101,38 +26177,49 @@ export namespace Prisma {
     isNot?: AppointmentWhereInput
   }
 
-  export type FinanceCountOrderByAggregateInput = {
+  export type FinanceStaffScalarRelationFilter = {
+    is?: FinanceStaffWhereInput
+    isNot?: FinanceStaffWhereInput
+  }
+
+  export type AppointmentFinanceCountOrderByAggregateInput = {
     id?: SortOrder
     appointmentId?: SortOrder
     amount?: SortOrder
     approvalStatus?: SortOrder
-    approvedBy?: SortOrder
+    financeStaffId?: SortOrder
     approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type FinanceAvgOrderByAggregateInput = {
+  export type AppointmentFinanceAvgOrderByAggregateInput = {
     amount?: SortOrder
   }
 
-  export type FinanceMaxOrderByAggregateInput = {
+  export type AppointmentFinanceMaxOrderByAggregateInput = {
     id?: SortOrder
     appointmentId?: SortOrder
     amount?: SortOrder
     approvalStatus?: SortOrder
-    approvedBy?: SortOrder
+    financeStaffId?: SortOrder
     approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type FinanceMinOrderByAggregateInput = {
+  export type AppointmentFinanceMinOrderByAggregateInput = {
     id?: SortOrder
     appointmentId?: SortOrder
     amount?: SortOrder
     approvalStatus?: SortOrder
-    approvedBy?: SortOrder
+    financeStaffId?: SortOrder
     approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type FinanceSumOrderByAggregateInput = {
+  export type AppointmentFinanceSumOrderByAggregateInput = {
     amount?: SortOrder
   }
 
@@ -26225,13 +26312,6 @@ export namespace Prisma {
     connect?: ReceptionistWhereUniqueInput
   }
 
-  export type FinanceCreateNestedManyWithoutApproverInput = {
-    create?: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput> | FinanceCreateWithoutApproverInput[] | FinanceUncheckedCreateWithoutApproverInput[]
-    connectOrCreate?: FinanceCreateOrConnectWithoutApproverInput | FinanceCreateOrConnectWithoutApproverInput[]
-    createMany?: FinanceCreateManyApproverInputEnvelope
-    connect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-  }
-
   export type LabResultCreateNestedManyWithoutLabTechnicianInput = {
     create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
     connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
@@ -26286,13 +26366,6 @@ export namespace Prisma {
     create?: XOR<ReceptionistCreateWithoutUserInput, ReceptionistUncheckedCreateWithoutUserInput>
     connectOrCreate?: ReceptionistCreateOrConnectWithoutUserInput
     connect?: ReceptionistWhereUniqueInput
-  }
-
-  export type FinanceUncheckedCreateNestedManyWithoutApproverInput = {
-    create?: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput> | FinanceCreateWithoutApproverInput[] | FinanceUncheckedCreateWithoutApproverInput[]
-    connectOrCreate?: FinanceCreateOrConnectWithoutApproverInput | FinanceCreateOrConnectWithoutApproverInput[]
-    createMany?: FinanceCreateManyApproverInputEnvelope
-    connect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
   }
 
   export type LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput = {
@@ -26391,20 +26464,6 @@ export namespace Prisma {
     update?: XOR<XOR<ReceptionistUpdateToOneWithWhereWithoutUserInput, ReceptionistUpdateWithoutUserInput>, ReceptionistUncheckedUpdateWithoutUserInput>
   }
 
-  export type FinanceUpdateManyWithoutApproverNestedInput = {
-    create?: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput> | FinanceCreateWithoutApproverInput[] | FinanceUncheckedCreateWithoutApproverInput[]
-    connectOrCreate?: FinanceCreateOrConnectWithoutApproverInput | FinanceCreateOrConnectWithoutApproverInput[]
-    upsert?: FinanceUpsertWithWhereUniqueWithoutApproverInput | FinanceUpsertWithWhereUniqueWithoutApproverInput[]
-    createMany?: FinanceCreateManyApproverInputEnvelope
-    set?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    disconnect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    delete?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    connect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    update?: FinanceUpdateWithWhereUniqueWithoutApproverInput | FinanceUpdateWithWhereUniqueWithoutApproverInput[]
-    updateMany?: FinanceUpdateManyWithWhereWithoutApproverInput | FinanceUpdateManyWithWhereWithoutApproverInput[]
-    deleteMany?: FinanceScalarWhereInput | FinanceScalarWhereInput[]
-  }
-
   export type LabResultUpdateManyWithoutLabTechnicianNestedInput = {
     create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
     connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
@@ -26501,20 +26560,6 @@ export namespace Prisma {
     delete?: ReceptionistWhereInput | boolean
     connect?: ReceptionistWhereUniqueInput
     update?: XOR<XOR<ReceptionistUpdateToOneWithWhereWithoutUserInput, ReceptionistUpdateWithoutUserInput>, ReceptionistUncheckedUpdateWithoutUserInput>
-  }
-
-  export type FinanceUncheckedUpdateManyWithoutApproverNestedInput = {
-    create?: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput> | FinanceCreateWithoutApproverInput[] | FinanceUncheckedCreateWithoutApproverInput[]
-    connectOrCreate?: FinanceCreateOrConnectWithoutApproverInput | FinanceCreateOrConnectWithoutApproverInput[]
-    upsert?: FinanceUpsertWithWhereUniqueWithoutApproverInput | FinanceUpsertWithWhereUniqueWithoutApproverInput[]
-    createMany?: FinanceCreateManyApproverInputEnvelope
-    set?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    disconnect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    delete?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    connect?: FinanceWhereUniqueInput | FinanceWhereUniqueInput[]
-    update?: FinanceUpdateWithWhereUniqueWithoutApproverInput | FinanceUpdateWithWhereUniqueWithoutApproverInput[]
-    updateMany?: FinanceUpdateManyWithWhereWithoutApproverInput | FinanceUpdateManyWithWhereWithoutApproverInput[]
-    deleteMany?: FinanceScalarWhereInput | FinanceScalarWhereInput[]
   }
 
   export type LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput = {
@@ -27067,10 +27112,38 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPharmacistInput, UserUpdateWithoutPharmacistInput>, UserUncheckedUpdateWithoutPharmacistInput>
   }
 
+  export type AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput> | AppointmentFinanceCreateWithoutFinanceStaffInput[] | AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput | AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput[]
+    createMany?: AppointmentFinanceCreateManyFinanceStaffInputEnvelope
+    connect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutFinanceStaffInput = {
     create?: XOR<UserCreateWithoutFinanceStaffInput, UserUncheckedCreateWithoutFinanceStaffInput>
     connectOrCreate?: UserCreateOrConnectWithoutFinanceStaffInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput> | AppointmentFinanceCreateWithoutFinanceStaffInput[] | AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput | AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput[]
+    createMany?: AppointmentFinanceCreateManyFinanceStaffInputEnvelope
+    connect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+  }
+
+  export type AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput> | AppointmentFinanceCreateWithoutFinanceStaffInput[] | AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput | AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput[]
+    upsert?: AppointmentFinanceUpsertWithWhereUniqueWithoutFinanceStaffInput | AppointmentFinanceUpsertWithWhereUniqueWithoutFinanceStaffInput[]
+    createMany?: AppointmentFinanceCreateManyFinanceStaffInputEnvelope
+    set?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    disconnect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    delete?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    connect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    update?: AppointmentFinanceUpdateWithWhereUniqueWithoutFinanceStaffInput | AppointmentFinanceUpdateWithWhereUniqueWithoutFinanceStaffInput[]
+    updateMany?: AppointmentFinanceUpdateManyWithWhereWithoutFinanceStaffInput | AppointmentFinanceUpdateManyWithWhereWithoutFinanceStaffInput[]
+    deleteMany?: AppointmentFinanceScalarWhereInput | AppointmentFinanceScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutFinanceStaffNestedInput = {
@@ -27079,6 +27152,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutFinanceStaffInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFinanceStaffInput, UserUpdateWithoutFinanceStaffInput>, UserUncheckedUpdateWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput> | AppointmentFinanceCreateWithoutFinanceStaffInput[] | AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput | AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput[]
+    upsert?: AppointmentFinanceUpsertWithWhereUniqueWithoutFinanceStaffInput | AppointmentFinanceUpsertWithWhereUniqueWithoutFinanceStaffInput[]
+    createMany?: AppointmentFinanceCreateManyFinanceStaffInputEnvelope
+    set?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    disconnect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    delete?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    connect?: AppointmentFinanceWhereUniqueInput | AppointmentFinanceWhereUniqueInput[]
+    update?: AppointmentFinanceUpdateWithWhereUniqueWithoutFinanceStaffInput | AppointmentFinanceUpdateWithWhereUniqueWithoutFinanceStaffInput[]
+    updateMany?: AppointmentFinanceUpdateManyWithWhereWithoutFinanceStaffInput | AppointmentFinanceUpdateManyWithWhereWithoutFinanceStaffInput[]
+    deleteMany?: AppointmentFinanceScalarWhereInput | AppointmentFinanceScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutReceptionistInput = {
@@ -27162,10 +27249,10 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
-  export type FinanceCreateNestedOneWithoutAppointmentInput = {
-    create?: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
-    connectOrCreate?: FinanceCreateOrConnectWithoutAppointmentInput
-    connect?: FinanceWhereUniqueInput
+  export type AppointmentFinanceCreateNestedOneWithoutAppointmentInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutAppointmentInput
+    connect?: AppointmentFinanceWhereUniqueInput
   }
 
   export type TriageUncheckedCreateNestedOneWithoutAppointmentInput = {
@@ -27181,10 +27268,10 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
-  export type FinanceUncheckedCreateNestedOneWithoutAppointmentInput = {
-    create?: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
-    connectOrCreate?: FinanceCreateOrConnectWithoutAppointmentInput
-    connect?: FinanceWhereUniqueInput
+  export type AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutAppointmentInput
+    connect?: AppointmentFinanceWhereUniqueInput
   }
 
   export type EnumAppointmentStatusFieldUpdateOperationsInput = {
@@ -27241,14 +27328,14 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
-  export type FinanceUpdateOneWithoutAppointmentNestedInput = {
-    create?: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
-    connectOrCreate?: FinanceCreateOrConnectWithoutAppointmentInput
-    upsert?: FinanceUpsertWithoutAppointmentInput
-    disconnect?: FinanceWhereInput | boolean
-    delete?: FinanceWhereInput | boolean
-    connect?: FinanceWhereUniqueInput
-    update?: XOR<XOR<FinanceUpdateToOneWithWhereWithoutAppointmentInput, FinanceUpdateWithoutAppointmentInput>, FinanceUncheckedUpdateWithoutAppointmentInput>
+  export type AppointmentFinanceUpdateOneWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutAppointmentInput
+    upsert?: AppointmentFinanceUpsertWithoutAppointmentInput
+    disconnect?: AppointmentFinanceWhereInput | boolean
+    delete?: AppointmentFinanceWhereInput | boolean
+    connect?: AppointmentFinanceWhereUniqueInput
+    update?: XOR<XOR<AppointmentFinanceUpdateToOneWithWhereWithoutAppointmentInput, AppointmentFinanceUpdateWithoutAppointmentInput>, AppointmentFinanceUncheckedUpdateWithoutAppointmentInput>
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -27279,14 +27366,14 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
-  export type FinanceUncheckedUpdateOneWithoutAppointmentNestedInput = {
-    create?: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
-    connectOrCreate?: FinanceCreateOrConnectWithoutAppointmentInput
-    upsert?: FinanceUpsertWithoutAppointmentInput
-    disconnect?: FinanceWhereInput | boolean
-    delete?: FinanceWhereInput | boolean
-    connect?: FinanceWhereUniqueInput
-    update?: XOR<XOR<FinanceUpdateToOneWithWhereWithoutAppointmentInput, FinanceUpdateWithoutAppointmentInput>, FinanceUncheckedUpdateWithoutAppointmentInput>
+  export type AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
+    connectOrCreate?: AppointmentFinanceCreateOrConnectWithoutAppointmentInput
+    upsert?: AppointmentFinanceUpsertWithoutAppointmentInput
+    disconnect?: AppointmentFinanceWhereInput | boolean
+    delete?: AppointmentFinanceWhereInput | boolean
+    connect?: AppointmentFinanceWhereUniqueInput
+    update?: XOR<XOR<AppointmentFinanceUpdateToOneWithWhereWithoutAppointmentInput, AppointmentFinanceUpdateWithoutAppointmentInput>, AppointmentFinanceUncheckedUpdateWithoutAppointmentInput>
   }
 
   export type TriageCreatesymptomsInput = {
@@ -27551,10 +27638,10 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutApprovedFinancesInput = {
-    create?: XOR<UserCreateWithoutApprovedFinancesInput, UserUncheckedCreateWithoutApprovedFinancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApprovedFinancesInput
-    connect?: UserWhereUniqueInput
+  export type FinanceStaffCreateNestedOneWithoutApprovedFinancesInput = {
+    create?: XOR<FinanceStaffCreateWithoutApprovedFinancesInput, FinanceStaffUncheckedCreateWithoutApprovedFinancesInput>
+    connectOrCreate?: FinanceStaffCreateOrConnectWithoutApprovedFinancesInput
+    connect?: FinanceStaffWhereUniqueInput
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -27577,12 +27664,12 @@ export namespace Prisma {
     update?: XOR<XOR<AppointmentUpdateToOneWithWhereWithoutFinanceInput, AppointmentUpdateWithoutFinanceInput>, AppointmentUncheckedUpdateWithoutFinanceInput>
   }
 
-  export type UserUpdateOneRequiredWithoutApprovedFinancesNestedInput = {
-    create?: XOR<UserCreateWithoutApprovedFinancesInput, UserUncheckedCreateWithoutApprovedFinancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApprovedFinancesInput
-    upsert?: UserUpsertWithoutApprovedFinancesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApprovedFinancesInput, UserUpdateWithoutApprovedFinancesInput>, UserUncheckedUpdateWithoutApprovedFinancesInput>
+  export type FinanceStaffUpdateOneRequiredWithoutApprovedFinancesNestedInput = {
+    create?: XOR<FinanceStaffCreateWithoutApprovedFinancesInput, FinanceStaffUncheckedCreateWithoutApprovedFinancesInput>
+    connectOrCreate?: FinanceStaffCreateOrConnectWithoutApprovedFinancesInput
+    upsert?: FinanceStaffUpsertWithoutApprovedFinancesInput
+    connect?: FinanceStaffWhereUniqueInput
+    update?: XOR<XOR<FinanceStaffUpdateToOneWithWhereWithoutApprovedFinancesInput, FinanceStaffUpdateWithoutApprovedFinancesInput>, FinanceStaffUncheckedUpdateWithoutApprovedFinancesInput>
   }
 
   export type MedicalRecordCreatetriageIdsInput = {
@@ -28041,10 +28128,12 @@ export namespace Prisma {
 
   export type FinanceStaffCreateWithoutUserInput = {
     id?: string
+    approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffUncheckedCreateWithoutUserInput = {
     id?: string
+    approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffCreateOrConnectWithoutUserInput = {
@@ -28063,32 +28152,6 @@ export namespace Prisma {
   export type ReceptionistCreateOrConnectWithoutUserInput = {
     where: ReceptionistWhereUniqueInput
     create: XOR<ReceptionistCreateWithoutUserInput, ReceptionistUncheckedCreateWithoutUserInput>
-  }
-
-  export type FinanceCreateWithoutApproverInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedAt: Date | string
-    appointment: AppointmentCreateNestedOneWithoutFinanceInput
-  }
-
-  export type FinanceUncheckedCreateWithoutApproverInput = {
-    id?: string
-    appointmentId: string
-    amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedAt: Date | string
-  }
-
-  export type FinanceCreateOrConnectWithoutApproverInput = {
-    where: FinanceWhereUniqueInput
-    create: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput>
-  }
-
-  export type FinanceCreateManyApproverInputEnvelope = {
-    data: FinanceCreateManyApproverInput | FinanceCreateManyApproverInput[]
-    skipDuplicates?: boolean
   }
 
   export type LabResultCreateWithoutLabTechnicianInput = {
@@ -28281,10 +28344,12 @@ export namespace Prisma {
 
   export type FinanceStaffUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type ReceptionistUpsertWithoutUserInput = {
@@ -28304,34 +28369,6 @@ export namespace Prisma {
 
   export type ReceptionistUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FinanceUpsertWithWhereUniqueWithoutApproverInput = {
-    where: FinanceWhereUniqueInput
-    update: XOR<FinanceUpdateWithoutApproverInput, FinanceUncheckedUpdateWithoutApproverInput>
-    create: XOR<FinanceCreateWithoutApproverInput, FinanceUncheckedCreateWithoutApproverInput>
-  }
-
-  export type FinanceUpdateWithWhereUniqueWithoutApproverInput = {
-    where: FinanceWhereUniqueInput
-    data: XOR<FinanceUpdateWithoutApproverInput, FinanceUncheckedUpdateWithoutApproverInput>
-  }
-
-  export type FinanceUpdateManyWithWhereWithoutApproverInput = {
-    where: FinanceScalarWhereInput
-    data: XOR<FinanceUpdateManyMutationInput, FinanceUncheckedUpdateManyWithoutApproverInput>
-  }
-
-  export type FinanceScalarWhereInput = {
-    AND?: FinanceScalarWhereInput | FinanceScalarWhereInput[]
-    OR?: FinanceScalarWhereInput[]
-    NOT?: FinanceScalarWhereInput | FinanceScalarWhereInput[]
-    id?: StringFilter<"Finance"> | string
-    appointmentId?: StringFilter<"Finance"> | string
-    amount?: DecimalFilter<"Finance"> | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFilter<"Finance"> | $Enums.ApprovalStatus
-    approvedBy?: StringFilter<"Finance"> | string
-    approvedAt?: DateTimeFilter<"Finance"> | Date | string
   }
 
   export type LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput = {
@@ -28399,7 +28436,7 @@ export namespace Prisma {
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutPatientInput = {
@@ -28412,7 +28449,7 @@ export namespace Prisma {
     createdAt?: Date | string
     triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutPatientInput = {
@@ -28491,7 +28528,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -28511,7 +28547,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -28691,7 +28726,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -28711,7 +28745,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -28832,7 +28865,7 @@ export namespace Prisma {
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutDoctorInput = {
@@ -28845,7 +28878,7 @@ export namespace Prisma {
     createdAt?: Date | string
     triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutDoctorInput = {
@@ -28873,7 +28906,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -28893,7 +28925,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29057,7 +29088,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29077,7 +29107,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -29159,7 +29188,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -29179,7 +29207,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29231,7 +29258,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29251,7 +29277,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -29271,7 +29296,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -29291,7 +29315,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29327,7 +29350,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29347,7 +29369,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -29367,7 +29388,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -29387,7 +29407,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29423,7 +29442,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29443,9 +29461,38 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+  }
+
+  export type AppointmentFinanceCreateWithoutFinanceStaffInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    approvalStatus?: $Enums.ApprovalStatus
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    appointment: AppointmentCreateNestedOneWithoutFinanceInput
+  }
+
+  export type AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput = {
+    id?: string
+    appointmentId: string
+    amount: Decimal | DecimalJsLike | number | string
+    approvalStatus?: $Enums.ApprovalStatus
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppointmentFinanceCreateOrConnectWithoutFinanceStaffInput = {
+    where: AppointmentFinanceWhereUniqueInput
+    create: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceCreateManyFinanceStaffInputEnvelope = {
+    data: AppointmentFinanceCreateManyFinanceStaffInput | AppointmentFinanceCreateManyFinanceStaffInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserCreateWithoutFinanceStaffInput = {
@@ -29463,7 +29510,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -29483,7 +29529,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29491,6 +29536,36 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutFinanceStaffInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutFinanceStaffInput, UserUncheckedCreateWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceUpsertWithWhereUniqueWithoutFinanceStaffInput = {
+    where: AppointmentFinanceWhereUniqueInput
+    update: XOR<AppointmentFinanceUpdateWithoutFinanceStaffInput, AppointmentFinanceUncheckedUpdateWithoutFinanceStaffInput>
+    create: XOR<AppointmentFinanceCreateWithoutFinanceStaffInput, AppointmentFinanceUncheckedCreateWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceUpdateWithWhereUniqueWithoutFinanceStaffInput = {
+    where: AppointmentFinanceWhereUniqueInput
+    data: XOR<AppointmentFinanceUpdateWithoutFinanceStaffInput, AppointmentFinanceUncheckedUpdateWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceUpdateManyWithWhereWithoutFinanceStaffInput = {
+    where: AppointmentFinanceScalarWhereInput
+    data: XOR<AppointmentFinanceUpdateManyMutationInput, AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffInput>
+  }
+
+  export type AppointmentFinanceScalarWhereInput = {
+    AND?: AppointmentFinanceScalarWhereInput | AppointmentFinanceScalarWhereInput[]
+    OR?: AppointmentFinanceScalarWhereInput[]
+    NOT?: AppointmentFinanceScalarWhereInput | AppointmentFinanceScalarWhereInput[]
+    id?: StringFilter<"AppointmentFinance"> | string
+    appointmentId?: StringFilter<"AppointmentFinance"> | string
+    amount?: DecimalFilter<"AppointmentFinance"> | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFilter<"AppointmentFinance"> | $Enums.ApprovalStatus
+    financeStaffId?: StringFilter<"AppointmentFinance"> | string
+    approvedAt?: DateTimeNullableFilter<"AppointmentFinance"> | Date | string | null
+    createdAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
+    updatedAt?: DateTimeFilter<"AppointmentFinance"> | Date | string
   }
 
   export type UserUpsertWithoutFinanceStaffInput = {
@@ -29519,7 +29594,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29539,7 +29613,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -29559,7 +29632,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
@@ -29579,7 +29651,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
@@ -29615,7 +29686,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
@@ -29635,7 +29705,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
@@ -29843,7 +29912,7 @@ export namespace Prisma {
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutRescheduledToInput = {
@@ -29856,7 +29925,7 @@ export namespace Prisma {
     rescheduledFrom?: string | null
     createdAt?: Date | string
     triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutRescheduledToInput = {
@@ -29874,7 +29943,7 @@ export namespace Prisma {
     doctor: DoctorCreateNestedOneWithoutAppointmentsInput
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutRescheduleInput = {
@@ -29887,7 +29956,7 @@ export namespace Prisma {
     createdAt?: Date | string
     triage?: TriageUncheckedCreateNestedOneWithoutAppointmentInput
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutRescheduleInput = {
@@ -29900,25 +29969,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FinanceCreateWithoutAppointmentInput = {
+  export type AppointmentFinanceCreateWithoutAppointmentInput = {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedAt: Date | string
-    approver: UserCreateNestedOneWithoutApprovedFinancesInput
+    approvalStatus?: $Enums.ApprovalStatus
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financeStaff: FinanceStaffCreateNestedOneWithoutApprovedFinancesInput
   }
 
-  export type FinanceUncheckedCreateWithoutAppointmentInput = {
+  export type AppointmentFinanceUncheckedCreateWithoutAppointmentInput = {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedBy: string
-    approvedAt: Date | string
+    approvalStatus?: $Enums.ApprovalStatus
+    financeStaffId: string
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type FinanceCreateOrConnectWithoutAppointmentInput = {
-    where: FinanceWhereUniqueInput
-    create: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
+  export type AppointmentFinanceCreateOrConnectWithoutAppointmentInput = {
+    where: AppointmentFinanceWhereUniqueInput
+    create: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
   }
 
   export type TriageUpsertWithoutAppointmentInput = {
@@ -30041,7 +30114,7 @@ export namespace Prisma {
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutRescheduledToInput = {
@@ -30054,7 +30127,7 @@ export namespace Prisma {
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUpsertWithWhereUniqueWithoutRescheduleInput = {
@@ -30073,31 +30146,35 @@ export namespace Prisma {
     data: XOR<AppointmentUpdateManyMutationInput, AppointmentUncheckedUpdateManyWithoutRescheduleInput>
   }
 
-  export type FinanceUpsertWithoutAppointmentInput = {
-    update: XOR<FinanceUpdateWithoutAppointmentInput, FinanceUncheckedUpdateWithoutAppointmentInput>
-    create: XOR<FinanceCreateWithoutAppointmentInput, FinanceUncheckedCreateWithoutAppointmentInput>
-    where?: FinanceWhereInput
+  export type AppointmentFinanceUpsertWithoutAppointmentInput = {
+    update: XOR<AppointmentFinanceUpdateWithoutAppointmentInput, AppointmentFinanceUncheckedUpdateWithoutAppointmentInput>
+    create: XOR<AppointmentFinanceCreateWithoutAppointmentInput, AppointmentFinanceUncheckedCreateWithoutAppointmentInput>
+    where?: AppointmentFinanceWhereInput
   }
 
-  export type FinanceUpdateToOneWithWhereWithoutAppointmentInput = {
-    where?: FinanceWhereInput
-    data: XOR<FinanceUpdateWithoutAppointmentInput, FinanceUncheckedUpdateWithoutAppointmentInput>
+  export type AppointmentFinanceUpdateToOneWithWhereWithoutAppointmentInput = {
+    where?: AppointmentFinanceWhereInput
+    data: XOR<AppointmentFinanceUpdateWithoutAppointmentInput, AppointmentFinanceUncheckedUpdateWithoutAppointmentInput>
   }
 
-  export type FinanceUpdateWithoutAppointmentInput = {
+  export type AppointmentFinanceUpdateWithoutAppointmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    approver?: UserUpdateOneRequiredWithoutApprovedFinancesNestedInput
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financeStaff?: FinanceStaffUpdateOneRequiredWithoutApprovedFinancesNestedInput
   }
 
-  export type FinanceUncheckedUpdateWithoutAppointmentInput = {
+  export type AppointmentFinanceUncheckedUpdateWithoutAppointmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedBy?: StringFieldUpdateOperationsInput | string
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentCreateWithoutTriageInput = {
@@ -30110,7 +30187,7 @@ export namespace Prisma {
     patient: PatientCreateNestedOneWithoutAppointmentsInput
     reschedule?: AppointmentCreateNestedOneWithoutRescheduledToInput
     rescheduledTo?: AppointmentCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutTriageInput = {
@@ -30123,7 +30200,7 @@ export namespace Prisma {
     rescheduledFrom?: string | null
     createdAt?: Date | string
     rescheduledTo?: AppointmentUncheckedCreateNestedManyWithoutRescheduleInput
-    finance?: FinanceUncheckedCreateNestedOneWithoutAppointmentInput
+    finance?: AppointmentFinanceUncheckedCreateNestedOneWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutTriageInput = {
@@ -30198,7 +30275,7 @@ export namespace Prisma {
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutTriageInput = {
@@ -30211,7 +30288,7 @@ export namespace Prisma {
     rescheduledFrom?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type PatientUpsertWithoutTriagesInput = {
@@ -30653,7 +30730,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
@@ -30673,7 +30749,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
@@ -30740,7 +30815,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
@@ -30760,7 +30834,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
@@ -30780,7 +30853,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceCreateNestedManyWithoutApproverInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
   }
 
@@ -30800,7 +30872,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    approvedFinances?: FinanceUncheckedCreateNestedManyWithoutApproverInput
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
@@ -30859,7 +30930,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
   }
 
@@ -30879,7 +30949,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    approvedFinances?: FinanceUncheckedUpdateManyWithoutApproverNestedInput
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
@@ -30943,49 +31012,19 @@ export namespace Prisma {
     create: XOR<AppointmentCreateWithoutFinanceInput, AppointmentUncheckedCreateWithoutFinanceInput>
   }
 
-  export type UserCreateWithoutApprovedFinancesInput = {
+  export type FinanceStaffCreateWithoutApprovedFinancesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorCreateNestedOneWithoutUserInput
-    nurse?: NurseCreateNestedOneWithoutUserInput
-    patient?: PatientCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
+    user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
-  export type UserUncheckedCreateWithoutApprovedFinancesInput = {
+  export type FinanceStaffUncheckedCreateWithoutApprovedFinancesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
-    nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
-    patient?: PatientUncheckedCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
+    userId: string
   }
 
-  export type UserCreateOrConnectWithoutApprovedFinancesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutApprovedFinancesInput, UserUncheckedCreateWithoutApprovedFinancesInput>
+  export type FinanceStaffCreateOrConnectWithoutApprovedFinancesInput = {
+    where: FinanceStaffWhereUniqueInput
+    create: XOR<FinanceStaffCreateWithoutApprovedFinancesInput, FinanceStaffUncheckedCreateWithoutApprovedFinancesInput>
   }
 
   export type AppointmentUpsertWithoutFinanceInput = {
@@ -31025,55 +31064,25 @@ export namespace Prisma {
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
   }
 
-  export type UserUpsertWithoutApprovedFinancesInput = {
-    update: XOR<UserUpdateWithoutApprovedFinancesInput, UserUncheckedUpdateWithoutApprovedFinancesInput>
-    create: XOR<UserCreateWithoutApprovedFinancesInput, UserUncheckedCreateWithoutApprovedFinancesInput>
-    where?: UserWhereInput
+  export type FinanceStaffUpsertWithoutApprovedFinancesInput = {
+    update: XOR<FinanceStaffUpdateWithoutApprovedFinancesInput, FinanceStaffUncheckedUpdateWithoutApprovedFinancesInput>
+    create: XOR<FinanceStaffCreateWithoutApprovedFinancesInput, FinanceStaffUncheckedCreateWithoutApprovedFinancesInput>
+    where?: FinanceStaffWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutApprovedFinancesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutApprovedFinancesInput, UserUncheckedUpdateWithoutApprovedFinancesInput>
+  export type FinanceStaffUpdateToOneWithWhereWithoutApprovedFinancesInput = {
+    where?: FinanceStaffWhereInput
+    data: XOR<FinanceStaffUpdateWithoutApprovedFinancesInput, FinanceStaffUncheckedUpdateWithoutApprovedFinancesInput>
   }
 
-  export type UserUpdateWithoutApprovedFinancesInput = {
+  export type FinanceStaffUpdateWithoutApprovedFinancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUpdateOneWithoutUserNestedInput
-    nurse?: NurseUpdateOneWithoutUserNestedInput
-    patient?: PatientUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
+    user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutApprovedFinancesInput = {
+  export type FinanceStaffUncheckedUpdateWithoutApprovedFinancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
-    nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
-    patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PatientCreateWithoutMedicalRecordInput = {
@@ -31144,14 +31153,6 @@ export namespace Prisma {
     triages?: TriageUncheckedUpdateManyWithoutPatientNestedInput
   }
 
-  export type FinanceCreateManyApproverInput = {
-    id?: string
-    appointmentId: string
-    amount: Decimal | DecimalJsLike | number | string
-    approvalStatus: $Enums.ApprovalStatus
-    approvedAt: Date | string
-  }
-
   export type LabResultCreateManyLabTechnicianInput = {
     id?: string
     labRequestId: string
@@ -31165,30 +31166,6 @@ export namespace Prisma {
     prescriptionId: string
     status: $Enums.PharmacyStatus
     updatedAt?: Date | string
-  }
-
-  export type FinanceUpdateWithoutApproverInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    appointment?: AppointmentUpdateOneRequiredWithoutFinanceNestedInput
-  }
-
-  export type FinanceUncheckedUpdateWithoutApproverInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    appointmentId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FinanceUncheckedUpdateManyWithoutApproverInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    appointmentId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    approvedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LabResultUpdateWithoutLabTechnicianInput = {
@@ -31283,7 +31260,7 @@ export namespace Prisma {
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutPatientInput = {
@@ -31296,7 +31273,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutPatientInput = {
@@ -31487,7 +31464,7 @@ export namespace Prisma {
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     reschedule?: AppointmentUpdateOneWithoutRescheduledToNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutDoctorInput = {
@@ -31500,7 +31477,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutDoctorInput = {
@@ -31608,6 +31585,46 @@ export namespace Prisma {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AppointmentFinanceCreateManyFinanceStaffInput = {
+    id?: string
+    appointmentId: string
+    amount: Decimal | DecimalJsLike | number | string
+    approvalStatus?: $Enums.ApprovalStatus
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppointmentFinanceUpdateWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneRequiredWithoutFinanceNestedInput
+  }
+
+  export type AppointmentFinanceUncheckedUpdateWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appointmentId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appointmentId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AppointmentCreateManyRescheduleInput = {
     id?: string
     patientId: string
@@ -31628,7 +31645,7 @@ export namespace Prisma {
     doctor?: DoctorUpdateOneRequiredWithoutAppointmentsNestedInput
     patient?: PatientUpdateOneRequiredWithoutAppointmentsNestedInput
     rescheduledTo?: AppointmentUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutRescheduleInput = {
@@ -31641,7 +31658,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     triage?: TriageUncheckedUpdateOneWithoutAppointmentNestedInput
     rescheduledTo?: AppointmentUncheckedUpdateManyWithoutRescheduleNestedInput
-    finance?: FinanceUncheckedUpdateOneWithoutAppointmentNestedInput
+    finance?: AppointmentFinanceUncheckedUpdateOneWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutRescheduleInput = {

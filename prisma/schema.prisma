@@ -24,7 +24,6 @@ model User {
   pharmacist       Pharmacist?
   financeStaff     FinanceStaff?
   receptionist     Receptionist?
-  approvedFinances Finance[]        @relation("ApprovedByUser")
   labResults       LabResult[]      @relation("LabTechnicianUser")
   pharmacy         Pharmacy[]       @relation("PharmacistUser")
 }
@@ -76,9 +75,10 @@ model Pharmacist {
 }
 
 model FinanceStaff {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id               String               @id @default(uuid())
+  userId           String               @unique
+  approvedFinances AppointmentFinance[]
+  user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Receptionist {
@@ -110,7 +110,7 @@ model DoctorSlot {
 }
 
 model Appointment {
-  id              String            @id @default(uuid())
+  id              String              @id @default(uuid())
   patientId       String
   doctorId        String
   status          AppointmentStatus
@@ -118,12 +118,12 @@ model Appointment {
   dateTime        DateTime
   triage          Triage?
   rescheduledFrom String?
-  createdAt       DateTime          @default(now())
-  doctor          Doctor            @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  patient         Patient           @relation(fields: [patientId], references: [id])
-  reschedule      Appointment?      @relation("Reschedule", fields: [rescheduledFrom], references: [id])
-  rescheduledTo   Appointment[]     @relation("Reschedule")
-  finance         Finance?
+  createdAt       DateTime            @default(now())
+  doctor          Doctor              @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient         Patient             @relation(fields: [patientId], references: [id])
+  reschedule      Appointment?        @relation("Reschedule", fields: [rescheduledFrom], references: [id])
+  rescheduledTo   Appointment[]       @relation("Reschedule")
+  finance         AppointmentFinance?
 }
 
 model Triage {
@@ -186,15 +186,17 @@ model Pharmacy {
   prescription   Prescription   @relation(fields: [prescriptionId], references: [id])
 }
 
-model Finance {
+model AppointmentFinance {
   id             String         @id @default(uuid())
   appointmentId  String         @unique
   amount         Decimal
-  approvalStatus ApprovalStatus
-  approvedBy     String
-  approvedAt     DateTime
-  appointment    Appointment    @relation(fields: [appointmentId], references: [id])
-  approver       User           @relation("ApprovedByUser", fields: [approvedBy], references: [id])
+  approvalStatus ApprovalStatus @default(pending)
+  financeStaffId String
+  approvedAt     DateTime?
+  appointment    Appointment    @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  financeStaff   FinanceStaff  @relation(fields: [financeStaffId], references: [id])
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 }
 
 model MedicalRecord {

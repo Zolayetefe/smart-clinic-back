@@ -45,4 +45,18 @@ const isReceptionist = async (req, res, next) => {
   next();
 };
 
-module.exports = { isAuthenticated, isAdmin, isReceptionist };
+
+
+// Middleware to check if user is finance staff
+const isFinanceStaff = (req, res, next) => {
+  if (req.user && req.user.role === 'finance') {
+      next();
+  } else {
+      res.status(403).json({
+          success: false,
+          message: 'Access denied. Finance staff only.'
+      });
+  }
+};
+
+module.exports = { isAuthenticated, isAdmin, isReceptionist, isFinanceStaff };
