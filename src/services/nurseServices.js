@@ -108,7 +108,12 @@ exports.getAppointments = async () => {
                     user: true
                 }
             },
-            triage: true
+            triage: true,
+            finance: {
+                select: {
+                    approvalStatus: true
+                }
+            }
            
         }
     });
@@ -129,7 +134,7 @@ exports.getAppointments = async () => {
             doctorPhone: appointment.doctor.user.phone,
             symptoms: appointment.triage?.symptoms,
             vitals: appointment.triage?.vitals,
-           
+            financeStatus: appointment.finance?.approvalStatus,
            
 
 
