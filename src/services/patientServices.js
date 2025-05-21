@@ -223,12 +223,12 @@ exports.getDoctorSlots = async (doctorId) => {
 // get doctors name,speciality, and slotstime
 exports.getDoctorsBySpeciality = async (speciality) => {
     try {
-     
+        // If speciality is provided, filter at the database level
         const doctors = await prisma.doctor.findMany({
             where: speciality ? {
                 specialization: {
                     equals: speciality,
-                    mode: 'insensitive'
+                    mode: 'insensitive'  // Case-insensitive matching
                 }
             } : {},
             include: {
@@ -255,14 +255,12 @@ exports.getDoctorsBySpeciality = async (speciality) => {
             }
         });
 
-     
         return {
             doctors: doctors.map(doctor => ({
                 userId: doctor.user.id,
                 name: doctor.user.name,
                 email: doctor.user.email,
                 phone: doctor.user.phone,
-                department: doctor.user.department,
                 doctorId: doctor.id,
                 specialization: doctor.specialization,
                 slots: doctor.slots.map(slot => ({
@@ -271,10 +269,7 @@ exports.getDoctorsBySpeciality = async (speciality) => {
                     time: slot.slotTime,
                     isBooked: slot.isBooked
                 }))
-            })).filter(doctor => 
-                !speciality || 
-                doctor.specialization.toLowerCase() === speciality.toLowerCase()
-            )
+            }))
         };
 
     } catch (error) {
