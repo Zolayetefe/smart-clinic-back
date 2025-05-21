@@ -42,6 +42,7 @@ exports.getAllAppointments = async () => {
         }
     });
 
+
     return appointments.map(appointment => ({
         id: appointment.id,
         patient: appointment.patient.user.name,
@@ -55,7 +56,8 @@ exports.getAllAppointments = async () => {
         status: appointment.status,
         reason: appointment.reason,
         appointmentDate: appointment.dateTime,
-        financeStatus: appointment.finance?.approvalStatus || null
+        financeStatus: appointment.finance?.approvalStatus || null,
+        amount: appointment.finance?.amount || null
     }));
 };
 

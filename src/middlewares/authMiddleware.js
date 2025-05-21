@@ -59,4 +59,23 @@ const isFinanceStaff = (req, res, next) => {
   }
 };
 
-module.exports = { isAuthenticated, isAdmin, isReceptionist, isFinanceStaff };
+
+// Middleware to check if user is nurse or finance staff
+const isNurseOrFinanceStaff = async (req, res, next) => {
+  if (req.user && (req.user.role === 'nurse' || req.user.role === 'finance')) {
+    next();
+  } else {
+    res.status(403).json({
+      success: false,
+      message: 'Access denied. Nurse or finance staff only.'
+    });
+  }
+}
+const isNurse = async (req, res, next) => {
+  if (req.user && req.user.role === 'nurse') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Access denied. Nurses only.' });
+  }
+}
+module.exports = { isAuthenticated, isAdmin, isReceptionist, isFinanceStaff, isNurseOrFinanceStaff, isNurse };

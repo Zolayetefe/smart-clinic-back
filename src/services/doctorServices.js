@@ -15,7 +15,6 @@ exports.getAppointments = async (id) => {
            
         }
     });
-    console.log("appointments", appointments);
     return {
         appointments: appointments.map(appointment => ({
             id: appointment.id,
@@ -27,8 +26,8 @@ exports.getAppointments = async (id) => {
             patientName: appointment.patient.user.name,
             patientEmail: appointment.patient.user.email,
             patientPhone: appointment.patient.user.phone,
-            // symptoms: appointment.triage?.symptoms,
-            // vitals: appointment.triage?.vitals,
+            symptoms: appointment.triage?.symptoms,
+            vitals: appointment.triage?.vitals,
            
            
 

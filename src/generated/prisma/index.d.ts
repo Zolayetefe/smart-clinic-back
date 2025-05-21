@@ -2530,46 +2530,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    labResults: number
-    pharmacy: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    labResults?: boolean | UserCountOutputTypeCountLabResultsArgs
-    pharmacy?: boolean | UserCountOutputTypeCountPharmacyArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLabResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LabResultWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPharmacyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PharmacyWhereInput
-  }
-
-
-  /**
    * Count Type PatientCountOutputType
    */
 
@@ -2722,6 +2682,68 @@ export namespace Prisma {
    */
   export type NurseCountOutputTypeCountTriagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TriageWhereInput
+  }
+
+
+  /**
+   * Count Type LabTechnicianCountOutputType
+   */
+
+  export type LabTechnicianCountOutputType = {
+    labResults: number
+  }
+
+  export type LabTechnicianCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labResults?: boolean | LabTechnicianCountOutputTypeCountLabResultsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LabTechnicianCountOutputType without action
+   */
+  export type LabTechnicianCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTechnicianCountOutputType
+     */
+    select?: LabTechnicianCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LabTechnicianCountOutputType without action
+   */
+  export type LabTechnicianCountOutputTypeCountLabResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabResultWhereInput
+  }
+
+
+  /**
+   * Count Type PharmacistCountOutputType
+   */
+
+  export type PharmacistCountOutputType = {
+    pharmacies: number
+  }
+
+  export type PharmacistCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pharmacies?: boolean | PharmacistCountOutputTypeCountPharmaciesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PharmacistCountOutputType without action
+   */
+  export type PharmacistCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PharmacistCountOutputType
+     */
+    select?: PharmacistCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PharmacistCountOutputType without action
+   */
+  export type PharmacistCountOutputTypeCountPharmaciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PharmacyWhereInput
   }
 
 
@@ -2986,9 +3008,6 @@ export namespace Prisma {
     pharmacist?: boolean | User$pharmacistArgs<ExtArgs>
     financeStaff?: boolean | User$financeStaffArgs<ExtArgs>
     receptionist?: boolean | User$receptionistArgs<ExtArgs>
-    labResults?: boolean | User$labResultsArgs<ExtArgs>
-    pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3033,9 +3052,6 @@ export namespace Prisma {
     pharmacist?: boolean | User$pharmacistArgs<ExtArgs>
     financeStaff?: boolean | User$financeStaffArgs<ExtArgs>
     receptionist?: boolean | User$receptionistArgs<ExtArgs>
-    labResults?: boolean | User$labResultsArgs<ExtArgs>
-    pharmacy?: boolean | User$pharmacyArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3050,8 +3066,6 @@ export namespace Prisma {
       pharmacist: Prisma.$PharmacistPayload<ExtArgs> | null
       financeStaff: Prisma.$FinanceStaffPayload<ExtArgs> | null
       receptionist: Prisma.$ReceptionistPayload<ExtArgs> | null
-      labResults: Prisma.$LabResultPayload<ExtArgs>[]
-      pharmacy: Prisma.$PharmacyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3463,8 +3477,6 @@ export namespace Prisma {
     pharmacist<T extends User$pharmacistArgs<ExtArgs> = {}>(args?: Subset<T, User$pharmacistArgs<ExtArgs>>): Prisma__PharmacistClient<$Result.GetResult<Prisma.$PharmacistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     financeStaff<T extends User$financeStaffArgs<ExtArgs> = {}>(args?: Subset<T, User$financeStaffArgs<ExtArgs>>): Prisma__FinanceStaffClient<$Result.GetResult<Prisma.$FinanceStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     receptionist<T extends User$receptionistArgs<ExtArgs> = {}>(args?: Subset<T, User$receptionistArgs<ExtArgs>>): Prisma__ReceptionistClient<$Result.GetResult<Prisma.$ReceptionistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    labResults<T extends User$labResultsArgs<ExtArgs> = {}>(args?: Subset<T, User$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    pharmacy<T extends User$pharmacyArgs<ExtArgs> = {}>(args?: Subset<T, User$pharmacyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PharmacyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4020,54 +4032,6 @@ export namespace Prisma {
      */
     include?: ReceptionistInclude<ExtArgs> | null
     where?: ReceptionistWhereInput
-  }
-
-  /**
-   * User.labResults
-   */
-  export type User$labResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LabResult
-     */
-    select?: LabResultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LabResult
-     */
-    omit?: LabResultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LabResultInclude<ExtArgs> | null
-    where?: LabResultWhereInput
-    orderBy?: LabResultOrderByWithRelationInput | LabResultOrderByWithRelationInput[]
-    cursor?: LabResultWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LabResultScalarFieldEnum | LabResultScalarFieldEnum[]
-  }
-
-  /**
-   * User.pharmacy
-   */
-  export type User$pharmacyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Pharmacy
-     */
-    select?: PharmacySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Pharmacy
-     */
-    omit?: PharmacyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PharmacyInclude<ExtArgs> | null
-    where?: PharmacyWhereInput
-    orderBy?: PharmacyOrderByWithRelationInput | PharmacyOrderByWithRelationInput[]
-    cursor?: PharmacyWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PharmacyScalarFieldEnum | PharmacyScalarFieldEnum[]
   }
 
   /**
@@ -7661,6 +7625,8 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    labResults?: boolean | LabTechnician$labResultsArgs<ExtArgs>
+    _count?: boolean | LabTechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTechnician"]>
 
   export type LabTechnicianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7683,6 +7649,8 @@ export namespace Prisma {
   export type LabTechnicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["labTechnician"]>
   export type LabTechnicianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    labResults?: boolean | LabTechnician$labResultsArgs<ExtArgs>
+    _count?: boolean | LabTechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LabTechnicianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7695,6 +7663,7 @@ export namespace Prisma {
     name: "LabTechnician"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      labResults: Prisma.$LabResultPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8094,6 +8063,7 @@ export namespace Prisma {
   export interface Prisma__LabTechnicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    labResults<T extends LabTechnician$labResultsArgs<ExtArgs> = {}>(args?: Subset<T, LabTechnician$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8521,6 +8491,30 @@ export namespace Prisma {
   }
 
   /**
+   * LabTechnician.labResults
+   */
+  export type LabTechnician$labResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabResult
+     */
+    select?: LabResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabResult
+     */
+    omit?: LabResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabResultInclude<ExtArgs> | null
+    where?: LabResultWhereInput
+    orderBy?: LabResultOrderByWithRelationInput | LabResultOrderByWithRelationInput[]
+    cursor?: LabResultWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LabResultScalarFieldEnum | LabResultScalarFieldEnum[]
+  }
+
+  /**
    * LabTechnician without action
    */
   export type LabTechnicianDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8680,6 +8674,8 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacies?: boolean | Pharmacist$pharmaciesArgs<ExtArgs>
+    _count?: boolean | PharmacistCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pharmacist"]>
 
   export type PharmacistSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8702,6 +8698,8 @@ export namespace Prisma {
   export type PharmacistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["pharmacist"]>
   export type PharmacistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacies?: boolean | Pharmacist$pharmaciesArgs<ExtArgs>
+    _count?: boolean | PharmacistCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PharmacistIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -8714,6 +8712,7 @@ export namespace Prisma {
     name: "Pharmacist"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      pharmacies: Prisma.$PharmacyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9113,6 +9112,7 @@ export namespace Prisma {
   export interface Prisma__PharmacistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    pharmacies<T extends Pharmacist$pharmaciesArgs<ExtArgs> = {}>(args?: Subset<T, Pharmacist$pharmaciesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PharmacyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9537,6 +9537,30 @@ export namespace Prisma {
      * Limit how many Pharmacists to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Pharmacist.pharmacies
+   */
+  export type Pharmacist$pharmaciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pharmacy
+     */
+    select?: PharmacySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pharmacy
+     */
+    omit?: PharmacyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PharmacyInclude<ExtArgs> | null
+    where?: PharmacyWhereInput
+    orderBy?: PharmacyOrderByWithRelationInput | PharmacyOrderByWithRelationInput[]
+    cursor?: PharmacyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PharmacyScalarFieldEnum | PharmacyScalarFieldEnum[]
   }
 
   /**
@@ -15131,7 +15155,7 @@ export namespace Prisma {
     notes?: boolean
     timestamp?: boolean
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
@@ -15145,7 +15169,7 @@ export namespace Prisma {
     notes?: boolean
     timestamp?: boolean
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
@@ -15159,7 +15183,7 @@ export namespace Prisma {
     notes?: boolean
     timestamp?: boolean
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }, ExtArgs["result"]["triage"]>
 
@@ -15177,17 +15201,17 @@ export namespace Prisma {
   export type TriageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "appointmentId" | "nurseId" | "symptoms" | "vitals" | "notes" | "timestamp", ExtArgs["result"]["triage"]>
   export type TriageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
   export type TriageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointment?: boolean | Triage$appointmentArgs<ExtArgs>
-    patient?: boolean | PatientDefaultArgs<ExtArgs>
+    patient?: boolean | Triage$patientArgs<ExtArgs>
     nurse?: boolean | Triage$nurseArgs<ExtArgs>
   }
 
@@ -15195,7 +15219,7 @@ export namespace Prisma {
     name: "Triage"
     objects: {
       appointment: Prisma.$AppointmentPayload<ExtArgs> | null
-      patient: Prisma.$PatientPayload<ExtArgs>
+      patient: Prisma.$PatientPayload<ExtArgs> | null
       nurse: Prisma.$NursePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -15602,7 +15626,7 @@ export namespace Prisma {
   export interface Prisma__TriageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     appointment<T extends Triage$appointmentArgs<ExtArgs> = {}>(args?: Subset<T, Triage$appointmentArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    patient<T extends Triage$patientArgs<ExtArgs> = {}>(args?: Subset<T, Triage$patientArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     nurse<T extends Triage$nurseArgs<ExtArgs> = {}>(args?: Subset<T, Triage$nurseArgs<ExtArgs>>): Prisma__NurseClient<$Result.GetResult<Prisma.$NursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16053,6 +16077,25 @@ export namespace Prisma {
      */
     include?: AppointmentInclude<ExtArgs> | null
     where?: AppointmentWhereInput
+  }
+
+  /**
+   * Triage.patient
+   */
+  export type Triage$patientArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Patient
+     */
+    select?: PatientSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Patient
+     */
+    omit?: PatientOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PatientInclude<ExtArgs> | null
+    where?: PatientWhereInput
   }
 
   /**
@@ -18479,7 +18522,7 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labResult"]>
 
   export type LabResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18490,7 +18533,7 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labResult"]>
 
   export type LabResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18501,7 +18544,7 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labResult"]>
 
   export type LabResultSelectScalar = {
@@ -18516,22 +18559,22 @@ export namespace Prisma {
   export type LabResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "labRequestId" | "labTechnicianId" | "resultUrl" | "notes" | "createdAt", ExtArgs["result"]["labResult"]>
   export type LabResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }
   export type LabResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }
   export type LabResultIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | UserDefaultArgs<ExtArgs>
+    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
   }
 
   export type $LabResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LabResult"
     objects: {
       labRequest: Prisma.$LabRequestPayload<ExtArgs>
-      labTechnician: Prisma.$UserPayload<ExtArgs>
+      labTechnician: Prisma.$LabTechnicianPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -18935,7 +18978,7 @@ export namespace Prisma {
   export interface Prisma__LabResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     labRequest<T extends LabRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabRequestDefaultArgs<ExtArgs>>): Prisma__LabRequestClient<$Result.GetResult<Prisma.$LabRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    labTechnician<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    labTechnician<T extends LabTechnicianDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabTechnicianDefaultArgs<ExtArgs>>): Prisma__LabTechnicianClient<$Result.GetResult<Prisma.$LabTechnicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19549,7 +19592,7 @@ export namespace Prisma {
     pharmacistId?: boolean
     status?: boolean
     updatedAt?: boolean
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pharmacy"]>
 
@@ -19559,7 +19602,7 @@ export namespace Prisma {
     pharmacistId?: boolean
     status?: boolean
     updatedAt?: boolean
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pharmacy"]>
 
@@ -19569,7 +19612,7 @@ export namespace Prisma {
     pharmacistId?: boolean
     status?: boolean
     updatedAt?: boolean
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pharmacy"]>
 
@@ -19583,22 +19626,22 @@ export namespace Prisma {
 
   export type PharmacyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "prescriptionId" | "pharmacistId" | "status" | "updatedAt", ExtArgs["result"]["pharmacy"]>
   export type PharmacyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }
   export type PharmacyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }
   export type PharmacyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pharmacist?: boolean | UserDefaultArgs<ExtArgs>
+    pharmacist?: boolean | PharmacistDefaultArgs<ExtArgs>
     prescription?: boolean | PrescriptionDefaultArgs<ExtArgs>
   }
 
   export type $PharmacyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Pharmacy"
     objects: {
-      pharmacist: Prisma.$UserPayload<ExtArgs>
+      pharmacist: Prisma.$PharmacistPayload<ExtArgs>
       prescription: Prisma.$PrescriptionPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -20001,7 +20044,7 @@ export namespace Prisma {
    */
   export interface Prisma__PharmacyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    pharmacist<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    pharmacist<T extends PharmacistDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PharmacistDefaultArgs<ExtArgs>>): Prisma__PharmacistClient<$Result.GetResult<Prisma.$PharmacistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     prescription<T extends PrescriptionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PrescriptionDefaultArgs<ExtArgs>>): Prisma__PrescriptionClient<$Result.GetResult<Prisma.$PrescriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -23112,8 +23155,6 @@ export namespace Prisma {
     pharmacist?: XOR<PharmacistNullableScalarRelationFilter, PharmacistWhereInput> | null
     financeStaff?: XOR<FinanceStaffNullableScalarRelationFilter, FinanceStaffWhereInput> | null
     receptionist?: XOR<ReceptionistNullableScalarRelationFilter, ReceptionistWhereInput> | null
-    labResults?: LabResultListRelationFilter
-    pharmacy?: PharmacyListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23132,8 +23173,6 @@ export namespace Prisma {
     pharmacist?: PharmacistOrderByWithRelationInput
     financeStaff?: FinanceStaffOrderByWithRelationInput
     receptionist?: ReceptionistOrderByWithRelationInput
-    labResults?: LabResultOrderByRelationAggregateInput
-    pharmacy?: PharmacyOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -23155,8 +23194,6 @@ export namespace Prisma {
     pharmacist?: XOR<PharmacistNullableScalarRelationFilter, PharmacistWhereInput> | null
     financeStaff?: XOR<FinanceStaffNullableScalarRelationFilter, FinanceStaffWhereInput> | null
     receptionist?: XOR<ReceptionistNullableScalarRelationFilter, ReceptionistWhereInput> | null
-    labResults?: LabResultListRelationFilter
-    pharmacy?: PharmacyListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -23372,12 +23409,14 @@ export namespace Prisma {
     id?: StringFilter<"LabTechnician"> | string
     userId?: StringFilter<"LabTechnician"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    labResults?: LabResultListRelationFilter
   }
 
   export type LabTechnicianOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
+    labResults?: LabResultOrderByRelationAggregateInput
   }
 
   export type LabTechnicianWhereUniqueInput = Prisma.AtLeast<{
@@ -23387,6 +23426,7 @@ export namespace Prisma {
     OR?: LabTechnicianWhereInput[]
     NOT?: LabTechnicianWhereInput | LabTechnicianWhereInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    labResults?: LabResultListRelationFilter
   }, "id" | "userId">
 
   export type LabTechnicianOrderByWithAggregationInput = {
@@ -23412,12 +23452,14 @@ export namespace Prisma {
     id?: StringFilter<"Pharmacist"> | string
     userId?: StringFilter<"Pharmacist"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pharmacies?: PharmacyListRelationFilter
   }
 
   export type PharmacistOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
+    pharmacies?: PharmacyOrderByRelationAggregateInput
   }
 
   export type PharmacistWhereUniqueInput = Prisma.AtLeast<{
@@ -23427,6 +23469,7 @@ export namespace Prisma {
     OR?: PharmacistWhereInput[]
     NOT?: PharmacistWhereInput | PharmacistWhereInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pharmacies?: PharmacyListRelationFilter
   }, "id" | "userId">
 
   export type PharmacistOrderByWithAggregationInput = {
@@ -23738,7 +23781,7 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
     appointment?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
-    patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
+    patient?: XOR<PatientNullableScalarRelationFilter, PatientWhereInput> | null
     nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
   }
 
@@ -23769,7 +23812,7 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Triage"> | string | null
     timestamp?: DateTimeFilter<"Triage"> | Date | string
     appointment?: XOR<AppointmentNullableScalarRelationFilter, AppointmentWhereInput> | null
-    patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
+    patient?: XOR<PatientNullableScalarRelationFilter, PatientWhereInput> | null
     nurse?: XOR<NurseNullableScalarRelationFilter, NurseWhereInput> | null
   }, "id" | "appointmentId">
 
@@ -23949,7 +23992,7 @@ export namespace Prisma {
     notes?: StringFilter<"LabResult"> | string
     createdAt?: DateTimeFilter<"LabResult"> | Date | string
     labRequest?: XOR<LabRequestScalarRelationFilter, LabRequestWhereInput>
-    labTechnician?: XOR<UserScalarRelationFilter, UserWhereInput>
+    labTechnician?: XOR<LabTechnicianScalarRelationFilter, LabTechnicianWhereInput>
   }
 
   export type LabResultOrderByWithRelationInput = {
@@ -23960,7 +24003,7 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     labRequest?: LabRequestOrderByWithRelationInput
-    labTechnician?: UserOrderByWithRelationInput
+    labTechnician?: LabTechnicianOrderByWithRelationInput
   }
 
   export type LabResultWhereUniqueInput = Prisma.AtLeast<{
@@ -23974,7 +24017,7 @@ export namespace Prisma {
     notes?: StringFilter<"LabResult"> | string
     createdAt?: DateTimeFilter<"LabResult"> | Date | string
     labRequest?: XOR<LabRequestScalarRelationFilter, LabRequestWhereInput>
-    labTechnician?: XOR<UserScalarRelationFilter, UserWhereInput>
+    labTechnician?: XOR<LabTechnicianScalarRelationFilter, LabTechnicianWhereInput>
   }, "id" | "labRequestId">
 
   export type LabResultOrderByWithAggregationInput = {
@@ -24010,7 +24053,7 @@ export namespace Prisma {
     pharmacistId?: StringFilter<"Pharmacy"> | string
     status?: EnumPharmacyStatusFilter<"Pharmacy"> | $Enums.PharmacyStatus
     updatedAt?: DateTimeFilter<"Pharmacy"> | Date | string
-    pharmacist?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pharmacist?: XOR<PharmacistScalarRelationFilter, PharmacistWhereInput>
     prescription?: XOR<PrescriptionScalarRelationFilter, PrescriptionWhereInput>
   }
 
@@ -24020,7 +24063,7 @@ export namespace Prisma {
     pharmacistId?: SortOrder
     status?: SortOrder
     updatedAt?: SortOrder
-    pharmacist?: UserOrderByWithRelationInput
+    pharmacist?: PharmacistOrderByWithRelationInput
     prescription?: PrescriptionOrderByWithRelationInput
   }
 
@@ -24033,7 +24076,7 @@ export namespace Prisma {
     pharmacistId?: StringFilter<"Pharmacy"> | string
     status?: EnumPharmacyStatusFilter<"Pharmacy"> | $Enums.PharmacyStatus
     updatedAt?: DateTimeFilter<"Pharmacy"> | Date | string
-    pharmacist?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pharmacist?: XOR<PharmacistScalarRelationFilter, PharmacistWhereInput>
     prescription?: XOR<PrescriptionScalarRelationFilter, PrescriptionWhereInput>
   }, "id" | "prescriptionId">
 
@@ -24210,8 +24253,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -24230,8 +24271,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUpdateInput = {
@@ -24250,8 +24289,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -24270,8 +24307,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -24491,21 +24526,25 @@ export namespace Prisma {
   export type LabTechnicianCreateInput = {
     id?: string
     user: UserCreateNestedOneWithoutLabTechnicianInput
+    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUncheckedCreateInput = {
     id?: string
     userId: string
+    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutLabTechnicianNestedInput
+    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianCreateManyInput = {
@@ -24525,21 +24564,25 @@ export namespace Prisma {
   export type PharmacistCreateInput = {
     id?: string
     user: UserCreateNestedOneWithoutPharmacistInput
+    pharmacies?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type PharmacistUncheckedCreateInput = {
     id?: string
     userId: string
+    pharmacies?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type PharmacistUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutPharmacistNestedInput
+    pharmacies?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type PharmacistUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    pharmacies?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type PharmacistCreateManyInput = {
@@ -24831,7 +24874,7 @@ export namespace Prisma {
     notes?: string | null
     timestamp: Date | string
     appointment?: AppointmentCreateNestedOneWithoutTriageInput
-    patient: PatientCreateNestedOneWithoutTriagesInput
+    patient?: PatientCreateNestedOneWithoutTriagesInput
     nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
 
@@ -24853,7 +24896,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneWithoutTriageNestedInput
-    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
+    patient?: PatientUpdateOneWithoutTriagesNestedInput
     nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
 
@@ -25041,7 +25084,7 @@ export namespace Prisma {
     notes: string
     createdAt?: Date | string
     labRequest: LabRequestCreateNestedOneWithoutLabResultInput
-    labTechnician: UserCreateNestedOneWithoutLabResultsInput
+    labTechnician: LabTechnicianCreateNestedOneWithoutLabResultsInput
   }
 
   export type LabResultUncheckedCreateInput = {
@@ -25059,7 +25102,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     labRequest?: LabRequestUpdateOneRequiredWithoutLabResultNestedInput
-    labTechnician?: UserUpdateOneRequiredWithoutLabResultsNestedInput
+    labTechnician?: LabTechnicianUpdateOneRequiredWithoutLabResultsNestedInput
   }
 
   export type LabResultUncheckedUpdateInput = {
@@ -25100,7 +25143,7 @@ export namespace Prisma {
     id?: string
     status: $Enums.PharmacyStatus
     updatedAt?: Date | string
-    pharmacist: UserCreateNestedOneWithoutPharmacyInput
+    pharmacist: PharmacistCreateNestedOneWithoutPharmaciesInput
     prescription: PrescriptionCreateNestedOneWithoutPharmacyInput
   }
 
@@ -25116,7 +25159,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    pharmacist?: UserUpdateOneRequiredWithoutPharmacyNestedInput
+    pharmacist?: PharmacistUpdateOneRequiredWithoutPharmaciesNestedInput
     prescription?: PrescriptionUpdateOneRequiredWithoutPharmacyNestedInput
   }
 
@@ -25355,26 +25398,6 @@ export namespace Prisma {
     isNot?: ReceptionistWhereInput | null
   }
 
-  export type LabResultListRelationFilter = {
-    every?: LabResultWhereInput
-    some?: LabResultWhereInput
-    none?: LabResultWhereInput
-  }
-
-  export type PharmacyListRelationFilter = {
-    every?: PharmacyWhereInput
-    some?: PharmacyWhereInput
-    none?: PharmacyWhereInput
-  }
-
-  export type LabResultOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PharmacyOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     role?: SortOrder
@@ -25580,6 +25603,16 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type LabResultListRelationFilter = {
+    every?: LabResultWhereInput
+    some?: LabResultWhereInput
+    none?: LabResultWhereInput
+  }
+
+  export type LabResultOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LabTechnicianCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -25593,6 +25626,16 @@ export namespace Prisma {
   export type LabTechnicianMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type PharmacyListRelationFilter = {
+    every?: PharmacyWhereInput
+    some?: PharmacyWhereInput
+    none?: PharmacyWhereInput
+  }
+
+  export type PharmacyOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type PharmacistCountOrderByAggregateInput = {
@@ -26081,6 +26124,11 @@ export namespace Prisma {
     isNot?: LabRequestWhereInput
   }
 
+  export type LabTechnicianScalarRelationFilter = {
+    is?: LabTechnicianWhereInput
+    isNot?: LabTechnicianWhereInput
+  }
+
   export type LabResultCountOrderByAggregateInput = {
     id?: SortOrder
     labRequestId?: SortOrder
@@ -26113,6 +26161,11 @@ export namespace Prisma {
     in?: $Enums.PharmacyStatus[] | ListEnumPharmacyStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.PharmacyStatus[] | ListEnumPharmacyStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPharmacyStatusFilter<$PrismaModel> | $Enums.PharmacyStatus
+  }
+
+  export type PharmacistScalarRelationFilter = {
+    is?: PharmacistWhereInput
+    isNot?: PharmacistWhereInput
   }
 
   export type PrescriptionScalarRelationFilter = {
@@ -26312,20 +26365,6 @@ export namespace Prisma {
     connect?: ReceptionistWhereUniqueInput
   }
 
-  export type LabResultCreateNestedManyWithoutLabTechnicianInput = {
-    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
-    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
-    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-  }
-
-  export type PharmacyCreateNestedManyWithoutPharmacistInput = {
-    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
-    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
-    createMany?: PharmacyCreateManyPharmacistInputEnvelope
-    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-  }
-
   export type DoctorUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<DoctorCreateWithoutUserInput, DoctorUncheckedCreateWithoutUserInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutUserInput
@@ -26366,20 +26405,6 @@ export namespace Prisma {
     create?: XOR<ReceptionistCreateWithoutUserInput, ReceptionistUncheckedCreateWithoutUserInput>
     connectOrCreate?: ReceptionistCreateOrConnectWithoutUserInput
     connect?: ReceptionistWhereUniqueInput
-  }
-
-  export type LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput = {
-    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
-    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
-    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-  }
-
-  export type PharmacyUncheckedCreateNestedManyWithoutPharmacistInput = {
-    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
-    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
-    createMany?: PharmacyCreateManyPharmacistInputEnvelope
-    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -26464,34 +26489,6 @@ export namespace Prisma {
     update?: XOR<XOR<ReceptionistUpdateToOneWithWhereWithoutUserInput, ReceptionistUpdateWithoutUserInput>, ReceptionistUncheckedUpdateWithoutUserInput>
   }
 
-  export type LabResultUpdateManyWithoutLabTechnicianNestedInput = {
-    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
-    upsert?: LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput | LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput[]
-    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
-    set?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    disconnect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    delete?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    update?: LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput | LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput[]
-    updateMany?: LabResultUpdateManyWithWhereWithoutLabTechnicianInput | LabResultUpdateManyWithWhereWithoutLabTechnicianInput[]
-    deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
-  }
-
-  export type PharmacyUpdateManyWithoutPharmacistNestedInput = {
-    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
-    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
-    upsert?: PharmacyUpsertWithWhereUniqueWithoutPharmacistInput | PharmacyUpsertWithWhereUniqueWithoutPharmacistInput[]
-    createMany?: PharmacyCreateManyPharmacistInputEnvelope
-    set?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    disconnect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    delete?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    update?: PharmacyUpdateWithWhereUniqueWithoutPharmacistInput | PharmacyUpdateWithWhereUniqueWithoutPharmacistInput[]
-    updateMany?: PharmacyUpdateManyWithWhereWithoutPharmacistInput | PharmacyUpdateManyWithWhereWithoutPharmacistInput[]
-    deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
-  }
-
   export type DoctorUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<DoctorCreateWithoutUserInput, DoctorUncheckedCreateWithoutUserInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutUserInput
@@ -26560,34 +26557,6 @@ export namespace Prisma {
     delete?: ReceptionistWhereInput | boolean
     connect?: ReceptionistWhereUniqueInput
     update?: XOR<XOR<ReceptionistUpdateToOneWithWhereWithoutUserInput, ReceptionistUpdateWithoutUserInput>, ReceptionistUncheckedUpdateWithoutUserInput>
-  }
-
-  export type LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput = {
-    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
-    upsert?: LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput | LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput[]
-    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
-    set?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    disconnect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    delete?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-    update?: LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput | LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput[]
-    updateMany?: LabResultUpdateManyWithWhereWithoutLabTechnicianInput | LabResultUpdateManyWithWhereWithoutLabTechnicianInput[]
-    deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
-  }
-
-  export type PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput = {
-    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
-    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
-    upsert?: PharmacyUpsertWithWhereUniqueWithoutPharmacistInput | PharmacyUpsertWithWhereUniqueWithoutPharmacistInput[]
-    createMany?: PharmacyCreateManyPharmacistInputEnvelope
-    set?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    disconnect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    delete?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
-    update?: PharmacyUpdateWithWhereUniqueWithoutPharmacistInput | PharmacyUpdateWithWhereUniqueWithoutPharmacistInput[]
-    updateMany?: PharmacyUpdateManyWithWhereWithoutPharmacistInput | PharmacyUpdateManyWithWhereWithoutPharmacistInput[]
-    deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
   }
 
   export type AppointmentCreateNestedManyWithoutPatientInput = {
@@ -27090,6 +27059,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type LabResultCreateNestedManyWithoutLabTechnicianInput = {
+    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
+    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
+    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
+    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+  }
+
+  export type LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput = {
+    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
+    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
+    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
+    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+  }
+
   export type UserUpdateOneRequiredWithoutLabTechnicianNestedInput = {
     create?: XOR<UserCreateWithoutLabTechnicianInput, UserUncheckedCreateWithoutLabTechnicianInput>
     connectOrCreate?: UserCreateOrConnectWithoutLabTechnicianInput
@@ -27098,10 +27081,52 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLabTechnicianInput, UserUpdateWithoutLabTechnicianInput>, UserUncheckedUpdateWithoutLabTechnicianInput>
   }
 
+  export type LabResultUpdateManyWithoutLabTechnicianNestedInput = {
+    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
+    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
+    upsert?: LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput | LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput[]
+    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
+    set?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    disconnect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    delete?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    update?: LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput | LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput[]
+    updateMany?: LabResultUpdateManyWithWhereWithoutLabTechnicianInput | LabResultUpdateManyWithWhereWithoutLabTechnicianInput[]
+    deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
+  }
+
+  export type LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput = {
+    create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
+    connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
+    upsert?: LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput | LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput[]
+    createMany?: LabResultCreateManyLabTechnicianInputEnvelope
+    set?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    disconnect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    delete?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
+    update?: LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput | LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput[]
+    updateMany?: LabResultUpdateManyWithWhereWithoutLabTechnicianInput | LabResultUpdateManyWithWhereWithoutLabTechnicianInput[]
+    deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutPharmacistInput = {
     create?: XOR<UserCreateWithoutPharmacistInput, UserUncheckedCreateWithoutPharmacistInput>
     connectOrCreate?: UserCreateOrConnectWithoutPharmacistInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type PharmacyCreateNestedManyWithoutPharmacistInput = {
+    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
+    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
+    createMany?: PharmacyCreateManyPharmacistInputEnvelope
+    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+  }
+
+  export type PharmacyUncheckedCreateNestedManyWithoutPharmacistInput = {
+    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
+    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
+    createMany?: PharmacyCreateManyPharmacistInputEnvelope
+    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPharmacistNestedInput = {
@@ -27110,6 +27135,34 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPharmacistInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPharmacistInput, UserUpdateWithoutPharmacistInput>, UserUncheckedUpdateWithoutPharmacistInput>
+  }
+
+  export type PharmacyUpdateManyWithoutPharmacistNestedInput = {
+    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
+    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
+    upsert?: PharmacyUpsertWithWhereUniqueWithoutPharmacistInput | PharmacyUpsertWithWhereUniqueWithoutPharmacistInput[]
+    createMany?: PharmacyCreateManyPharmacistInputEnvelope
+    set?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    disconnect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    delete?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    update?: PharmacyUpdateWithWhereUniqueWithoutPharmacistInput | PharmacyUpdateWithWhereUniqueWithoutPharmacistInput[]
+    updateMany?: PharmacyUpdateManyWithWhereWithoutPharmacistInput | PharmacyUpdateManyWithWhereWithoutPharmacistInput[]
+    deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
+  }
+
+  export type PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput = {
+    create?: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput> | PharmacyCreateWithoutPharmacistInput[] | PharmacyUncheckedCreateWithoutPharmacistInput[]
+    connectOrCreate?: PharmacyCreateOrConnectWithoutPharmacistInput | PharmacyCreateOrConnectWithoutPharmacistInput[]
+    upsert?: PharmacyUpsertWithWhereUniqueWithoutPharmacistInput | PharmacyUpsertWithWhereUniqueWithoutPharmacistInput[]
+    createMany?: PharmacyCreateManyPharmacistInputEnvelope
+    set?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    disconnect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    delete?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    connect?: PharmacyWhereUniqueInput | PharmacyWhereUniqueInput[]
+    update?: PharmacyUpdateWithWhereUniqueWithoutPharmacistInput | PharmacyUpdateWithWhereUniqueWithoutPharmacistInput[]
+    updateMany?: PharmacyUpdateManyWithWhereWithoutPharmacistInput | PharmacyUpdateManyWithWhereWithoutPharmacistInput[]
+    deleteMany?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
   }
 
   export type AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput = {
@@ -27413,10 +27466,12 @@ export namespace Prisma {
     update?: XOR<XOR<AppointmentUpdateToOneWithWhereWithoutTriageInput, AppointmentUpdateWithoutTriageInput>, AppointmentUncheckedUpdateWithoutTriageInput>
   }
 
-  export type PatientUpdateOneRequiredWithoutTriagesNestedInput = {
+  export type PatientUpdateOneWithoutTriagesNestedInput = {
     create?: XOR<PatientCreateWithoutTriagesInput, PatientUncheckedCreateWithoutTriagesInput>
     connectOrCreate?: PatientCreateOrConnectWithoutTriagesInput
     upsert?: PatientUpsertWithoutTriagesInput
+    disconnect?: PatientWhereInput | boolean
+    delete?: PatientWhereInput | boolean
     connect?: PatientWhereUniqueInput
     update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutTriagesInput, PatientUpdateWithoutTriagesInput>, PatientUncheckedUpdateWithoutTriagesInput>
   }
@@ -27578,10 +27633,10 @@ export namespace Prisma {
     connect?: LabRequestWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutLabResultsInput = {
-    create?: XOR<UserCreateWithoutLabResultsInput, UserUncheckedCreateWithoutLabResultsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLabResultsInput
-    connect?: UserWhereUniqueInput
+  export type LabTechnicianCreateNestedOneWithoutLabResultsInput = {
+    create?: XOR<LabTechnicianCreateWithoutLabResultsInput, LabTechnicianUncheckedCreateWithoutLabResultsInput>
+    connectOrCreate?: LabTechnicianCreateOrConnectWithoutLabResultsInput
+    connect?: LabTechnicianWhereUniqueInput
   }
 
   export type LabRequestUpdateOneRequiredWithoutLabResultNestedInput = {
@@ -27592,18 +27647,18 @@ export namespace Prisma {
     update?: XOR<XOR<LabRequestUpdateToOneWithWhereWithoutLabResultInput, LabRequestUpdateWithoutLabResultInput>, LabRequestUncheckedUpdateWithoutLabResultInput>
   }
 
-  export type UserUpdateOneRequiredWithoutLabResultsNestedInput = {
-    create?: XOR<UserCreateWithoutLabResultsInput, UserUncheckedCreateWithoutLabResultsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLabResultsInput
-    upsert?: UserUpsertWithoutLabResultsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLabResultsInput, UserUpdateWithoutLabResultsInput>, UserUncheckedUpdateWithoutLabResultsInput>
+  export type LabTechnicianUpdateOneRequiredWithoutLabResultsNestedInput = {
+    create?: XOR<LabTechnicianCreateWithoutLabResultsInput, LabTechnicianUncheckedCreateWithoutLabResultsInput>
+    connectOrCreate?: LabTechnicianCreateOrConnectWithoutLabResultsInput
+    upsert?: LabTechnicianUpsertWithoutLabResultsInput
+    connect?: LabTechnicianWhereUniqueInput
+    update?: XOR<XOR<LabTechnicianUpdateToOneWithWhereWithoutLabResultsInput, LabTechnicianUpdateWithoutLabResultsInput>, LabTechnicianUncheckedUpdateWithoutLabResultsInput>
   }
 
-  export type UserCreateNestedOneWithoutPharmacyInput = {
-    create?: XOR<UserCreateWithoutPharmacyInput, UserUncheckedCreateWithoutPharmacyInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPharmacyInput
-    connect?: UserWhereUniqueInput
+  export type PharmacistCreateNestedOneWithoutPharmaciesInput = {
+    create?: XOR<PharmacistCreateWithoutPharmaciesInput, PharmacistUncheckedCreateWithoutPharmaciesInput>
+    connectOrCreate?: PharmacistCreateOrConnectWithoutPharmaciesInput
+    connect?: PharmacistWhereUniqueInput
   }
 
   export type PrescriptionCreateNestedOneWithoutPharmacyInput = {
@@ -27616,12 +27671,12 @@ export namespace Prisma {
     set?: $Enums.PharmacyStatus
   }
 
-  export type UserUpdateOneRequiredWithoutPharmacyNestedInput = {
-    create?: XOR<UserCreateWithoutPharmacyInput, UserUncheckedCreateWithoutPharmacyInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPharmacyInput
-    upsert?: UserUpsertWithoutPharmacyInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPharmacyInput, UserUpdateWithoutPharmacyInput>, UserUncheckedUpdateWithoutPharmacyInput>
+  export type PharmacistUpdateOneRequiredWithoutPharmaciesNestedInput = {
+    create?: XOR<PharmacistCreateWithoutPharmaciesInput, PharmacistUncheckedCreateWithoutPharmaciesInput>
+    connectOrCreate?: PharmacistCreateOrConnectWithoutPharmaciesInput
+    upsert?: PharmacistUpsertWithoutPharmaciesInput
+    connect?: PharmacistWhereUniqueInput
+    update?: XOR<XOR<PharmacistUpdateToOneWithWhereWithoutPharmaciesInput, PharmacistUpdateWithoutPharmaciesInput>, PharmacistUncheckedUpdateWithoutPharmaciesInput>
   }
 
   export type PrescriptionUpdateOneRequiredWithoutPharmacyNestedInput = {
@@ -28102,10 +28157,12 @@ export namespace Prisma {
 
   export type LabTechnicianCreateWithoutUserInput = {
     id?: string
+    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUncheckedCreateWithoutUserInput = {
     id?: string
+    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianCreateOrConnectWithoutUserInput = {
@@ -28115,10 +28172,12 @@ export namespace Prisma {
 
   export type PharmacistCreateWithoutUserInput = {
     id?: string
+    pharmacies?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type PharmacistUncheckedCreateWithoutUserInput = {
     id?: string
+    pharmacies?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type PharmacistCreateOrConnectWithoutUserInput = {
@@ -28152,56 +28211,6 @@ export namespace Prisma {
   export type ReceptionistCreateOrConnectWithoutUserInput = {
     where: ReceptionistWhereUniqueInput
     create: XOR<ReceptionistCreateWithoutUserInput, ReceptionistUncheckedCreateWithoutUserInput>
-  }
-
-  export type LabResultCreateWithoutLabTechnicianInput = {
-    id?: string
-    resultUrl: string
-    notes: string
-    createdAt?: Date | string
-    labRequest: LabRequestCreateNestedOneWithoutLabResultInput
-  }
-
-  export type LabResultUncheckedCreateWithoutLabTechnicianInput = {
-    id?: string
-    labRequestId: string
-    resultUrl: string
-    notes: string
-    createdAt?: Date | string
-  }
-
-  export type LabResultCreateOrConnectWithoutLabTechnicianInput = {
-    where: LabResultWhereUniqueInput
-    create: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput>
-  }
-
-  export type LabResultCreateManyLabTechnicianInputEnvelope = {
-    data: LabResultCreateManyLabTechnicianInput | LabResultCreateManyLabTechnicianInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PharmacyCreateWithoutPharmacistInput = {
-    id?: string
-    status: $Enums.PharmacyStatus
-    updatedAt?: Date | string
-    prescription: PrescriptionCreateNestedOneWithoutPharmacyInput
-  }
-
-  export type PharmacyUncheckedCreateWithoutPharmacistInput = {
-    id?: string
-    prescriptionId: string
-    status: $Enums.PharmacyStatus
-    updatedAt?: Date | string
-  }
-
-  export type PharmacyCreateOrConnectWithoutPharmacistInput = {
-    where: PharmacyWhereUniqueInput
-    create: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput>
-  }
-
-  export type PharmacyCreateManyPharmacistInputEnvelope = {
-    data: PharmacyCreateManyPharmacistInput | PharmacyCreateManyPharmacistInput[]
-    skipDuplicates?: boolean
   }
 
   export type DoctorUpsertWithoutUserInput = {
@@ -28306,10 +28315,12 @@ export namespace Prisma {
 
   export type LabTechnicianUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type PharmacistUpsertWithoutUserInput = {
@@ -28325,10 +28336,12 @@ export namespace Prisma {
 
   export type PharmacistUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    pharmacies?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type PharmacistUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    pharmacies?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type FinanceStaffUpsertWithoutUserInput = {
@@ -28369,61 +28382,6 @@ export namespace Prisma {
 
   export type ReceptionistUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput = {
-    where: LabResultWhereUniqueInput
-    update: XOR<LabResultUpdateWithoutLabTechnicianInput, LabResultUncheckedUpdateWithoutLabTechnicianInput>
-    create: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput>
-  }
-
-  export type LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput = {
-    where: LabResultWhereUniqueInput
-    data: XOR<LabResultUpdateWithoutLabTechnicianInput, LabResultUncheckedUpdateWithoutLabTechnicianInput>
-  }
-
-  export type LabResultUpdateManyWithWhereWithoutLabTechnicianInput = {
-    where: LabResultScalarWhereInput
-    data: XOR<LabResultUpdateManyMutationInput, LabResultUncheckedUpdateManyWithoutLabTechnicianInput>
-  }
-
-  export type LabResultScalarWhereInput = {
-    AND?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
-    OR?: LabResultScalarWhereInput[]
-    NOT?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
-    id?: StringFilter<"LabResult"> | string
-    labRequestId?: StringFilter<"LabResult"> | string
-    labTechnicianId?: StringFilter<"LabResult"> | string
-    resultUrl?: StringFilter<"LabResult"> | string
-    notes?: StringFilter<"LabResult"> | string
-    createdAt?: DateTimeFilter<"LabResult"> | Date | string
-  }
-
-  export type PharmacyUpsertWithWhereUniqueWithoutPharmacistInput = {
-    where: PharmacyWhereUniqueInput
-    update: XOR<PharmacyUpdateWithoutPharmacistInput, PharmacyUncheckedUpdateWithoutPharmacistInput>
-    create: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput>
-  }
-
-  export type PharmacyUpdateWithWhereUniqueWithoutPharmacistInput = {
-    where: PharmacyWhereUniqueInput
-    data: XOR<PharmacyUpdateWithoutPharmacistInput, PharmacyUncheckedUpdateWithoutPharmacistInput>
-  }
-
-  export type PharmacyUpdateManyWithWhereWithoutPharmacistInput = {
-    where: PharmacyScalarWhereInput
-    data: XOR<PharmacyUpdateManyMutationInput, PharmacyUncheckedUpdateManyWithoutPharmacistInput>
-  }
-
-  export type PharmacyScalarWhereInput = {
-    AND?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
-    OR?: PharmacyScalarWhereInput[]
-    NOT?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
-    id?: StringFilter<"Pharmacy"> | string
-    prescriptionId?: StringFilter<"Pharmacy"> | string
-    pharmacistId?: StringFilter<"Pharmacy"> | string
-    status?: EnumPharmacyStatusFilter<"Pharmacy"> | $Enums.PharmacyStatus
-    updatedAt?: DateTimeFilter<"Pharmacy"> | Date | string
   }
 
   export type AppointmentCreateWithoutPatientInput = {
@@ -28528,8 +28486,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutPatientInput = {
@@ -28547,8 +28503,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutPatientInput = {
@@ -28726,8 +28680,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPatientInput = {
@@ -28745,8 +28697,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type PrescriptionUpsertWithWhereUniqueWithoutPatientInput = {
@@ -28906,8 +28856,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutDoctorInput = {
@@ -28925,8 +28873,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutDoctorInput = {
@@ -29088,8 +29034,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDoctorInput = {
@@ -29107,8 +29051,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type LabRequestUpsertWithWhereUniqueWithoutDoctorInput = {
@@ -29150,7 +29092,7 @@ export namespace Prisma {
     notes?: string | null
     timestamp: Date | string
     appointment?: AppointmentCreateNestedOneWithoutTriageInput
-    patient: PatientCreateNestedOneWithoutTriagesInput
+    patient?: PatientCreateNestedOneWithoutTriagesInput
   }
 
   export type TriageUncheckedCreateWithoutNurseInput = {
@@ -29188,8 +29130,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutNurseInput = {
@@ -29207,8 +29147,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutNurseInput = {
@@ -29258,8 +29196,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNurseInput = {
@@ -29277,8 +29213,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserCreateWithoutLabTechnicianInput = {
@@ -29296,8 +29230,6 @@ export namespace Prisma {
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutLabTechnicianInput = {
@@ -29315,13 +29247,37 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutLabTechnicianInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutLabTechnicianInput, UserUncheckedCreateWithoutLabTechnicianInput>
+  }
+
+  export type LabResultCreateWithoutLabTechnicianInput = {
+    id?: string
+    resultUrl: string
+    notes: string
+    createdAt?: Date | string
+    labRequest: LabRequestCreateNestedOneWithoutLabResultInput
+  }
+
+  export type LabResultUncheckedCreateWithoutLabTechnicianInput = {
+    id?: string
+    labRequestId: string
+    resultUrl: string
+    notes: string
+    createdAt?: Date | string
+  }
+
+  export type LabResultCreateOrConnectWithoutLabTechnicianInput = {
+    where: LabResultWhereUniqueInput
+    create: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput>
+  }
+
+  export type LabResultCreateManyLabTechnicianInputEnvelope = {
+    data: LabResultCreateManyLabTechnicianInput | LabResultCreateManyLabTechnicianInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutLabTechnicianInput = {
@@ -29350,8 +29306,6 @@ export namespace Prisma {
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLabTechnicianInput = {
@@ -29369,8 +29323,34 @@ export namespace Prisma {
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+  }
+
+  export type LabResultUpsertWithWhereUniqueWithoutLabTechnicianInput = {
+    where: LabResultWhereUniqueInput
+    update: XOR<LabResultUpdateWithoutLabTechnicianInput, LabResultUncheckedUpdateWithoutLabTechnicianInput>
+    create: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput>
+  }
+
+  export type LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput = {
+    where: LabResultWhereUniqueInput
+    data: XOR<LabResultUpdateWithoutLabTechnicianInput, LabResultUncheckedUpdateWithoutLabTechnicianInput>
+  }
+
+  export type LabResultUpdateManyWithWhereWithoutLabTechnicianInput = {
+    where: LabResultScalarWhereInput
+    data: XOR<LabResultUpdateManyMutationInput, LabResultUncheckedUpdateManyWithoutLabTechnicianInput>
+  }
+
+  export type LabResultScalarWhereInput = {
+    AND?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
+    OR?: LabResultScalarWhereInput[]
+    NOT?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
+    id?: StringFilter<"LabResult"> | string
+    labRequestId?: StringFilter<"LabResult"> | string
+    labTechnicianId?: StringFilter<"LabResult"> | string
+    resultUrl?: StringFilter<"LabResult"> | string
+    notes?: StringFilter<"LabResult"> | string
+    createdAt?: DateTimeFilter<"LabResult"> | Date | string
   }
 
   export type UserCreateWithoutPharmacistInput = {
@@ -29388,8 +29368,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutPharmacistInput = {
@@ -29407,13 +29385,35 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutPharmacistInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPharmacistInput, UserUncheckedCreateWithoutPharmacistInput>
+  }
+
+  export type PharmacyCreateWithoutPharmacistInput = {
+    id?: string
+    status: $Enums.PharmacyStatus
+    updatedAt?: Date | string
+    prescription: PrescriptionCreateNestedOneWithoutPharmacyInput
+  }
+
+  export type PharmacyUncheckedCreateWithoutPharmacistInput = {
+    id?: string
+    prescriptionId: string
+    status: $Enums.PharmacyStatus
+    updatedAt?: Date | string
+  }
+
+  export type PharmacyCreateOrConnectWithoutPharmacistInput = {
+    where: PharmacyWhereUniqueInput
+    create: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput>
+  }
+
+  export type PharmacyCreateManyPharmacistInputEnvelope = {
+    data: PharmacyCreateManyPharmacistInput | PharmacyCreateManyPharmacistInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutPharmacistInput = {
@@ -29442,8 +29442,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPharmacistInput = {
@@ -29461,8 +29459,33 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+  }
+
+  export type PharmacyUpsertWithWhereUniqueWithoutPharmacistInput = {
+    where: PharmacyWhereUniqueInput
+    update: XOR<PharmacyUpdateWithoutPharmacistInput, PharmacyUncheckedUpdateWithoutPharmacistInput>
+    create: XOR<PharmacyCreateWithoutPharmacistInput, PharmacyUncheckedCreateWithoutPharmacistInput>
+  }
+
+  export type PharmacyUpdateWithWhereUniqueWithoutPharmacistInput = {
+    where: PharmacyWhereUniqueInput
+    data: XOR<PharmacyUpdateWithoutPharmacistInput, PharmacyUncheckedUpdateWithoutPharmacistInput>
+  }
+
+  export type PharmacyUpdateManyWithWhereWithoutPharmacistInput = {
+    where: PharmacyScalarWhereInput
+    data: XOR<PharmacyUpdateManyMutationInput, PharmacyUncheckedUpdateManyWithoutPharmacistInput>
+  }
+
+  export type PharmacyScalarWhereInput = {
+    AND?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
+    OR?: PharmacyScalarWhereInput[]
+    NOT?: PharmacyScalarWhereInput | PharmacyScalarWhereInput[]
+    id?: StringFilter<"Pharmacy"> | string
+    prescriptionId?: StringFilter<"Pharmacy"> | string
+    pharmacistId?: StringFilter<"Pharmacy"> | string
+    status?: EnumPharmacyStatusFilter<"Pharmacy"> | $Enums.PharmacyStatus
+    updatedAt?: DateTimeFilter<"Pharmacy"> | Date | string
   }
 
   export type AppointmentFinanceCreateWithoutFinanceStaffInput = {
@@ -29510,8 +29533,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutFinanceStaffInput = {
@@ -29529,8 +29550,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutFinanceStaffInput = {
@@ -29594,8 +29613,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFinanceStaffInput = {
@@ -29613,8 +29630,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserCreateWithoutReceptionistInput = {
@@ -29632,8 +29647,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserUncheckedCreateWithoutReceptionistInput = {
@@ -29651,8 +29664,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
     pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
     financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
   }
 
   export type UserCreateOrConnectWithoutReceptionistInput = {
@@ -29686,8 +29697,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceptionistInput = {
@@ -29705,8 +29714,6 @@ export namespace Prisma {
     labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
     pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
     financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
   }
 
   export type DoctorCreateWithoutAvailabilitiesInput = {
@@ -29827,7 +29834,7 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: string | null
     timestamp: Date | string
-    patient: PatientCreateNestedOneWithoutTriagesInput
+    patient?: PatientCreateNestedOneWithoutTriagesInput
     nurse?: NurseCreateNestedOneWithoutTriagesInput
   }
 
@@ -30011,7 +30018,7 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
+    patient?: PatientUpdateOneWithoutTriagesNestedInput
     nurse?: NurseUpdateOneWithoutTriagesNestedInput
   }
 
@@ -30353,7 +30360,7 @@ export namespace Prisma {
     id?: string
     status: $Enums.PharmacyStatus
     updatedAt?: Date | string
-    pharmacist: UserCreateNestedOneWithoutPharmacyInput
+    pharmacist: PharmacistCreateNestedOneWithoutPharmaciesInput
   }
 
   export type PharmacyUncheckedCreateWithoutPrescriptionInput = {
@@ -30439,7 +30446,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    pharmacist?: UserUpdateOneRequiredWithoutPharmacyNestedInput
+    pharmacist?: PharmacistUpdateOneRequiredWithoutPharmaciesNestedInput
   }
 
   export type PharmacyUncheckedUpdateWithoutPrescriptionInput = {
@@ -30578,7 +30585,7 @@ export namespace Prisma {
     resultUrl: string
     notes: string
     createdAt?: Date | string
-    labTechnician: UserCreateNestedOneWithoutLabResultsInput
+    labTechnician: LabTechnicianCreateNestedOneWithoutLabResultsInput
   }
 
   export type LabResultUncheckedCreateWithoutLabRequestInput = {
@@ -30678,7 +30685,7 @@ export namespace Prisma {
     resultUrl?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    labTechnician?: UserUpdateOneRequiredWithoutLabResultsNestedInput
+    labTechnician?: LabTechnicianUpdateOneRequiredWithoutLabResultsNestedInput
   }
 
   export type LabResultUncheckedUpdateWithoutLabRequestInput = {
@@ -30714,47 +30721,19 @@ export namespace Prisma {
     create: XOR<LabRequestCreateWithoutLabResultInput, LabRequestUncheckedCreateWithoutLabResultInput>
   }
 
-  export type UserCreateWithoutLabResultsInput = {
+  export type LabTechnicianCreateWithoutLabResultsInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorCreateNestedOneWithoutUserInput
-    nurse?: NurseCreateNestedOneWithoutUserInput
-    patient?: PatientCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    pharmacy?: PharmacyCreateNestedManyWithoutPharmacistInput
+    user: UserCreateNestedOneWithoutLabTechnicianInput
   }
 
-  export type UserUncheckedCreateWithoutLabResultsInput = {
+  export type LabTechnicianUncheckedCreateWithoutLabResultsInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
-    nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
-    patient?: PatientUncheckedCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    pharmacy?: PharmacyUncheckedCreateNestedManyWithoutPharmacistInput
+    userId: string
   }
 
-  export type UserCreateOrConnectWithoutLabResultsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLabResultsInput, UserUncheckedCreateWithoutLabResultsInput>
+  export type LabTechnicianCreateOrConnectWithoutLabResultsInput = {
+    where: LabTechnicianWhereUniqueInput
+    create: XOR<LabTechnicianCreateWithoutLabResultsInput, LabTechnicianUncheckedCreateWithoutLabResultsInput>
   }
 
   export type LabRequestUpsertWithoutLabResultInput = {
@@ -30788,96 +30767,40 @@ export namespace Prisma {
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type UserUpsertWithoutLabResultsInput = {
-    update: XOR<UserUpdateWithoutLabResultsInput, UserUncheckedUpdateWithoutLabResultsInput>
-    create: XOR<UserCreateWithoutLabResultsInput, UserUncheckedCreateWithoutLabResultsInput>
-    where?: UserWhereInput
+  export type LabTechnicianUpsertWithoutLabResultsInput = {
+    update: XOR<LabTechnicianUpdateWithoutLabResultsInput, LabTechnicianUncheckedUpdateWithoutLabResultsInput>
+    create: XOR<LabTechnicianCreateWithoutLabResultsInput, LabTechnicianUncheckedCreateWithoutLabResultsInput>
+    where?: LabTechnicianWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutLabResultsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLabResultsInput, UserUncheckedUpdateWithoutLabResultsInput>
+  export type LabTechnicianUpdateToOneWithWhereWithoutLabResultsInput = {
+    where?: LabTechnicianWhereInput
+    data: XOR<LabTechnicianUpdateWithoutLabResultsInput, LabTechnicianUncheckedUpdateWithoutLabResultsInput>
   }
 
-  export type UserUpdateWithoutLabResultsInput = {
+  export type LabTechnicianUpdateWithoutLabResultsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUpdateOneWithoutUserNestedInput
-    nurse?: NurseUpdateOneWithoutUserNestedInput
-    patient?: PatientUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    pharmacy?: PharmacyUpdateManyWithoutPharmacistNestedInput
+    user?: UserUpdateOneRequiredWithoutLabTechnicianNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutLabResultsInput = {
+  export type LabTechnicianUncheckedUpdateWithoutLabResultsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
-    nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
-    patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    pharmacy?: PharmacyUncheckedUpdateManyWithoutPharmacistNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UserCreateWithoutPharmacyInput = {
+  export type PharmacistCreateWithoutPharmaciesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorCreateNestedOneWithoutUserInput
-    nurse?: NurseCreateNestedOneWithoutUserInput
-    patient?: PatientCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistCreateNestedOneWithoutUserInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
+    user: UserCreateNestedOneWithoutPharmacistInput
   }
 
-  export type UserUncheckedCreateWithoutPharmacyInput = {
+  export type PharmacistUncheckedCreateWithoutPharmaciesInput = {
     id?: string
-    role: $Enums.Role
-    name: string
-    email: string
-    password: string
-    phone: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
-    nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
-    patient?: PatientUncheckedCreateNestedOneWithoutUserInput
-    labTechnician?: LabTechnicianUncheckedCreateNestedOneWithoutUserInput
-    pharmacist?: PharmacistUncheckedCreateNestedOneWithoutUserInput
-    financeStaff?: FinanceStaffUncheckedCreateNestedOneWithoutUserInput
-    receptionist?: ReceptionistUncheckedCreateNestedOneWithoutUserInput
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
+    userId: string
   }
 
-  export type UserCreateOrConnectWithoutPharmacyInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPharmacyInput, UserUncheckedCreateWithoutPharmacyInput>
+  export type PharmacistCreateOrConnectWithoutPharmaciesInput = {
+    where: PharmacistWhereUniqueInput
+    create: XOR<PharmacistCreateWithoutPharmaciesInput, PharmacistUncheckedCreateWithoutPharmaciesInput>
   }
 
   export type PrescriptionCreateWithoutPharmacyInput = {
@@ -30903,53 +30826,25 @@ export namespace Prisma {
     create: XOR<PrescriptionCreateWithoutPharmacyInput, PrescriptionUncheckedCreateWithoutPharmacyInput>
   }
 
-  export type UserUpsertWithoutPharmacyInput = {
-    update: XOR<UserUpdateWithoutPharmacyInput, UserUncheckedUpdateWithoutPharmacyInput>
-    create: XOR<UserCreateWithoutPharmacyInput, UserUncheckedCreateWithoutPharmacyInput>
-    where?: UserWhereInput
+  export type PharmacistUpsertWithoutPharmaciesInput = {
+    update: XOR<PharmacistUpdateWithoutPharmaciesInput, PharmacistUncheckedUpdateWithoutPharmaciesInput>
+    create: XOR<PharmacistCreateWithoutPharmaciesInput, PharmacistUncheckedCreateWithoutPharmaciesInput>
+    where?: PharmacistWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutPharmacyInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPharmacyInput, UserUncheckedUpdateWithoutPharmacyInput>
+  export type PharmacistUpdateToOneWithWhereWithoutPharmaciesInput = {
+    where?: PharmacistWhereInput
+    data: XOR<PharmacistUpdateWithoutPharmaciesInput, PharmacistUncheckedUpdateWithoutPharmaciesInput>
   }
 
-  export type UserUpdateWithoutPharmacyInput = {
+  export type PharmacistUpdateWithoutPharmaciesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUpdateOneWithoutUserNestedInput
-    nurse?: NurseUpdateOneWithoutUserNestedInput
-    patient?: PatientUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
+    user?: UserUpdateOneRequiredWithoutPharmacistNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutPharmacyInput = {
+  export type PharmacistUncheckedUpdateWithoutPharmaciesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
-    nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
-    patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
-    labTechnician?: LabTechnicianUncheckedUpdateOneWithoutUserNestedInput
-    pharmacist?: PharmacistUncheckedUpdateOneWithoutUserNestedInput
-    financeStaff?: FinanceStaffUncheckedUpdateOneWithoutUserNestedInput
-    receptionist?: ReceptionistUncheckedUpdateOneWithoutUserNestedInput
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PrescriptionUpsertWithoutPharmacyInput = {
@@ -31151,66 +31046,6 @@ export namespace Prisma {
     labRequests?: LabRequestUncheckedUpdateManyWithoutPatientNestedInput
     prescriptions?: PrescriptionUncheckedUpdateManyWithoutPatientNestedInput
     triages?: TriageUncheckedUpdateManyWithoutPatientNestedInput
-  }
-
-  export type LabResultCreateManyLabTechnicianInput = {
-    id?: string
-    labRequestId: string
-    resultUrl: string
-    notes: string
-    createdAt?: Date | string
-  }
-
-  export type PharmacyCreateManyPharmacistInput = {
-    id?: string
-    prescriptionId: string
-    status: $Enums.PharmacyStatus
-    updatedAt?: Date | string
-  }
-
-  export type LabResultUpdateWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    resultUrl?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    labRequest?: LabRequestUpdateOneRequiredWithoutLabResultNestedInput
-  }
-
-  export type LabResultUncheckedUpdateWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    labRequestId?: StringFieldUpdateOperationsInput | string
-    resultUrl?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LabResultUncheckedUpdateManyWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    labRequestId?: StringFieldUpdateOperationsInput | string
-    resultUrl?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PharmacyUpdateWithoutPharmacistInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    prescription?: PrescriptionUpdateOneRequiredWithoutPharmacyNestedInput
-  }
-
-  export type PharmacyUncheckedUpdateWithoutPharmacistInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    prescriptionId?: StringFieldUpdateOperationsInput | string
-    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PharmacyUncheckedUpdateManyWithoutPharmacistInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    prescriptionId?: StringFieldUpdateOperationsInput | string
-    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentCreateManyPatientInput = {
@@ -31562,7 +31397,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneWithoutTriageNestedInput
-    patient?: PatientUpdateOneRequiredWithoutTriagesNestedInput
+    patient?: PatientUpdateOneWithoutTriagesNestedInput
   }
 
   export type TriageUncheckedUpdateWithoutNurseInput = {
@@ -31583,6 +31418,66 @@ export namespace Prisma {
     vitals?: NullableJsonNullValueInput | InputJsonValue
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabResultCreateManyLabTechnicianInput = {
+    id?: string
+    labRequestId: string
+    resultUrl: string
+    notes: string
+    createdAt?: Date | string
+  }
+
+  export type LabResultUpdateWithoutLabTechnicianInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resultUrl?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labRequest?: LabRequestUpdateOneRequiredWithoutLabResultNestedInput
+  }
+
+  export type LabResultUncheckedUpdateWithoutLabTechnicianInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    labRequestId?: StringFieldUpdateOperationsInput | string
+    resultUrl?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabResultUncheckedUpdateManyWithoutLabTechnicianInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    labRequestId?: StringFieldUpdateOperationsInput | string
+    resultUrl?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PharmacyCreateManyPharmacistInput = {
+    id?: string
+    prescriptionId: string
+    status: $Enums.PharmacyStatus
+    updatedAt?: Date | string
+  }
+
+  export type PharmacyUpdateWithoutPharmacistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prescription?: PrescriptionUpdateOneRequiredWithoutPharmacyNestedInput
+  }
+
+  export type PharmacyUncheckedUpdateWithoutPharmacistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prescriptionId?: StringFieldUpdateOperationsInput | string
+    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PharmacyUncheckedUpdateManyWithoutPharmacistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prescriptionId?: StringFieldUpdateOperationsInput | string
+    status?: EnumPharmacyStatusFieldUpdateOperationsInput | $Enums.PharmacyStatus
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentFinanceCreateManyFinanceStaffInput = {

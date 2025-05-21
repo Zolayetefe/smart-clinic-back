@@ -15,6 +15,27 @@ exports.getAllAppointments = async (req, res) => {
     }
 };
 
+exports.checkInAppointment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { symptoms } = req.body;
+
+        const result = await financeService.checkInAppointment(id, symptoms);
+
+        res.status(200).json({
+            data: result,
+            message: 'Appointment checked in successfully'
+        });
+    } catch (error) {
+        console.error('Error checking in appointment:', error);
+        const statusCode = error.message.includes('not found') ? 404 : 500;
+        res.status(statusCode).json({
+            success: false,
+            message: error.message || 'Error checking in appointment'
+        });
+    }
+};
+
 exports.approveAppointment = async (req, res) => {
     try {
         const { id } = req.params;
@@ -40,7 +61,6 @@ exports.approveAppointment = async (req, res) => {
         });
 
         res.status(200).json({
-            success: true,
             message: `Appointment ${approvalStatus} successfully`
         });
     } catch (error) {
@@ -60,7 +80,6 @@ exports.getAppointmentsByStatus = async (req, res) => {
         const { status } = req.params;
         const appointments = await financeService.getAppointmentsByStatus(status);
         res.status(200).json({
-            success: true,
             data: appointments
         });
     } catch (error) {

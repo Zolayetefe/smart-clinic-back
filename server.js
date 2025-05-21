@@ -11,6 +11,8 @@ const doctorRoutes = require('./src/routes/doctorRoutes');
 const patientRoutes = require('./src/routes/patientRoutes');
 const receptionistRoutes = require('./src/routes/receptionistRoutes');
 const financeRoutes = require('./src/routes/financeRoutes');
+const nurseRoutes = require('./src/routes/nurseRoutes');
+
 dotenv.config();
 
 const app = express();
@@ -45,6 +47,7 @@ app.use('/api/patient', patientRoutes);
 app.use('/api/doctor', doctorRoutes);
 app.use('/api/receptionist', receptionistRoutes);
 app.use('/api/finance', financeRoutes);
+app.use('/api/nurse', nurseRoutes);
 // 404 Handler'
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Route not found' });

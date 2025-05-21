@@ -24,8 +24,6 @@ model User {
   pharmacist       Pharmacist?
   financeStaff     FinanceStaff?
   receptionist     Receptionist?
-  labResults       LabResult[]      @relation("LabTechnicianUser")
-  pharmacy         Pharmacy[]       @relation("PharmacistUser")
 }
 
 model Patient {
@@ -63,15 +61,17 @@ model Nurse {
 }
 
 model LabTechnician {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  labResults  LabResult[]
 }
 
 model Pharmacist {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pharmacies  Pharmacy[]
 }
 
 model FinanceStaff {
@@ -120,7 +120,7 @@ model Appointment {
   rescheduledFrom String?
   createdAt       DateTime            @default(now())
   doctor          Doctor              @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  patient         Patient             @relation(fields: [patientId], references: [id])
+  patient         Patient             @relation(fields: [patientId], references: [id], onDelete:Cascade)
   reschedule      Appointment?        @relation("Reschedule", fields: [rescheduledFrom], references: [id])
   rescheduledTo   Appointment[]       @relation("Reschedule")
   finance         AppointmentFinance?
@@ -134,9 +134,9 @@ model Triage {
   symptoms        String[]
   vitals          Json?
   notes           String?
-  appointment     Appointment?   @relation(fields: [appointmentId],references: [id])
+  appointment     Appointment?   @relation(fields: [appointmentId],references: [id] ,onDelete:Cascade)
   timestamp       DateTime
-  patient         Patient       @relation(fields: [patientId], references: [id])
+  patient         Patient?       @relation(fields: [patientId], references: [id] ,onDelete:Cascade)
   nurse           Nurse?        @relation(fields: [nurseId], references: [id])
 }
 
@@ -148,8 +148,8 @@ model Prescription {
   status      PrescriptionStatus
   createdAt   DateTime           @default(now())
   pharmacy    Pharmacy?
-  doctor      Doctor             @relation(fields: [doctorId], references: [id])
-  patient     Patient            @relation(fields: [patientId], references: [id])
+  doctor      Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient     Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
 }
 
 model LabRequest {
@@ -160,20 +160,20 @@ model LabRequest {
   status      LabRequestStatus
   requestedAt DateTime         @default(now())
   completedAt DateTime?
-  doctor      Doctor           @relation(fields: [doctorId], references: [id])
-  patient     Patient          @relation(fields: [patientId], references: [id])
+  doctor      Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient     Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
   labResult   LabResult?
 }
 
 model LabResult {
-  id              String     @id @default(uuid())
-  labRequestId    String     @unique
+  id              String         @id @default(uuid())
+  labRequestId    String         @unique
   labTechnicianId String
   resultUrl       String
   notes           String
-  createdAt       DateTime   @default(now())
-  labRequest      LabRequest @relation(fields: [labRequestId], references: [id])
-  labTechnician   User       @relation("LabTechnicianUser", fields: [labTechnicianId], references: [id])
+  createdAt       DateTime       @default(now())
+  labRequest      LabRequest     @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
+  labTechnician   LabTechnician  @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
 }
 
 model Pharmacy {
@@ -182,8 +182,8 @@ model Pharmacy {
   pharmacistId   String
   status         PharmacyStatus
   updatedAt      DateTime       @updatedAt
-  pharmacist     User           @relation("PharmacistUser", fields: [pharmacistId], references: [id])
-  prescription   Prescription   @relation(fields: [prescriptionId], references: [id])
+  pharmacist     Pharmacist     @relation(fields: [pharmacistId], references: [id], onDelete: Cascade)
+  prescription   Prescription   @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
 }
 
 model AppointmentFinance {
@@ -194,7 +194,7 @@ model AppointmentFinance {
   financeStaffId String
   approvedAt     DateTime?
   appointment    Appointment    @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
-  financeStaff   FinanceStaff  @relation(fields: [financeStaffId], references: [id])
+  financeStaff   FinanceStaff  @relation(fields: [financeStaffId], references: [id], onDelete: Cascade)
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 }
@@ -206,7 +206,7 @@ model MedicalRecord {
   prescriptionIds String[]
   labResultIds    String[]
   createdAt       DateTime @default(now())
-  patient         Patient  @relation(fields: [patientId], references: [id])
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
