@@ -18,7 +18,7 @@ async function main() {
       password: hashedPassword,
       role: 'admin', // Ensure "admin" exists in the Role enum in your schema
       phone: '1234567890',  // Added required phone field
-      department: 'Administration'  // Added required department field
+
     },
   });
 

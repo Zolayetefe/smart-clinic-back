@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 // Middleware to check if the user is authenticated
 const isAuthenticated = async (req, res, next) => {
+  console.log("from middleware",req.cookies)
   // console.log("from middleware",req.cookies)
   const token = req.cookies.token || req.headers['authorization']?.split(' ')[1];
 // console.log("from middleware",token)
@@ -78,4 +79,12 @@ const isNurse = async (req, res, next) => {
     res.status(403).json({ message: 'Access denied. Nurses only.' });
   }
 }
-module.exports = { isAuthenticated, isAdmin, isReceptionist, isFinanceStaff, isNurseOrFinanceStaff, isNurse };
+
+const isLabTechnicianOrDoctor = async (req, res, next) => {
+  if (req.user && (req.user.role === 'lab_technician' || req.user.role === 'doctor')) {
+    next();
+  } else {
+    res.status(403).json({ message: 'Access denied. Lab technicians or doctors only.' });
+  }
+}
+module.exports = { isAuthenticated, isAdmin, isReceptionist, isFinanceStaff, isNurseOrFinanceStaff, isNurse, isLabTechnicianOrDoctor };

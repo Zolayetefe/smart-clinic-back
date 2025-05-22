@@ -222,8 +222,10 @@ exports.Prisma.LabRequestScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
   patientId: 'patientId',
-  testType: 'testType',
   status: 'status',
+  notes: 'notes',
+  priority: 'priority',
+  tests: 'tests',
   requestedAt: 'requestedAt',
   completedAt: 'completedAt'
 };
@@ -232,7 +234,7 @@ exports.Prisma.LabResultScalarFieldEnum = {
   id: 'id',
   labRequestId: 'labRequestId',
   labTechnicianId: 'labTechnicianId',
-  resultUrl: 'resultUrl',
+  result: 'result',
   notes: 'notes',
   createdAt: 'createdAt'
 };
@@ -272,6 +274,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -328,6 +334,11 @@ exports.PrescriptionStatus = exports.$Enums.PrescriptionStatus = {
 exports.LabRequestStatus = exports.$Enums.LabRequestStatus = {
   requested: 'requested',
   completed: 'completed'
+};
+
+exports.LabRequestPriority = exports.$Enums.LabRequestPriority = {
+  urgent: 'urgent',
+  routine: 'routine'
 };
 
 exports.PharmacyStatus = exports.$Enums.PharmacyStatus = {

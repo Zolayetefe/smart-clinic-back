@@ -95,7 +95,7 @@ model DoctorAvailability {
   endTime   String
   doctor    Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
-  @@unique([doctorId, day])
+  @@unique([doctorId, day, startTime, endTime])
 }
 
 model DoctorSlot {
@@ -153,27 +153,31 @@ model Prescription {
 }
 
 model LabRequest {
-  id          String           @id @default(uuid())
+  id          String              @id @default(uuid())
   doctorId    String
   patientId   String
-  testType    String
-  status      LabRequestStatus
-  requestedAt DateTime         @default(now())
+  status      LabRequestStatus    @default(requested)
+  notes       String?
+  priority    LabRequestPriority?
+  tests       Json // Array of lab tests as JSON
+  requestedAt DateTime            @default(now())
   completedAt DateTime?
-  doctor      Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  patient     Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
-  labResult   LabResult?
+
+  doctor    Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient   Patient    @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  labResult LabResult?
 }
 
 model LabResult {
-  id              String        @id @default(uuid())
-  labRequestId    String        @unique
+  id              String   @id @default(uuid())
+  labRequestId    String   @unique
   labTechnicianId String
-  resultUrl       String
-  notes           String
-  createdAt       DateTime      @default(now())
-  labRequest      LabRequest    @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
-  labTechnician   LabTechnician @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
+  result          Json // URL to PDF/image file
+  notes           String?
+  createdAt       DateTime @default(now())
+
+  labRequest    LabRequest    @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
+  labTechnician LabTechnician @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
 }
 
 model Pharmacy {
@@ -264,4 +268,9 @@ enum ApprovalStatus {
   pending
   approved
   rejected
+}
+
+enum LabRequestPriority {
+  urgent
+  routine
 }

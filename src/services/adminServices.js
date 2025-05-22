@@ -5,8 +5,39 @@ const prisma = new PrismaClient();
 // Valid weekdays from the enum
 const VALID_WEEKDAYS = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
 
+// Function to check if two time ranges overlap
+function doTimeSlotsOverlap(slot1Start, slot1End, slot2Start, slot2End) {
+  const [h1, m1] = slot1Start.split(':').map(Number);
+  const [h2, m2] = slot1End.split(':').map(Number);
+  const [h3, m3] = slot2Start.split(':').map(Number);
+  const [h4, m4] = slot2End.split(':').map(Number);
+
+  const start1 = h1 * 60 + m1;
+  const end1 = h2 * 60 + m2;
+  const start2 = h3 * 60 + m3;
+  const end2 = h4 * 60 + m4;
+
+  return (start1 < end2 && start2 < end1);
+}
+
+// Function to validate time slots for a day
+function validateTimeSlotsForDay(slots) {
+  for (let i = 0; i < slots.length; i++) {
+    for (let j = i + 1; j < slots.length; j++) {
+      if (doTimeSlotsOverlap(
+        slots[i].startTime,
+        slots[i].endTime,
+        slots[j].startTime,
+        slots[j].endTime
+      )) {
+        throw new Error(`Overlapping time slots found for day ${slots[i].day}: ${slots[i].startTime}-${slots[i].endTime} overlaps with ${slots[j].startTime}-${slots[j].endTime}`);
+      }
+    }
+  }
+}
+
 // Function to generate time slots
-function generateTimeSlots(day, startTime, endTime) {
+function generateTimeSlots(doctorId, day, startTime, endTime) {
   const slots = [];
   const [startHour, startMinute] = startTime.split(':').map(Number);
   const [endHour, endMinute] = endTime.split(':').map(Number);
@@ -19,6 +50,7 @@ function generateTimeSlots(day, startTime, endTime) {
     const timeString = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
     
     slots.push({
+      doctorId,
       day,
       slotTime: timeString,
       isBooked: false
@@ -51,7 +83,7 @@ exports.register = async (data) => {
     console.log("Registration data:", data);
 
     if (!name || !email || !password || !role || !phone ) {
-      throw new Error('All fields are required: name, email, password, role, phone, department');
+      throw new Error('All fields are required: name, email, password, role, phone');
     }
 
     // Role-specific validation
@@ -97,6 +129,20 @@ exports.register = async (data) => {
             throw new Error(`Invalid time range at index ${index}. endTime must be after startTime`);
           }
         });
+
+        // Group availabilities by day and validate no overlapping times
+        const availabilitiesByDay = availabilities.reduce((acc, slot) => {
+          if (!acc[slot.day]) {
+            acc[slot.day] = [];
+          }
+          acc[slot.day].push(slot);
+          return acc;
+        }, {});
+
+        // Validate no overlapping times for each day
+        Object.values(availabilitiesByDay).forEach(daySlots => {
+          validateTimeSlotsForDay(daySlots);
+        });
         break;
 
       case 'patient':
@@ -108,6 +154,7 @@ exports.register = async (data) => {
       case 'pharmacist':
       case 'finance':
       case 'receptionist':
+      case 'admin':
         // These roles only need the basic fields which are already validated
         break;
 
@@ -135,76 +182,88 @@ exports.register = async (data) => {
       phone,
     };
 
-    // Add role-specific relations
-    switch (role) {
-      case 'doctor':
-        userData.doctor = {
-          create: {
-            specialization,
-            availabilities: {
-              create: availabilities
-            },
-            slots: {
-              create: availabilities.flatMap(availability => 
-                generateTimeSlots(
-                  availability.day,
-                  availability.startTime,
-                  availability.endTime
-                )
-              )
-            }
-          }
-        };
-        break;
-
-      case 'nurse':
-        userData.nurse = {
-          create: {}
-        };
-        break;
-
-      case 'lab_technician':
-        userData.labTechnician = {
-          create: {}
-        };
-        break;
-
-      case 'pharmacist':
-        userData.pharmacist = {
-          create: {}
-        };
-        break;
-
-      case 'finance':
-        userData.financeStaff = {
-          create: {}
-        };
-        break;
-
-      case 'receptionist':
-        userData.receptionist = {
-          create: {}
-        };
-        break;
-    }
-
-    // Create the user with all related data
+    // Create the user first
     const user = await prisma.user.create({
-      data: userData,
-      include: {
-        doctor: {
-          include: {
-            availabilities: true,
-            slots: true
-          }
-        },
-        nurse: true,
-        labTechnician: true,
-        pharmacist: true,
-        financeStaff: true,
-        receptionist: true
-      }
+      data: userData
     });
+
+    // Then create role-specific data
+    let roleSpecificData = null;
+
+    if (role !== 'admin') {  // Admin doesn't need additional data
+      switch (role) {
+        case 'doctor': {
+          const doctor = await prisma.doctor.create({
+            data: {
+              userId: user.id,
+              specialization,
+            }
+          });
+
+          // Create availabilities
+          await prisma.doctorAvailability.createMany({
+            data: availabilities.map(avail => ({
+              doctorId: doctor.id,
+              day: avail.day,
+              startTime: avail.startTime,
+              endTime: avail.endTime
+            }))
+          });
+
+          // Create slots for each availability period
+          for (const availability of availabilities) {
+            const slots = generateTimeSlots(
+              doctor.id,
+              availability.day,
+              availability.startTime,
+              availability.endTime
+            );
+            await prisma.doctorSlot.createMany({
+              data: slots
+            });
+          }
+
+          roleSpecificData = await prisma.doctor.findUnique({
+            where: { id: doctor.id },
+            include: {
+              availabilities: true,
+              slots: true
+            }
+          });
+          break;
+        }
+
+        case 'nurse':
+          roleSpecificData = await prisma.nurse.create({
+            data: { userId: user.id }
+          });
+          break;
+
+        case 'lab_technician':
+          roleSpecificData = await prisma.labTechnician.create({
+            data: { userId: user.id }
+          });
+          break;
+
+        case 'pharmacist':
+          roleSpecificData = await prisma.pharmacist.create({
+            data: { userId: user.id }
+          });
+          break;
+
+        case 'finance':
+          roleSpecificData = await prisma.financeStaff.create({
+            data: { userId: user.id }
+          });
+          break;
+
+        case 'receptionist':
+          roleSpecificData = await prisma.receptionist.create({
+            data: { userId: user.id }
+          });
+          break;
+      }
+    }
 
     console.log(`Successfully registered ${role}:`, user.id);
 
@@ -217,51 +276,12 @@ exports.register = async (data) => {
         email: user.email,
         role: user.role,
         phone: user.phone,
-        // Include role-specific data
-        ...(user.doctor && { 
-          doctor: {
-            id: user.doctor.id,
-            specialization: user.doctor.specialization,
-            availabilities: user.doctor.availabilities,
-            slots: user.doctor.slots
-          }
-        }),
-        ...(user.nurse && {
-          nurse: {
-            id: user.nurse.id
-          }
-        }),
-        ...(user.labTechnician && {
-          labTechnician: {
-            id: user.labTechnician.id
-          }
-        }),
-        ...(user.pharmacist && {
-          pharmacist: {
-            id: user.pharmacist.id
-          }
-        }),
-        ...(user.financeStaff && {
-          financeStaff: {
-            id: user.financeStaff.id
-          }
-        }),
-        ...(user.receptionist && {
-          receptionist: {
-            id: user.receptionist.id
-          }
-        })
+        ...(roleSpecificData && { [role]: roleSpecificData })
       }
     };
 
   } catch (error) {
     console.error('Registration error:', error);
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        throw new Error(`A user with this ${error.meta?.target} already exists`);
-      }
-      throw new Error(`Database error: ${error.message}`);
-    }
     throw error;
   }
 };
