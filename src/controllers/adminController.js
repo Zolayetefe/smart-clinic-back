@@ -1,5 +1,22 @@
 const adminService = require('../services/adminServices');
 
+const { toggleStaffStatus } = require('../services/adminServices');
+
+exports.toggleStaffStatusController = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log(userId)
+    const updatedUser = await toggleStaffStatus(userId);
+    res.status(200).json({
+      message: `User status changed to ${updatedUser.status}`,
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error('Toggle status error:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+};
+
 exports.dashboard = (req, res) => {
     // Only admin users should reach here due to the middleware
     res.status(200).json({ message: 'Welcome to the Admin Dashboard', user: req.user });
@@ -30,4 +47,3 @@ exports.dashboard = (req, res) => {
     const result = await adminService.getPatients();
     res.status(200).json(result);
   };
-

@@ -184,6 +184,14 @@ export const LabRequestPriority: {
 
 export type LabRequestPriority = (typeof LabRequestPriority)[keyof typeof LabRequestPriority]
 
+
+export const UserStatus: {
+  active: 'active',
+  suspend: 'suspend'
+};
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -213,6 +221,10 @@ export const ApprovalStatus: typeof $Enums.ApprovalStatus
 export type LabRequestPriority = $Enums.LabRequestPriority
 
 export const LabRequestPriority: typeof $Enums.LabRequestPriority
+
+export type UserStatus = $Enums.UserStatus
+
+export const UserStatus: typeof $Enums.UserStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2944,6 +2956,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2955,6 +2968,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2966,6 +2980,7 @@ export namespace Prisma {
     email: number
     password: number
     phone: number
+    status: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2979,6 +2994,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2990,6 +3006,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3001,6 +3018,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3085,6 +3103,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status: $Enums.UserStatus | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3113,6 +3132,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     doctor?: boolean | User$doctorArgs<ExtArgs>
@@ -3131,6 +3151,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3142,6 +3163,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3153,11 +3175,12 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     doctor?: boolean | User$doctorArgs<ExtArgs>
     nurse?: boolean | User$nurseArgs<ExtArgs>
@@ -3188,6 +3211,7 @@ export namespace Prisma {
       email: string
       password: string
       phone: string
+      status: $Enums.UserStatus | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3626,6 +3650,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
+    readonly status: FieldRef<"User", 'UserStatus'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -17505,6 +17530,7 @@ export namespace Prisma {
     doctorId: string | null
     patientId: string | null
     status: $Enums.LabRequestStatus | null
+    approvalStatus: $Enums.ApprovalStatus | null
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     requestedAt: Date | null
@@ -17516,6 +17542,7 @@ export namespace Prisma {
     doctorId: string | null
     patientId: string | null
     status: $Enums.LabRequestStatus | null
+    approvalStatus: $Enums.ApprovalStatus | null
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     requestedAt: Date | null
@@ -17527,6 +17554,7 @@ export namespace Prisma {
     doctorId: number
     patientId: number
     status: number
+    approvalStatus: number
     notes: number
     priority: number
     tests: number
@@ -17541,6 +17569,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     requestedAt?: true
@@ -17552,6 +17581,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     requestedAt?: true
@@ -17563,6 +17593,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     tests?: true
@@ -17648,6 +17679,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status: $Enums.LabRequestStatus
+    approvalStatus: $Enums.ApprovalStatus
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     tests: JsonValue
@@ -17677,6 +17709,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17693,6 +17726,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17707,6 +17741,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17721,6 +17756,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17728,7 +17764,7 @@ export namespace Prisma {
     completedAt?: boolean
   }
 
-  export type LabRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "patientId" | "status" | "notes" | "priority" | "tests" | "requestedAt" | "completedAt", ExtArgs["result"]["labRequest"]>
+  export type LabRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "patientId" | "status" | "approvalStatus" | "notes" | "priority" | "tests" | "requestedAt" | "completedAt", ExtArgs["result"]["labRequest"]>
   export type LabRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labTestBill?: boolean | LabRequest$labTestBillArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
@@ -17757,6 +17793,7 @@ export namespace Prisma {
       doctorId: string
       patientId: string
       status: $Enums.LabRequestStatus
+      approvalStatus: $Enums.ApprovalStatus
       notes: string | null
       priority: $Enums.LabRequestPriority | null
       tests: Prisma.JsonValue
@@ -18193,6 +18230,7 @@ export namespace Prisma {
     readonly doctorId: FieldRef<"LabRequest", 'String'>
     readonly patientId: FieldRef<"LabRequest", 'String'>
     readonly status: FieldRef<"LabRequest", 'LabRequestStatus'>
+    readonly approvalStatus: FieldRef<"LabRequest", 'ApprovalStatus'>
     readonly notes: FieldRef<"LabRequest", 'String'>
     readonly priority: FieldRef<"LabRequest", 'LabRequestPriority'>
     readonly tests: FieldRef<"LabRequest", 'Json'>
@@ -24253,6 +24291,7 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     phone: 'phone',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -24390,6 +24429,7 @@ export namespace Prisma {
     doctorId: 'doctorId',
     patientId: 'patientId',
     status: 'status',
+    approvalStatus: 'approvalStatus',
     notes: 'notes',
     priority: 'priority',
     tests: 'tests',
@@ -24548,6 +24588,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UserStatus'
+   */
+  export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserStatus[]'
+   */
+  export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -24646,6 +24700,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ApprovalStatus'
+   */
+  export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApprovalStatus[]'
+   */
+  export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'LabRequestPriority'
    */
   export type EnumLabRequestPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabRequestPriority'>
@@ -24670,20 +24738,6 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'ApprovalStatus'
-   */
-  export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
-    
-
-
-  /**
-   * Reference to a field of type 'ApprovalStatus[]'
-   */
-  export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
     
 
 
@@ -24728,6 +24782,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -24746,6 +24801,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     doctor?: DoctorOrderByWithRelationInput
@@ -24767,6 +24823,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -24785,6 +24842,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -24802,6 +24860,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
+    status?: EnumUserStatusNullableWithAggregatesFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -25522,6 +25581,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -25538,6 +25598,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrderInput | SortOrder
     priority?: SortOrderInput | SortOrder
     tests?: SortOrder
@@ -25557,6 +25618,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -25573,6 +25635,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrderInput | SortOrder
     priority?: SortOrderInput | SortOrder
     tests?: SortOrder
@@ -25591,6 +25654,7 @@ export namespace Prisma {
     doctorId?: StringWithAggregatesFilter<"LabRequest"> | string
     patientId?: StringWithAggregatesFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusWithAggregatesFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusWithAggregatesFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableWithAggregatesFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableWithAggregatesFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonWithAggregatesFilter<"LabRequest">
@@ -25962,6 +26026,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -25980,6 +26045,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -25998,6 +26064,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -26016,6 +26083,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -26034,6 +26102,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26045,6 +26114,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26056,6 +26126,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26752,6 +26823,7 @@ export namespace Prisma {
   export type LabRequestCreateInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26768,6 +26840,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26780,6 +26853,7 @@ export namespace Prisma {
   export type LabRequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26796,6 +26870,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26810,6 +26885,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26820,6 +26896,7 @@ export namespace Prisma {
   export type LabRequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26832,6 +26909,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -27211,6 +27289,13 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type EnumUserStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableFilter<$PrismaModel> | $Enums.UserStatus | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -27257,6 +27342,11 @@ export namespace Prisma {
     isNot?: PharmacistWhereInput | null
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     role?: SortOrder
@@ -27264,6 +27354,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27275,6 +27366,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27286,6 +27378,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27316,6 +27409,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type EnumUserStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -27700,11 +27803,6 @@ export namespace Prisma {
     isNot?: AppointmentFinanceWhereInput | null
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type AppointmentCountOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
@@ -27926,6 +28024,13 @@ export namespace Prisma {
     not?: NestedEnumLabRequestStatusFilter<$PrismaModel> | $Enums.LabRequestStatus
   }
 
+  export type EnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
   export type EnumLabRequestPriorityNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.LabRequestPriority | EnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
     in?: $Enums.LabRequestPriority[] | ListEnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
@@ -27977,6 +28082,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     tests?: SortOrder
@@ -27989,6 +28095,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     requestedAt?: SortOrder
@@ -28000,6 +28107,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     requestedAt?: SortOrder
@@ -28014,6 +28122,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumLabRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumLabRequestStatusFilter<$PrismaModel>
+  }
+
+  export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type EnumLabRequestPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -28117,13 +28235,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type EnumApprovalStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
-  }
-
   export type AppointmentScalarRelationFilter = {
     is?: AppointmentWhereInput
     isNot?: AppointmentWhereInput
@@ -28189,16 +28300,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
-    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -28422,6 +28523,10 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type NullableEnumUserStatusFieldUpdateOperationsInput = {
+    set?: $Enums.UserStatus | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -29760,6 +29865,10 @@ export namespace Prisma {
     set?: $Enums.LabRequestStatus
   }
 
+  export type EnumApprovalStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ApprovalStatus
+  }
+
   export type NullableEnumLabRequestPriorityFieldUpdateOperationsInput = {
     set?: $Enums.LabRequestPriority | null
   }
@@ -29902,10 +30011,6 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type EnumApprovalStatusFieldUpdateOperationsInput = {
-    set?: $Enums.ApprovalStatus
   }
 
   export type AppointmentUpdateOneRequiredWithoutFinanceNestedInput = {
@@ -30078,6 +30183,13 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type NestedEnumUserStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableFilter<$PrismaModel> | $Enums.UserStatus | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -30125,6 +30237,27 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -30218,17 +30351,6 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -30277,6 +30399,13 @@ export namespace Prisma {
     not?: NestedEnumLabRequestStatusFilter<$PrismaModel> | $Enums.LabRequestStatus
   }
 
+  export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
   export type NestedEnumLabRequestPriorityNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.LabRequestPriority | EnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
     in?: $Enums.LabRequestPriority[] | ListEnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
@@ -30303,6 +30432,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumLabRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumLabRequestStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumLabRequestPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30363,13 +30502,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
-  }
-
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -30384,16 +30516,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
-    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
@@ -30774,6 +30896,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutPatientInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -30788,6 +30911,7 @@ export namespace Prisma {
     id?: string
     doctorId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -30835,6 +30959,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -30852,6 +30977,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31043,6 +31169,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -31095,6 +31222,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31112,6 +31240,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31333,6 +31462,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseCreateNestedOneWithoutUserInput
@@ -31350,6 +31480,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
@@ -31368,6 +31499,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutDoctorInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -31382,6 +31514,7 @@ export namespace Prisma {
     id?: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -31521,6 +31654,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUpdateOneWithoutUserNestedInput
@@ -31538,6 +31672,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
@@ -31617,6 +31752,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31634,6 +31770,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31683,6 +31820,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31700,6 +31838,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31717,6 +31856,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31734,6 +31874,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31825,6 +31966,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31842,6 +31984,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31903,6 +32046,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31920,6 +32064,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31953,6 +32098,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31970,6 +32116,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -32047,6 +32194,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -32064,6 +32212,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -32143,6 +32292,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -32160,6 +32310,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -32177,6 +32328,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -32194,6 +32346,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -32227,6 +32380,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -32244,6 +32398,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -33410,6 +33565,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutLabResultInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33425,6 +33581,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33502,6 +33659,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutLabResultInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33517,6 +33675,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33870,6 +34029,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutLabTestBillInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33885,6 +34045,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33970,6 +34131,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutLabTestBillInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33985,6 +34147,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34106,6 +34269,7 @@ export namespace Prisma {
     id?: string
     doctorId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -34192,6 +34356,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34206,6 +34371,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     doctorId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34219,6 +34385,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     doctorId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34376,6 +34543,7 @@ export namespace Prisma {
     id?: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -34474,6 +34642,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutDoctorInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34488,6 +34657,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34501,6 +34671,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
