@@ -195,3 +195,42 @@ exports.changePassword = async ({ userId, oldPassword, newPassword }) => {
 
   return { message: 'Password changed successfully' };
 };
+
+exports.updateProfile = async (id, data) => {
+  if ('email' in data || 'password' in data) {
+    throw new Error('Updating email or password is not allowed in this route');
+  }
+
+  // Update main user fields
+  const updatedUser = await prisma.user.update({
+    where: { id },
+    data: {
+      name: data.name,
+      phone: data.phone,
+      // You can also add role update if needed: role: data.role
+      patient: {
+        update: {
+          dateOfBirth: new Date(data.dateOfBirth),
+          gender: data.gender,
+          address: data.address,
+          emergencyContact: data.emergencyContact
+        }
+      }
+    },
+    include: {
+      patient: true
+    }
+  });
+
+  return {
+    message: 'Profile updated successfully',
+    user: {
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      phone: updatedUser.phone,
+      patient: updatedUser.patient
+    }
+  };
+};

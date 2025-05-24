@@ -8,6 +8,7 @@ router.post('/login', authController.login);
 router.post('/logout',authController.logout)
 router.get('/me', isAuthenticated, authController.getme);
 router.post('/change-password', isAuthenticated, authController.changePassword);
+router.put('/update-profile', isAuthenticated, authController.updateProfile);
 
 
 // patient registration
