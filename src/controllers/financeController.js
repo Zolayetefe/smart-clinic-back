@@ -1,4 +1,6 @@
 const financeService = require('../services/financeServices');
+const { PrismaClient } = require('../generated/prisma');
+const prisma = new PrismaClient();
 
 exports.getAllAppointments = async (req, res) => {
     try {
@@ -90,3 +92,70 @@ exports.getAppointmentsByStatus = async (req, res) => {
         });
     }
 };
+
+
+
+
+
+// lab tests controller
+
+exports.getLabRequests = async (req, res) => { 
+    try {
+        const { id } = req.params;
+
+        const labTests = await financeService.getLabRequests();
+        res.status(200).json({
+            data: labTests
+        });
+    } catch (error) {
+        console.error('Error getting lab tests:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Error fetching lab tests'
+        });
+    }
+};
+
+exports.approveLabRequest = async (req, res) => {
+    try {
+        
+        const { id: userId } = req.user;
+        
+        // Find the Finance record associated with the user
+        const userWithFinanceStaff= await prisma.user.findUnique({
+            where: { id: userId },
+            include: {
+                financeStaff: true
+            }
+        });
+
+        if (!userWithFinanceStaff || !userWithFinanceStaff.financeStaff) {
+            return res.status(403).json({
+                success: false,
+                message: 'User is not authorized as a finance staff'
+            });
+        }
+
+        const financeStaffId = userWithFinanceStaff.financeStaff.id;
+
+        const { id: requestLabId } = req.params;
+        console.log('requestLabId from controller',requestLabId);
+        const { tests, totalAmount, patientId } = req.body;
+        const result = await financeService.approveLabRequest(requestLabId, financeStaffId, tests, totalAmount, patientId);
+        res.status(200).json({
+            message: 'Lab request approved successfully',
+            data: result
+        });
+    } catch (error) {
+        console.error('Error approving lab test:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Error approving lab test'
+        });
+    }
+};
+
+
+
+
+// medication controller

@@ -184,6 +184,14 @@ export const LabRequestPriority: {
 
 export type LabRequestPriority = (typeof LabRequestPriority)[keyof typeof LabRequestPriority]
 
+
+export const UserStatus: {
+  active: 'active',
+  suspend: 'suspend'
+};
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -213,6 +221,10 @@ export const ApprovalStatus: typeof $Enums.ApprovalStatus
 export type LabRequestPriority = $Enums.LabRequestPriority
 
 export const LabRequestPriority: typeof $Enums.LabRequestPriority
+
+export type UserStatus = $Enums.UserStatus
+
+export const UserStatus: typeof $Enums.UserStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2787,12 +2799,10 @@ export namespace Prisma {
 
   export type LabTechnicianCountOutputType = {
     labResults: number
-    labTestBills: number
   }
 
   export type LabTechnicianCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labResults?: boolean | LabTechnicianCountOutputTypeCountLabResultsArgs
-    labTestBills?: boolean | LabTechnicianCountOutputTypeCountLabTestBillsArgs
   }
 
   // Custom InputTypes
@@ -2813,13 +2823,6 @@ export namespace Prisma {
     where?: LabResultWhereInput
   }
 
-  /**
-   * LabTechnicianCountOutputType without action
-   */
-  export type LabTechnicianCountOutputTypeCountLabTestBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LabTestBillWhereInput
-  }
-
 
   /**
    * Count Type FinanceStaffCountOutputType
@@ -2828,11 +2831,13 @@ export namespace Prisma {
   export type FinanceStaffCountOutputType = {
     approvedFinances: number
     medicationBills: number
+    labTestBills: number
   }
 
   export type FinanceStaffCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     approvedFinances?: boolean | FinanceStaffCountOutputTypeCountApprovedFinancesArgs
     medicationBills?: boolean | FinanceStaffCountOutputTypeCountMedicationBillsArgs
+    labTestBills?: boolean | FinanceStaffCountOutputTypeCountLabTestBillsArgs
   }
 
   // Custom InputTypes
@@ -2858,6 +2863,13 @@ export namespace Prisma {
    */
   export type FinanceStaffCountOutputTypeCountMedicationBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MedicationBillWhereInput
+  }
+
+  /**
+   * FinanceStaffCountOutputType without action
+   */
+  export type FinanceStaffCountOutputTypeCountLabTestBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabTestBillWhereInput
   }
 
 
@@ -2944,6 +2956,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2955,6 +2968,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2966,6 +2980,7 @@ export namespace Prisma {
     email: number
     password: number
     phone: number
+    status: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2979,6 +2994,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2990,6 +3006,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3001,6 +3018,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3085,6 +3103,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status: $Enums.UserStatus | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3113,6 +3132,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     doctor?: boolean | User$doctorArgs<ExtArgs>
@@ -3131,6 +3151,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3142,6 +3163,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3153,11 +3175,12 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "name" | "email" | "password" | "phone" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     doctor?: boolean | User$doctorArgs<ExtArgs>
     nurse?: boolean | User$nurseArgs<ExtArgs>
@@ -3188,6 +3211,7 @@ export namespace Prisma {
       email: string
       password: string
       phone: string
+      status: $Enums.UserStatus | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3626,6 +3650,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
+    readonly status: FieldRef<"User", 'UserStatus'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -7796,7 +7821,6 @@ export namespace Prisma {
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     labResults?: boolean | LabTechnician$labResultsArgs<ExtArgs>
-    labTestBills?: boolean | LabTechnician$labTestBillsArgs<ExtArgs>
     _count?: boolean | LabTechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTechnician"]>
 
@@ -7821,7 +7845,6 @@ export namespace Prisma {
   export type LabTechnicianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     labResults?: boolean | LabTechnician$labResultsArgs<ExtArgs>
-    labTestBills?: boolean | LabTechnician$labTestBillsArgs<ExtArgs>
     _count?: boolean | LabTechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LabTechnicianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7836,7 +7859,6 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       labResults: Prisma.$LabResultPayload<ExtArgs>[]
-      labTestBills: Prisma.$LabTestBillPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8237,7 +8259,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     labResults<T extends LabTechnician$labResultsArgs<ExtArgs> = {}>(args?: Subset<T, LabTechnician$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    labTestBills<T extends LabTechnician$labTestBillsArgs<ExtArgs> = {}>(args?: Subset<T, LabTechnician$labTestBillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestBillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8686,30 +8707,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LabResultScalarFieldEnum | LabResultScalarFieldEnum[]
-  }
-
-  /**
-   * LabTechnician.labTestBills
-   */
-  export type LabTechnician$labTestBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LabTestBill
-     */
-    select?: LabTestBillSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LabTestBill
-     */
-    omit?: LabTestBillOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LabTestBillInclude<ExtArgs> | null
-    where?: LabTestBillWhereInput
-    orderBy?: LabTestBillOrderByWithRelationInput | LabTestBillOrderByWithRelationInput[]
-    cursor?: LabTestBillWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LabTestBillScalarFieldEnum | LabTestBillScalarFieldEnum[]
   }
 
   /**
@@ -9892,6 +9889,7 @@ export namespace Prisma {
     userId?: boolean
     approvedFinances?: boolean | FinanceStaff$approvedFinancesArgs<ExtArgs>
     medicationBills?: boolean | FinanceStaff$medicationBillsArgs<ExtArgs>
+    labTestBills?: boolean | FinanceStaff$labTestBillsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | FinanceStaffCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["financeStaff"]>
@@ -9917,6 +9915,7 @@ export namespace Prisma {
   export type FinanceStaffInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     approvedFinances?: boolean | FinanceStaff$approvedFinancesArgs<ExtArgs>
     medicationBills?: boolean | FinanceStaff$medicationBillsArgs<ExtArgs>
+    labTestBills?: boolean | FinanceStaff$labTestBillsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | FinanceStaffCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -9932,6 +9931,7 @@ export namespace Prisma {
     objects: {
       approvedFinances: Prisma.$AppointmentFinancePayload<ExtArgs>[]
       medicationBills: Prisma.$MedicationBillPayload<ExtArgs>[]
+      labTestBills: Prisma.$LabTestBillPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -10333,6 +10333,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     approvedFinances<T extends FinanceStaff$approvedFinancesArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaff$approvedFinancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentFinancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicationBills<T extends FinanceStaff$medicationBillsArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaff$medicationBillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicationBillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    labTestBills<T extends FinanceStaff$labTestBillsArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaff$labTestBillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestBillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10806,6 +10807,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MedicationBillScalarFieldEnum | MedicationBillScalarFieldEnum[]
+  }
+
+  /**
+   * FinanceStaff.labTestBills
+   */
+  export type FinanceStaff$labTestBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestBill
+     */
+    select?: LabTestBillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestBill
+     */
+    omit?: LabTestBillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestBillInclude<ExtArgs> | null
+    where?: LabTestBillWhereInput
+    orderBy?: LabTestBillOrderByWithRelationInput | LabTestBillOrderByWithRelationInput[]
+    cursor?: LabTestBillWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LabTestBillScalarFieldEnum | LabTestBillScalarFieldEnum[]
   }
 
   /**
@@ -17505,6 +17530,7 @@ export namespace Prisma {
     doctorId: string | null
     patientId: string | null
     status: $Enums.LabRequestStatus | null
+    approvalStatus: $Enums.ApprovalStatus | null
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     requestedAt: Date | null
@@ -17516,6 +17542,7 @@ export namespace Prisma {
     doctorId: string | null
     patientId: string | null
     status: $Enums.LabRequestStatus | null
+    approvalStatus: $Enums.ApprovalStatus | null
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     requestedAt: Date | null
@@ -17527,6 +17554,7 @@ export namespace Prisma {
     doctorId: number
     patientId: number
     status: number
+    approvalStatus: number
     notes: number
     priority: number
     tests: number
@@ -17541,6 +17569,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     requestedAt?: true
@@ -17552,6 +17581,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     requestedAt?: true
@@ -17563,6 +17593,7 @@ export namespace Prisma {
     doctorId?: true
     patientId?: true
     status?: true
+    approvalStatus?: true
     notes?: true
     priority?: true
     tests?: true
@@ -17648,6 +17679,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status: $Enums.LabRequestStatus
+    approvalStatus: $Enums.ApprovalStatus
     notes: string | null
     priority: $Enums.LabRequestPriority | null
     tests: JsonValue
@@ -17677,6 +17709,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17693,6 +17726,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17707,6 +17741,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17721,6 +17756,7 @@ export namespace Prisma {
     doctorId?: boolean
     patientId?: boolean
     status?: boolean
+    approvalStatus?: boolean
     notes?: boolean
     priority?: boolean
     tests?: boolean
@@ -17728,7 +17764,7 @@ export namespace Prisma {
     completedAt?: boolean
   }
 
-  export type LabRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "patientId" | "status" | "notes" | "priority" | "tests" | "requestedAt" | "completedAt", ExtArgs["result"]["labRequest"]>
+  export type LabRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "patientId" | "status" | "approvalStatus" | "notes" | "priority" | "tests" | "requestedAt" | "completedAt", ExtArgs["result"]["labRequest"]>
   export type LabRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labTestBill?: boolean | LabRequest$labTestBillArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
@@ -17757,6 +17793,7 @@ export namespace Prisma {
       doctorId: string
       patientId: string
       status: $Enums.LabRequestStatus
+      approvalStatus: $Enums.ApprovalStatus
       notes: string | null
       priority: $Enums.LabRequestPriority | null
       tests: Prisma.JsonValue
@@ -18193,6 +18230,7 @@ export namespace Prisma {
     readonly doctorId: FieldRef<"LabRequest", 'String'>
     readonly patientId: FieldRef<"LabRequest", 'String'>
     readonly status: FieldRef<"LabRequest", 'LabRequestStatus'>
+    readonly approvalStatus: FieldRef<"LabRequest", 'ApprovalStatus'>
     readonly notes: FieldRef<"LabRequest", 'String'>
     readonly priority: FieldRef<"LabRequest", 'LabRequestPriority'>
     readonly tests: FieldRef<"LabRequest", 'Json'>
@@ -22054,7 +22092,7 @@ export namespace Prisma {
     id: string | null
     patientId: string | null
     labRequestId: string | null
-    labTechnicianId: string | null
+    financeStaffId: string | null
     totalAmount: number | null
     approvalStatus: $Enums.ApprovalStatus | null
     paidAt: Date | null
@@ -22064,7 +22102,7 @@ export namespace Prisma {
     id: string | null
     patientId: string | null
     labRequestId: string | null
-    labTechnicianId: string | null
+    financeStaffId: string | null
     totalAmount: number | null
     approvalStatus: $Enums.ApprovalStatus | null
     paidAt: Date | null
@@ -22074,7 +22112,7 @@ export namespace Prisma {
     id: number
     patientId: number
     labRequestId: number
-    labTechnicianId: number
+    financeStaffId: number
     tests: number
     totalAmount: number
     approvalStatus: number
@@ -22095,7 +22133,7 @@ export namespace Prisma {
     id?: true
     patientId?: true
     labRequestId?: true
-    labTechnicianId?: true
+    financeStaffId?: true
     totalAmount?: true
     approvalStatus?: true
     paidAt?: true
@@ -22105,7 +22143,7 @@ export namespace Prisma {
     id?: true
     patientId?: true
     labRequestId?: true
-    labTechnicianId?: true
+    financeStaffId?: true
     totalAmount?: true
     approvalStatus?: true
     paidAt?: true
@@ -22115,7 +22153,7 @@ export namespace Prisma {
     id?: true
     patientId?: true
     labRequestId?: true
-    labTechnicianId?: true
+    financeStaffId?: true
     tests?: true
     totalAmount?: true
     approvalStatus?: true
@@ -22213,7 +22251,7 @@ export namespace Prisma {
     id: string
     patientId: string
     labRequestId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonValue
     totalAmount: number
     approvalStatus: $Enums.ApprovalStatus
@@ -22243,70 +22281,70 @@ export namespace Prisma {
     id?: boolean
     patientId?: boolean
     labRequestId?: boolean
-    labTechnicianId?: boolean
+    financeStaffId?: boolean
     tests?: boolean
     totalAmount?: boolean
     approvalStatus?: boolean
     paidAt?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestBill"]>
 
   export type LabTestBillSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
     labRequestId?: boolean
-    labTechnicianId?: boolean
+    financeStaffId?: boolean
     tests?: boolean
     totalAmount?: boolean
     approvalStatus?: boolean
     paidAt?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestBill"]>
 
   export type LabTestBillSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patientId?: boolean
     labRequestId?: boolean
-    labTechnicianId?: boolean
+    financeStaffId?: boolean
     tests?: boolean
     totalAmount?: boolean
     approvalStatus?: boolean
     paidAt?: boolean
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestBill"]>
 
   export type LabTestBillSelectScalar = {
     id?: boolean
     patientId?: boolean
     labRequestId?: boolean
-    labTechnicianId?: boolean
+    financeStaffId?: boolean
     tests?: boolean
     totalAmount?: boolean
     approvalStatus?: boolean
     paidAt?: boolean
   }
 
-  export type LabTestBillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "labRequestId" | "labTechnicianId" | "tests" | "totalAmount" | "approvalStatus" | "paidAt", ExtArgs["result"]["labTestBill"]>
+  export type LabTestBillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patientId" | "labRequestId" | "financeStaffId" | "tests" | "totalAmount" | "approvalStatus" | "paidAt", ExtArgs["result"]["labTestBill"]>
   export type LabTestBillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
   export type LabTestBillIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
   export type LabTestBillIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | PatientDefaultArgs<ExtArgs>
     labRequest?: boolean | LabRequestDefaultArgs<ExtArgs>
-    labTechnician?: boolean | LabTechnicianDefaultArgs<ExtArgs>
+    financeStaff?: boolean | FinanceStaffDefaultArgs<ExtArgs>
   }
 
   export type $LabTestBillPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -22314,13 +22352,13 @@ export namespace Prisma {
     objects: {
       patient: Prisma.$PatientPayload<ExtArgs>
       labRequest: Prisma.$LabRequestPayload<ExtArgs>
-      labTechnician: Prisma.$LabTechnicianPayload<ExtArgs>
+      financeStaff: Prisma.$FinanceStaffPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       patientId: string
       labRequestId: string
-      labTechnicianId: string
+      financeStaffId: string
       tests: Prisma.JsonValue
       totalAmount: number
       approvalStatus: $Enums.ApprovalStatus
@@ -22721,7 +22759,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     patient<T extends PatientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PatientDefaultArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     labRequest<T extends LabRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabRequestDefaultArgs<ExtArgs>>): Prisma__LabRequestClient<$Result.GetResult<Prisma.$LabRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    labTechnician<T extends LabTechnicianDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabTechnicianDefaultArgs<ExtArgs>>): Prisma__LabTechnicianClient<$Result.GetResult<Prisma.$LabTechnicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    financeStaff<T extends FinanceStaffDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FinanceStaffDefaultArgs<ExtArgs>>): Prisma__FinanceStaffClient<$Result.GetResult<Prisma.$FinanceStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22754,7 +22792,7 @@ export namespace Prisma {
     readonly id: FieldRef<"LabTestBill", 'String'>
     readonly patientId: FieldRef<"LabTestBill", 'String'>
     readonly labRequestId: FieldRef<"LabTestBill", 'String'>
-    readonly labTechnicianId: FieldRef<"LabTestBill", 'String'>
+    readonly financeStaffId: FieldRef<"LabTestBill", 'String'>
     readonly tests: FieldRef<"LabTestBill", 'Json'>
     readonly totalAmount: FieldRef<"LabTestBill", 'Float'>
     readonly approvalStatus: FieldRef<"LabTestBill", 'ApprovalStatus'>
@@ -24253,6 +24291,7 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     phone: 'phone',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -24390,6 +24429,7 @@ export namespace Prisma {
     doctorId: 'doctorId',
     patientId: 'patientId',
     status: 'status',
+    approvalStatus: 'approvalStatus',
     notes: 'notes',
     priority: 'priority',
     tests: 'tests',
@@ -24444,7 +24484,7 @@ export namespace Prisma {
     id: 'id',
     patientId: 'patientId',
     labRequestId: 'labRequestId',
-    labTechnicianId: 'labTechnicianId',
+    financeStaffId: 'financeStaffId',
     tests: 'tests',
     totalAmount: 'totalAmount',
     approvalStatus: 'approvalStatus',
@@ -24548,6 +24588,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UserStatus'
+   */
+  export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserStatus[]'
+   */
+  export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -24646,6 +24700,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ApprovalStatus'
+   */
+  export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApprovalStatus[]'
+   */
+  export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'LabRequestPriority'
    */
   export type EnumLabRequestPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabRequestPriority'>
@@ -24670,20 +24738,6 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'ApprovalStatus'
-   */
-  export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
-    
-
-
-  /**
-   * Reference to a field of type 'ApprovalStatus[]'
-   */
-  export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
     
 
 
@@ -24728,6 +24782,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -24746,6 +24801,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     doctor?: DoctorOrderByWithRelationInput
@@ -24767,6 +24823,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
@@ -24785,6 +24842,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -24802,6 +24860,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
+    status?: EnumUserStatusNullableWithAggregatesFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -24998,7 +25057,6 @@ export namespace Prisma {
     userId?: StringFilter<"LabTechnician"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     labResults?: LabResultListRelationFilter
-    labTestBills?: LabTestBillListRelationFilter
   }
 
   export type LabTechnicianOrderByWithRelationInput = {
@@ -25006,7 +25064,6 @@ export namespace Prisma {
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     labResults?: LabResultOrderByRelationAggregateInput
-    labTestBills?: LabTestBillOrderByRelationAggregateInput
   }
 
   export type LabTechnicianWhereUniqueInput = Prisma.AtLeast<{
@@ -25017,7 +25074,6 @@ export namespace Prisma {
     NOT?: LabTechnicianWhereInput | LabTechnicianWhereInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     labResults?: LabResultListRelationFilter
-    labTestBills?: LabTestBillListRelationFilter
   }, "id" | "userId">
 
   export type LabTechnicianOrderByWithAggregationInput = {
@@ -25084,6 +25140,7 @@ export namespace Prisma {
     userId?: StringFilter<"FinanceStaff"> | string
     approvedFinances?: AppointmentFinanceListRelationFilter
     medicationBills?: MedicationBillListRelationFilter
+    labTestBills?: LabTestBillListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -25092,6 +25149,7 @@ export namespace Prisma {
     userId?: SortOrder
     approvedFinances?: AppointmentFinanceOrderByRelationAggregateInput
     medicationBills?: MedicationBillOrderByRelationAggregateInput
+    labTestBills?: LabTestBillOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -25103,6 +25161,7 @@ export namespace Prisma {
     NOT?: FinanceStaffWhereInput | FinanceStaffWhereInput[]
     approvedFinances?: AppointmentFinanceListRelationFilter
     medicationBills?: MedicationBillListRelationFilter
+    labTestBills?: LabTestBillListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -25522,6 +25581,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -25538,6 +25598,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrderInput | SortOrder
     priority?: SortOrderInput | SortOrder
     tests?: SortOrder
@@ -25557,6 +25618,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -25573,6 +25635,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrderInput | SortOrder
     priority?: SortOrderInput | SortOrder
     tests?: SortOrder
@@ -25591,6 +25654,7 @@ export namespace Prisma {
     doctorId?: StringWithAggregatesFilter<"LabRequest"> | string
     patientId?: StringWithAggregatesFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusWithAggregatesFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusWithAggregatesFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableWithAggregatesFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableWithAggregatesFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonWithAggregatesFilter<"LabRequest">
@@ -25824,28 +25888,28 @@ export namespace Prisma {
     id?: StringFilter<"LabTestBill"> | string
     patientId?: StringFilter<"LabTestBill"> | string
     labRequestId?: StringFilter<"LabTestBill"> | string
-    labTechnicianId?: StringFilter<"LabTestBill"> | string
+    financeStaffId?: StringFilter<"LabTestBill"> | string
     tests?: JsonFilter<"LabTestBill">
     totalAmount?: FloatFilter<"LabTestBill"> | number
     approvalStatus?: EnumApprovalStatusFilter<"LabTestBill"> | $Enums.ApprovalStatus
     paidAt?: DateTimeFilter<"LabTestBill"> | Date | string
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     labRequest?: XOR<LabRequestScalarRelationFilter, LabRequestWhereInput>
-    labTechnician?: XOR<LabTechnicianScalarRelationFilter, LabTechnicianWhereInput>
+    financeStaff?: XOR<FinanceStaffScalarRelationFilter, FinanceStaffWhereInput>
   }
 
   export type LabTestBillOrderByWithRelationInput = {
     id?: SortOrder
     patientId?: SortOrder
     labRequestId?: SortOrder
-    labTechnicianId?: SortOrder
+    financeStaffId?: SortOrder
     tests?: SortOrder
     totalAmount?: SortOrder
     approvalStatus?: SortOrder
     paidAt?: SortOrder
     patient?: PatientOrderByWithRelationInput
     labRequest?: LabRequestOrderByWithRelationInput
-    labTechnician?: LabTechnicianOrderByWithRelationInput
+    financeStaff?: FinanceStaffOrderByWithRelationInput
   }
 
   export type LabTestBillWhereUniqueInput = Prisma.AtLeast<{
@@ -25855,21 +25919,21 @@ export namespace Prisma {
     OR?: LabTestBillWhereInput[]
     NOT?: LabTestBillWhereInput | LabTestBillWhereInput[]
     patientId?: StringFilter<"LabTestBill"> | string
-    labTechnicianId?: StringFilter<"LabTestBill"> | string
+    financeStaffId?: StringFilter<"LabTestBill"> | string
     tests?: JsonFilter<"LabTestBill">
     totalAmount?: FloatFilter<"LabTestBill"> | number
     approvalStatus?: EnumApprovalStatusFilter<"LabTestBill"> | $Enums.ApprovalStatus
     paidAt?: DateTimeFilter<"LabTestBill"> | Date | string
     patient?: XOR<PatientScalarRelationFilter, PatientWhereInput>
     labRequest?: XOR<LabRequestScalarRelationFilter, LabRequestWhereInput>
-    labTechnician?: XOR<LabTechnicianScalarRelationFilter, LabTechnicianWhereInput>
+    financeStaff?: XOR<FinanceStaffScalarRelationFilter, FinanceStaffWhereInput>
   }, "id" | "labRequestId">
 
   export type LabTestBillOrderByWithAggregationInput = {
     id?: SortOrder
     patientId?: SortOrder
     labRequestId?: SortOrder
-    labTechnicianId?: SortOrder
+    financeStaffId?: SortOrder
     tests?: SortOrder
     totalAmount?: SortOrder
     approvalStatus?: SortOrder
@@ -25888,7 +25952,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"LabTestBill"> | string
     patientId?: StringWithAggregatesFilter<"LabTestBill"> | string
     labRequestId?: StringWithAggregatesFilter<"LabTestBill"> | string
-    labTechnicianId?: StringWithAggregatesFilter<"LabTestBill"> | string
+    financeStaffId?: StringWithAggregatesFilter<"LabTestBill"> | string
     tests?: JsonWithAggregatesFilter<"LabTestBill">
     totalAmount?: FloatWithAggregatesFilter<"LabTestBill"> | number
     approvalStatus?: EnumApprovalStatusWithAggregatesFilter<"LabTestBill"> | $Enums.ApprovalStatus
@@ -25962,6 +26026,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -25980,6 +26045,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -25998,6 +26064,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -26016,6 +26083,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -26034,6 +26102,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26045,6 +26114,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26056,6 +26126,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26253,28 +26324,24 @@ export namespace Prisma {
     id?: string
     user: UserCreateNestedOneWithoutLabTechnicianInput
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    labTestBills?: LabTestBillCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUncheckedCreateInput = {
     id?: string
     userId: string
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutLabTechnicianNestedInput
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    labTestBills?: LabTestBillUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    labTestBills?: LabTestBillUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianCreateManyInput = {
@@ -26329,6 +26396,7 @@ export namespace Prisma {
     id?: string
     approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
     medicationBills?: MedicationBillCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillCreateNestedManyWithoutFinanceStaffInput
     user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
@@ -26337,12 +26405,14 @@ export namespace Prisma {
     userId: string
     approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
     medicationBills?: MedicationBillUncheckedCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
     medicationBills?: MedicationBillUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUpdateManyWithoutFinanceStaffNestedInput
     user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
@@ -26351,6 +26421,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
     medicationBills?: MedicationBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffCreateManyInput = {
@@ -26752,6 +26823,7 @@ export namespace Prisma {
   export type LabRequestCreateInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26768,6 +26840,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26780,6 +26853,7 @@ export namespace Prisma {
   export type LabRequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26796,6 +26870,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26810,6 +26885,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -26820,6 +26896,7 @@ export namespace Prisma {
   export type LabRequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -26832,6 +26909,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -27061,14 +27139,14 @@ export namespace Prisma {
     paidAt?: Date | string
     patient: PatientCreateNestedOneWithoutLabTestBillsInput
     labRequest: LabRequestCreateNestedOneWithoutLabTestBillInput
-    labTechnician: LabTechnicianCreateNestedOneWithoutLabTestBillsInput
+    financeStaff: FinanceStaffCreateNestedOneWithoutLabTestBillsInput
   }
 
   export type LabTestBillUncheckedCreateInput = {
     id?: string
     patientId: string
     labRequestId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
@@ -27083,14 +27161,14 @@ export namespace Prisma {
     paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
     patient?: PatientUpdateOneRequiredWithoutLabTestBillsNestedInput
     labRequest?: LabRequestUpdateOneRequiredWithoutLabTestBillNestedInput
-    labTechnician?: LabTechnicianUpdateOneRequiredWithoutLabTestBillsNestedInput
+    financeStaff?: FinanceStaffUpdateOneRequiredWithoutLabTestBillsNestedInput
   }
 
   export type LabTestBillUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     labRequestId?: StringFieldUpdateOperationsInput | string
-    labTechnicianId?: StringFieldUpdateOperationsInput | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
     tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
@@ -27101,7 +27179,7 @@ export namespace Prisma {
     id?: string
     patientId: string
     labRequestId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
@@ -27120,7 +27198,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     labRequestId?: StringFieldUpdateOperationsInput | string
-    labTechnicianId?: StringFieldUpdateOperationsInput | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
     tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
@@ -27211,6 +27289,13 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type EnumUserStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableFilter<$PrismaModel> | $Enums.UserStatus | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -27257,6 +27342,11 @@ export namespace Prisma {
     isNot?: PharmacistWhereInput | null
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     role?: SortOrder
@@ -27264,6 +27354,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27275,6 +27366,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27286,6 +27378,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27316,6 +27409,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type EnumUserStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -27700,11 +27803,6 @@ export namespace Prisma {
     isNot?: AppointmentFinanceWhereInput | null
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type AppointmentCountOrderByAggregateInput = {
     id?: SortOrder
     patientId?: SortOrder
@@ -27926,6 +28024,13 @@ export namespace Prisma {
     not?: NestedEnumLabRequestStatusFilter<$PrismaModel> | $Enums.LabRequestStatus
   }
 
+  export type EnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
   export type EnumLabRequestPriorityNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.LabRequestPriority | EnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
     in?: $Enums.LabRequestPriority[] | ListEnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
@@ -27977,6 +28082,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     tests?: SortOrder
@@ -27989,6 +28095,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     requestedAt?: SortOrder
@@ -28000,6 +28107,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     patientId?: SortOrder
     status?: SortOrder
+    approvalStatus?: SortOrder
     notes?: SortOrder
     priority?: SortOrder
     requestedAt?: SortOrder
@@ -28014,6 +28122,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumLabRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumLabRequestStatusFilter<$PrismaModel>
+  }
+
+  export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type EnumLabRequestPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -28117,13 +28235,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type EnumApprovalStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
-  }
-
   export type AppointmentScalarRelationFilter = {
     is?: AppointmentWhereInput
     isNot?: AppointmentWhereInput
@@ -28189,16 +28300,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
-    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -28276,7 +28377,7 @@ export namespace Prisma {
     id?: SortOrder
     patientId?: SortOrder
     labRequestId?: SortOrder
-    labTechnicianId?: SortOrder
+    financeStaffId?: SortOrder
     tests?: SortOrder
     totalAmount?: SortOrder
     approvalStatus?: SortOrder
@@ -28291,7 +28392,7 @@ export namespace Prisma {
     id?: SortOrder
     patientId?: SortOrder
     labRequestId?: SortOrder
-    labTechnicianId?: SortOrder
+    financeStaffId?: SortOrder
     totalAmount?: SortOrder
     approvalStatus?: SortOrder
     paidAt?: SortOrder
@@ -28301,7 +28402,7 @@ export namespace Prisma {
     id?: SortOrder
     patientId?: SortOrder
     labRequestId?: SortOrder
-    labTechnicianId?: SortOrder
+    financeStaffId?: SortOrder
     totalAmount?: SortOrder
     approvalStatus?: SortOrder
     paidAt?: SortOrder
@@ -28422,6 +28523,10 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type NullableEnumUserStatusFieldUpdateOperationsInput = {
+    set?: $Enums.UserStatus | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -29159,25 +29264,11 @@ export namespace Prisma {
     connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
   }
 
-  export type LabTestBillCreateNestedManyWithoutLabTechnicianInput = {
-    create?: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput> | LabTestBillCreateWithoutLabTechnicianInput[] | LabTestBillUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabTestBillCreateOrConnectWithoutLabTechnicianInput | LabTestBillCreateOrConnectWithoutLabTechnicianInput[]
-    createMany?: LabTestBillCreateManyLabTechnicianInputEnvelope
-    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-  }
-
   export type LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput = {
     create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
     connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
     createMany?: LabResultCreateManyLabTechnicianInputEnvelope
     connect?: LabResultWhereUniqueInput | LabResultWhereUniqueInput[]
-  }
-
-  export type LabTestBillUncheckedCreateNestedManyWithoutLabTechnicianInput = {
-    create?: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput> | LabTestBillCreateWithoutLabTechnicianInput[] | LabTestBillUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabTestBillCreateOrConnectWithoutLabTechnicianInput | LabTestBillCreateOrConnectWithoutLabTechnicianInput[]
-    createMany?: LabTestBillCreateManyLabTechnicianInputEnvelope
-    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutLabTechnicianNestedInput = {
@@ -29202,20 +29293,6 @@ export namespace Prisma {
     deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
   }
 
-  export type LabTestBillUpdateManyWithoutLabTechnicianNestedInput = {
-    create?: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput> | LabTestBillCreateWithoutLabTechnicianInput[] | LabTestBillUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabTestBillCreateOrConnectWithoutLabTechnicianInput | LabTestBillCreateOrConnectWithoutLabTechnicianInput[]
-    upsert?: LabTestBillUpsertWithWhereUniqueWithoutLabTechnicianInput | LabTestBillUpsertWithWhereUniqueWithoutLabTechnicianInput[]
-    createMany?: LabTestBillCreateManyLabTechnicianInputEnvelope
-    set?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    disconnect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    delete?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    update?: LabTestBillUpdateWithWhereUniqueWithoutLabTechnicianInput | LabTestBillUpdateWithWhereUniqueWithoutLabTechnicianInput[]
-    updateMany?: LabTestBillUpdateManyWithWhereWithoutLabTechnicianInput | LabTestBillUpdateManyWithWhereWithoutLabTechnicianInput[]
-    deleteMany?: LabTestBillScalarWhereInput | LabTestBillScalarWhereInput[]
-  }
-
   export type LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput = {
     create?: XOR<LabResultCreateWithoutLabTechnicianInput, LabResultUncheckedCreateWithoutLabTechnicianInput> | LabResultCreateWithoutLabTechnicianInput[] | LabResultUncheckedCreateWithoutLabTechnicianInput[]
     connectOrCreate?: LabResultCreateOrConnectWithoutLabTechnicianInput | LabResultCreateOrConnectWithoutLabTechnicianInput[]
@@ -29228,20 +29305,6 @@ export namespace Prisma {
     update?: LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput | LabResultUpdateWithWhereUniqueWithoutLabTechnicianInput[]
     updateMany?: LabResultUpdateManyWithWhereWithoutLabTechnicianInput | LabResultUpdateManyWithWhereWithoutLabTechnicianInput[]
     deleteMany?: LabResultScalarWhereInput | LabResultScalarWhereInput[]
-  }
-
-  export type LabTestBillUncheckedUpdateManyWithoutLabTechnicianNestedInput = {
-    create?: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput> | LabTestBillCreateWithoutLabTechnicianInput[] | LabTestBillUncheckedCreateWithoutLabTechnicianInput[]
-    connectOrCreate?: LabTestBillCreateOrConnectWithoutLabTechnicianInput | LabTestBillCreateOrConnectWithoutLabTechnicianInput[]
-    upsert?: LabTestBillUpsertWithWhereUniqueWithoutLabTechnicianInput | LabTestBillUpsertWithWhereUniqueWithoutLabTechnicianInput[]
-    createMany?: LabTestBillCreateManyLabTechnicianInputEnvelope
-    set?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    disconnect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    delete?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
-    update?: LabTestBillUpdateWithWhereUniqueWithoutLabTechnicianInput | LabTestBillUpdateWithWhereUniqueWithoutLabTechnicianInput[]
-    updateMany?: LabTestBillUpdateManyWithWhereWithoutLabTechnicianInput | LabTestBillUpdateManyWithWhereWithoutLabTechnicianInput[]
-    deleteMany?: LabTestBillScalarWhereInput | LabTestBillScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPharmacistInput = {
@@ -29272,6 +29335,13 @@ export namespace Prisma {
     connect?: MedicationBillWhereUniqueInput | MedicationBillWhereUniqueInput[]
   }
 
+  export type LabTestBillCreateNestedManyWithoutFinanceStaffInput = {
+    create?: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput> | LabTestBillCreateWithoutFinanceStaffInput[] | LabTestBillUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: LabTestBillCreateOrConnectWithoutFinanceStaffInput | LabTestBillCreateOrConnectWithoutFinanceStaffInput[]
+    createMany?: LabTestBillCreateManyFinanceStaffInputEnvelope
+    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutFinanceStaffInput = {
     create?: XOR<UserCreateWithoutFinanceStaffInput, UserUncheckedCreateWithoutFinanceStaffInput>
     connectOrCreate?: UserCreateOrConnectWithoutFinanceStaffInput
@@ -29290,6 +29360,13 @@ export namespace Prisma {
     connectOrCreate?: MedicationBillCreateOrConnectWithoutFinanceStaffInput | MedicationBillCreateOrConnectWithoutFinanceStaffInput[]
     createMany?: MedicationBillCreateManyFinanceStaffInputEnvelope
     connect?: MedicationBillWhereUniqueInput | MedicationBillWhereUniqueInput[]
+  }
+
+  export type LabTestBillUncheckedCreateNestedManyWithoutFinanceStaffInput = {
+    create?: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput> | LabTestBillCreateWithoutFinanceStaffInput[] | LabTestBillUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: LabTestBillCreateOrConnectWithoutFinanceStaffInput | LabTestBillCreateOrConnectWithoutFinanceStaffInput[]
+    createMany?: LabTestBillCreateManyFinanceStaffInputEnvelope
+    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
   }
 
   export type AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput = {
@@ -29318,6 +29395,20 @@ export namespace Prisma {
     update?: MedicationBillUpdateWithWhereUniqueWithoutFinanceStaffInput | MedicationBillUpdateWithWhereUniqueWithoutFinanceStaffInput[]
     updateMany?: MedicationBillUpdateManyWithWhereWithoutFinanceStaffInput | MedicationBillUpdateManyWithWhereWithoutFinanceStaffInput[]
     deleteMany?: MedicationBillScalarWhereInput | MedicationBillScalarWhereInput[]
+  }
+
+  export type LabTestBillUpdateManyWithoutFinanceStaffNestedInput = {
+    create?: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput> | LabTestBillCreateWithoutFinanceStaffInput[] | LabTestBillUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: LabTestBillCreateOrConnectWithoutFinanceStaffInput | LabTestBillCreateOrConnectWithoutFinanceStaffInput[]
+    upsert?: LabTestBillUpsertWithWhereUniqueWithoutFinanceStaffInput | LabTestBillUpsertWithWhereUniqueWithoutFinanceStaffInput[]
+    createMany?: LabTestBillCreateManyFinanceStaffInputEnvelope
+    set?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    disconnect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    delete?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    update?: LabTestBillUpdateWithWhereUniqueWithoutFinanceStaffInput | LabTestBillUpdateWithWhereUniqueWithoutFinanceStaffInput[]
+    updateMany?: LabTestBillUpdateManyWithWhereWithoutFinanceStaffInput | LabTestBillUpdateManyWithWhereWithoutFinanceStaffInput[]
+    deleteMany?: LabTestBillScalarWhereInput | LabTestBillScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutFinanceStaffNestedInput = {
@@ -29354,6 +29445,20 @@ export namespace Prisma {
     update?: MedicationBillUpdateWithWhereUniqueWithoutFinanceStaffInput | MedicationBillUpdateWithWhereUniqueWithoutFinanceStaffInput[]
     updateMany?: MedicationBillUpdateManyWithWhereWithoutFinanceStaffInput | MedicationBillUpdateManyWithWhereWithoutFinanceStaffInput[]
     deleteMany?: MedicationBillScalarWhereInput | MedicationBillScalarWhereInput[]
+  }
+
+  export type LabTestBillUncheckedUpdateManyWithoutFinanceStaffNestedInput = {
+    create?: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput> | LabTestBillCreateWithoutFinanceStaffInput[] | LabTestBillUncheckedCreateWithoutFinanceStaffInput[]
+    connectOrCreate?: LabTestBillCreateOrConnectWithoutFinanceStaffInput | LabTestBillCreateOrConnectWithoutFinanceStaffInput[]
+    upsert?: LabTestBillUpsertWithWhereUniqueWithoutFinanceStaffInput | LabTestBillUpsertWithWhereUniqueWithoutFinanceStaffInput[]
+    createMany?: LabTestBillCreateManyFinanceStaffInputEnvelope
+    set?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    disconnect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    delete?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    connect?: LabTestBillWhereUniqueInput | LabTestBillWhereUniqueInput[]
+    update?: LabTestBillUpdateWithWhereUniqueWithoutFinanceStaffInput | LabTestBillUpdateWithWhereUniqueWithoutFinanceStaffInput[]
+    updateMany?: LabTestBillUpdateManyWithWhereWithoutFinanceStaffInput | LabTestBillUpdateManyWithWhereWithoutFinanceStaffInput[]
+    deleteMany?: LabTestBillScalarWhereInput | LabTestBillScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutReceptionistInput = {
@@ -29760,6 +29865,10 @@ export namespace Prisma {
     set?: $Enums.LabRequestStatus
   }
 
+  export type EnumApprovalStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ApprovalStatus
+  }
+
   export type NullableEnumLabRequestPriorityFieldUpdateOperationsInput = {
     set?: $Enums.LabRequestPriority | null
   }
@@ -29904,10 +30013,6 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type EnumApprovalStatusFieldUpdateOperationsInput = {
-    set?: $Enums.ApprovalStatus
-  }
-
   export type AppointmentUpdateOneRequiredWithoutFinanceNestedInput = {
     create?: XOR<AppointmentCreateWithoutFinanceInput, AppointmentUncheckedCreateWithoutFinanceInput>
     connectOrCreate?: AppointmentCreateOrConnectWithoutFinanceInput
@@ -29986,10 +30091,10 @@ export namespace Prisma {
     connect?: LabRequestWhereUniqueInput
   }
 
-  export type LabTechnicianCreateNestedOneWithoutLabTestBillsInput = {
-    create?: XOR<LabTechnicianCreateWithoutLabTestBillsInput, LabTechnicianUncheckedCreateWithoutLabTestBillsInput>
-    connectOrCreate?: LabTechnicianCreateOrConnectWithoutLabTestBillsInput
-    connect?: LabTechnicianWhereUniqueInput
+  export type FinanceStaffCreateNestedOneWithoutLabTestBillsInput = {
+    create?: XOR<FinanceStaffCreateWithoutLabTestBillsInput, FinanceStaffUncheckedCreateWithoutLabTestBillsInput>
+    connectOrCreate?: FinanceStaffCreateOrConnectWithoutLabTestBillsInput
+    connect?: FinanceStaffWhereUniqueInput
   }
 
   export type PatientUpdateOneRequiredWithoutLabTestBillsNestedInput = {
@@ -30008,12 +30113,12 @@ export namespace Prisma {
     update?: XOR<XOR<LabRequestUpdateToOneWithWhereWithoutLabTestBillInput, LabRequestUpdateWithoutLabTestBillInput>, LabRequestUncheckedUpdateWithoutLabTestBillInput>
   }
 
-  export type LabTechnicianUpdateOneRequiredWithoutLabTestBillsNestedInput = {
-    create?: XOR<LabTechnicianCreateWithoutLabTestBillsInput, LabTechnicianUncheckedCreateWithoutLabTestBillsInput>
-    connectOrCreate?: LabTechnicianCreateOrConnectWithoutLabTestBillsInput
-    upsert?: LabTechnicianUpsertWithoutLabTestBillsInput
-    connect?: LabTechnicianWhereUniqueInput
-    update?: XOR<XOR<LabTechnicianUpdateToOneWithWhereWithoutLabTestBillsInput, LabTechnicianUpdateWithoutLabTestBillsInput>, LabTechnicianUncheckedUpdateWithoutLabTestBillsInput>
+  export type FinanceStaffUpdateOneRequiredWithoutLabTestBillsNestedInput = {
+    create?: XOR<FinanceStaffCreateWithoutLabTestBillsInput, FinanceStaffUncheckedCreateWithoutLabTestBillsInput>
+    connectOrCreate?: FinanceStaffCreateOrConnectWithoutLabTestBillsInput
+    upsert?: FinanceStaffUpsertWithoutLabTestBillsInput
+    connect?: FinanceStaffWhereUniqueInput
+    update?: XOR<XOR<FinanceStaffUpdateToOneWithWhereWithoutLabTestBillsInput, FinanceStaffUpdateWithoutLabTestBillsInput>, FinanceStaffUncheckedUpdateWithoutLabTestBillsInput>
   }
 
   export type MedicalRecordCreatetriageIdsInput = {
@@ -30078,6 +30183,13 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type NestedEnumUserStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableFilter<$PrismaModel> | $Enums.UserStatus | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -30125,6 +30237,27 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumUserStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -30218,17 +30351,6 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -30277,6 +30399,13 @@ export namespace Prisma {
     not?: NestedEnumLabRequestStatusFilter<$PrismaModel> | $Enums.LabRequestStatus
   }
 
+  export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
   export type NestedEnumLabRequestPriorityNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.LabRequestPriority | EnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
     in?: $Enums.LabRequestPriority[] | ListEnumLabRequestPriorityFieldRefInput<$PrismaModel> | null
@@ -30303,6 +30432,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumLabRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumLabRequestStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumLabRequestPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30363,13 +30502,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
-  }
-
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -30384,16 +30516,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
-    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
@@ -30501,13 +30623,11 @@ export namespace Prisma {
   export type LabTechnicianCreateWithoutUserInput = {
     id?: string
     labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
-    labTestBills?: LabTestBillCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUncheckedCreateWithoutUserInput = {
     id?: string
     labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
-    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianCreateOrConnectWithoutUserInput = {
@@ -30519,12 +30639,14 @@ export namespace Prisma {
     id?: string
     approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
     medicationBills?: MedicationBillCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffUncheckedCreateWithoutUserInput = {
     id?: string
     approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
     medicationBills?: MedicationBillUncheckedCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffCreateOrConnectWithoutUserInput = {
@@ -30665,13 +30787,11 @@ export namespace Prisma {
   export type LabTechnicianUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
-    labTestBills?: LabTestBillUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
-    labTestBills?: LabTestBillUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type FinanceStaffUpsertWithoutUserInput = {
@@ -30689,12 +30809,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
     medicationBills?: MedicationBillUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
     medicationBills?: MedicationBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type ReceptionistUpsertWithoutUserInput = {
@@ -30774,6 +30896,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutPatientInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -30788,6 +30911,7 @@ export namespace Prisma {
     id?: string
     doctorId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -30835,6 +30959,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -30852,6 +30977,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -30966,13 +31092,13 @@ export namespace Prisma {
     approvalStatus?: $Enums.ApprovalStatus
     paidAt?: Date | string
     labRequest: LabRequestCreateNestedOneWithoutLabTestBillInput
-    labTechnician: LabTechnicianCreateNestedOneWithoutLabTestBillsInput
+    financeStaff: FinanceStaffCreateNestedOneWithoutLabTestBillsInput
   }
 
   export type LabTestBillUncheckedCreateWithoutPatientInput = {
     id?: string
     labRequestId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
@@ -31043,6 +31169,7 @@ export namespace Prisma {
     doctorId?: StringFilter<"LabRequest"> | string
     patientId?: StringFilter<"LabRequest"> | string
     status?: EnumLabRequestStatusFilter<"LabRequest"> | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFilter<"LabRequest"> | $Enums.ApprovalStatus
     notes?: StringNullableFilter<"LabRequest"> | string | null
     priority?: EnumLabRequestPriorityNullableFilter<"LabRequest"> | $Enums.LabRequestPriority | null
     tests?: JsonFilter<"LabRequest">
@@ -31095,6 +31222,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31112,6 +31240,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31235,7 +31364,7 @@ export namespace Prisma {
     id?: StringFilter<"LabTestBill"> | string
     patientId?: StringFilter<"LabTestBill"> | string
     labRequestId?: StringFilter<"LabTestBill"> | string
-    labTechnicianId?: StringFilter<"LabTestBill"> | string
+    financeStaffId?: StringFilter<"LabTestBill"> | string
     tests?: JsonFilter<"LabTestBill">
     totalAmount?: FloatFilter<"LabTestBill"> | number
     approvalStatus?: EnumApprovalStatusFilter<"LabTestBill"> | $Enums.ApprovalStatus
@@ -31333,6 +31462,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseCreateNestedOneWithoutUserInput
@@ -31350,6 +31480,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     nurse?: NurseUncheckedCreateNestedOneWithoutUserInput
@@ -31368,6 +31499,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutDoctorInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -31382,6 +31514,7 @@ export namespace Prisma {
     id?: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -31521,6 +31654,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUpdateOneWithoutUserNestedInput
@@ -31538,6 +31672,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     nurse?: NurseUncheckedUpdateOneWithoutUserNestedInput
@@ -31617,6 +31752,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31634,6 +31770,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31683,6 +31820,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31700,6 +31838,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31717,6 +31856,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31734,6 +31874,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31777,36 +31918,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type LabTestBillCreateWithoutLabTechnicianInput = {
-    id?: string
-    tests: JsonNullValueInput | InputJsonValue
-    totalAmount: number
-    approvalStatus?: $Enums.ApprovalStatus
-    paidAt?: Date | string
-    patient: PatientCreateNestedOneWithoutLabTestBillsInput
-    labRequest: LabRequestCreateNestedOneWithoutLabTestBillInput
-  }
-
-  export type LabTestBillUncheckedCreateWithoutLabTechnicianInput = {
-    id?: string
-    patientId: string
-    labRequestId: string
-    tests: JsonNullValueInput | InputJsonValue
-    totalAmount: number
-    approvalStatus?: $Enums.ApprovalStatus
-    paidAt?: Date | string
-  }
-
-  export type LabTestBillCreateOrConnectWithoutLabTechnicianInput = {
-    where: LabTestBillWhereUniqueInput
-    create: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput>
-  }
-
-  export type LabTestBillCreateManyLabTechnicianInputEnvelope = {
-    data: LabTestBillCreateManyLabTechnicianInput | LabTestBillCreateManyLabTechnicianInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserUpsertWithoutLabTechnicianInput = {
     update: XOR<UserUpdateWithoutLabTechnicianInput, UserUncheckedUpdateWithoutLabTechnicianInput>
     create: XOR<UserCreateWithoutLabTechnicianInput, UserUncheckedCreateWithoutLabTechnicianInput>
@@ -31825,6 +31936,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31842,6 +31954,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -31880,22 +31993,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LabResult"> | Date | string
   }
 
-  export type LabTestBillUpsertWithWhereUniqueWithoutLabTechnicianInput = {
-    where: LabTestBillWhereUniqueInput
-    update: XOR<LabTestBillUpdateWithoutLabTechnicianInput, LabTestBillUncheckedUpdateWithoutLabTechnicianInput>
-    create: XOR<LabTestBillCreateWithoutLabTechnicianInput, LabTestBillUncheckedCreateWithoutLabTechnicianInput>
-  }
-
-  export type LabTestBillUpdateWithWhereUniqueWithoutLabTechnicianInput = {
-    where: LabTestBillWhereUniqueInput
-    data: XOR<LabTestBillUpdateWithoutLabTechnicianInput, LabTestBillUncheckedUpdateWithoutLabTechnicianInput>
-  }
-
-  export type LabTestBillUpdateManyWithWhereWithoutLabTechnicianInput = {
-    where: LabTestBillScalarWhereInput
-    data: XOR<LabTestBillUpdateManyMutationInput, LabTestBillUncheckedUpdateManyWithoutLabTechnicianInput>
-  }
-
   export type UserCreateWithoutPharmacistInput = {
     id?: string
     role: $Enums.Role
@@ -31903,6 +32000,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -31920,6 +32018,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -31953,6 +32052,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -31970,6 +32070,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -32040,6 +32141,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LabTestBillCreateWithoutFinanceStaffInput = {
+    id?: string
+    tests: JsonNullValueInput | InputJsonValue
+    totalAmount: number
+    approvalStatus?: $Enums.ApprovalStatus
+    paidAt?: Date | string
+    patient: PatientCreateNestedOneWithoutLabTestBillsInput
+    labRequest: LabRequestCreateNestedOneWithoutLabTestBillInput
+  }
+
+  export type LabTestBillUncheckedCreateWithoutFinanceStaffInput = {
+    id?: string
+    patientId: string
+    labRequestId: string
+    tests: JsonNullValueInput | InputJsonValue
+    totalAmount: number
+    approvalStatus?: $Enums.ApprovalStatus
+    paidAt?: Date | string
+  }
+
+  export type LabTestBillCreateOrConnectWithoutFinanceStaffInput = {
+    where: LabTestBillWhereUniqueInput
+    create: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput>
+  }
+
+  export type LabTestBillCreateManyFinanceStaffInputEnvelope = {
+    data: LabTestBillCreateManyFinanceStaffInput | LabTestBillCreateManyFinanceStaffInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserCreateWithoutFinanceStaffInput = {
     id?: string
     role: $Enums.Role
@@ -32047,6 +32178,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -32064,6 +32196,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -32125,6 +32258,22 @@ export namespace Prisma {
     data: XOR<MedicationBillUpdateManyMutationInput, MedicationBillUncheckedUpdateManyWithoutFinanceStaffInput>
   }
 
+  export type LabTestBillUpsertWithWhereUniqueWithoutFinanceStaffInput = {
+    where: LabTestBillWhereUniqueInput
+    update: XOR<LabTestBillUpdateWithoutFinanceStaffInput, LabTestBillUncheckedUpdateWithoutFinanceStaffInput>
+    create: XOR<LabTestBillCreateWithoutFinanceStaffInput, LabTestBillUncheckedCreateWithoutFinanceStaffInput>
+  }
+
+  export type LabTestBillUpdateWithWhereUniqueWithoutFinanceStaffInput = {
+    where: LabTestBillWhereUniqueInput
+    data: XOR<LabTestBillUpdateWithoutFinanceStaffInput, LabTestBillUncheckedUpdateWithoutFinanceStaffInput>
+  }
+
+  export type LabTestBillUpdateManyWithWhereWithoutFinanceStaffInput = {
+    where: LabTestBillScalarWhereInput
+    data: XOR<LabTestBillUpdateManyMutationInput, LabTestBillUncheckedUpdateManyWithoutFinanceStaffInput>
+  }
+
   export type UserUpsertWithoutFinanceStaffInput = {
     update: XOR<UserUpdateWithoutFinanceStaffInput, UserUncheckedUpdateWithoutFinanceStaffInput>
     create: XOR<UserCreateWithoutFinanceStaffInput, UserUncheckedCreateWithoutFinanceStaffInput>
@@ -32143,6 +32292,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -32160,6 +32310,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -32177,6 +32328,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
@@ -32194,6 +32346,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    status?: $Enums.UserStatus | null
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
@@ -32227,6 +32380,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
@@ -32244,6 +32398,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
@@ -33147,13 +33302,13 @@ export namespace Prisma {
     approvalStatus?: $Enums.ApprovalStatus
     paidAt?: Date | string
     patient: PatientCreateNestedOneWithoutLabTestBillsInput
-    labTechnician: LabTechnicianCreateNestedOneWithoutLabTestBillsInput
+    financeStaff: FinanceStaffCreateNestedOneWithoutLabTestBillsInput
   }
 
   export type LabTestBillUncheckedCreateWithoutLabRequestInput = {
     id?: string
     patientId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
@@ -33266,13 +33421,13 @@ export namespace Prisma {
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
     patient?: PatientUpdateOneRequiredWithoutLabTestBillsNestedInput
-    labTechnician?: LabTechnicianUpdateOneRequiredWithoutLabTestBillsNestedInput
+    financeStaff?: FinanceStaffUpdateOneRequiredWithoutLabTestBillsNestedInput
   }
 
   export type LabTestBillUncheckedUpdateWithoutLabRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
-    labTechnicianId?: StringFieldUpdateOperationsInput | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
     tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
@@ -33410,6 +33565,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutLabResultInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33425,6 +33581,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33441,13 +33598,11 @@ export namespace Prisma {
   export type LabTechnicianCreateWithoutLabResultsInput = {
     id?: string
     user: UserCreateNestedOneWithoutLabTechnicianInput
-    labTestBills?: LabTestBillCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianUncheckedCreateWithoutLabResultsInput = {
     id?: string
     userId: string
-    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutLabTechnicianInput
   }
 
   export type LabTechnicianCreateOrConnectWithoutLabResultsInput = {
@@ -33502,6 +33657,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutLabResultInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33517,6 +33673,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33539,13 +33696,11 @@ export namespace Prisma {
   export type LabTechnicianUpdateWithoutLabResultsInput = {
     id?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutLabTechnicianNestedInput
-    labTestBills?: LabTestBillUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type LabTechnicianUncheckedUpdateWithoutLabResultsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    labTestBills?: LabTestBillUncheckedUpdateManyWithoutLabTechnicianNestedInput
   }
 
   export type AppointmentCreateWithoutFinanceInput = {
@@ -33582,6 +33737,7 @@ export namespace Prisma {
   export type FinanceStaffCreateWithoutApprovedFinancesInput = {
     id?: string
     medicationBills?: MedicationBillCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillCreateNestedManyWithoutFinanceStaffInput
     user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
@@ -33589,6 +33745,7 @@ export namespace Prisma {
     id?: string
     userId: string
     medicationBills?: MedicationBillUncheckedCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffCreateOrConnectWithoutApprovedFinancesInput = {
@@ -33647,6 +33804,7 @@ export namespace Prisma {
   export type FinanceStaffUpdateWithoutApprovedFinancesInput = {
     id?: StringFieldUpdateOperationsInput | string
     medicationBills?: MedicationBillUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUpdateManyWithoutFinanceStaffNestedInput
     user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
@@ -33654,11 +33812,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     medicationBills?: MedicationBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type FinanceStaffCreateWithoutMedicationBillsInput = {
     id?: string
     approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillCreateNestedManyWithoutFinanceStaffInput
     user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
@@ -33666,6 +33826,7 @@ export namespace Prisma {
     id?: string
     userId: string
     approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
+    labTestBills?: LabTestBillUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
   export type FinanceStaffCreateOrConnectWithoutMedicationBillsInput = {
@@ -33749,6 +33910,7 @@ export namespace Prisma {
   export type FinanceStaffUpdateWithoutMedicationBillsInput = {
     id?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUpdateManyWithoutFinanceStaffNestedInput
     user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
@@ -33756,6 +33918,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
+    labTestBills?: LabTestBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type PatientUpsertWithoutMedicationBillsInput = {
@@ -33870,6 +34033,7 @@ export namespace Prisma {
   export type LabRequestCreateWithoutLabTestBillInput = {
     id?: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33885,6 +34049,7 @@ export namespace Prisma {
     doctorId: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -33898,21 +34063,23 @@ export namespace Prisma {
     create: XOR<LabRequestCreateWithoutLabTestBillInput, LabRequestUncheckedCreateWithoutLabTestBillInput>
   }
 
-  export type LabTechnicianCreateWithoutLabTestBillsInput = {
+  export type FinanceStaffCreateWithoutLabTestBillsInput = {
     id?: string
-    user: UserCreateNestedOneWithoutLabTechnicianInput
-    labResults?: LabResultCreateNestedManyWithoutLabTechnicianInput
+    approvedFinances?: AppointmentFinanceCreateNestedManyWithoutFinanceStaffInput
+    medicationBills?: MedicationBillCreateNestedManyWithoutFinanceStaffInput
+    user: UserCreateNestedOneWithoutFinanceStaffInput
   }
 
-  export type LabTechnicianUncheckedCreateWithoutLabTestBillsInput = {
+  export type FinanceStaffUncheckedCreateWithoutLabTestBillsInput = {
     id?: string
     userId: string
-    labResults?: LabResultUncheckedCreateNestedManyWithoutLabTechnicianInput
+    approvedFinances?: AppointmentFinanceUncheckedCreateNestedManyWithoutFinanceStaffInput
+    medicationBills?: MedicationBillUncheckedCreateNestedManyWithoutFinanceStaffInput
   }
 
-  export type LabTechnicianCreateOrConnectWithoutLabTestBillsInput = {
-    where: LabTechnicianWhereUniqueInput
-    create: XOR<LabTechnicianCreateWithoutLabTestBillsInput, LabTechnicianUncheckedCreateWithoutLabTestBillsInput>
+  export type FinanceStaffCreateOrConnectWithoutLabTestBillsInput = {
+    where: FinanceStaffWhereUniqueInput
+    create: XOR<FinanceStaffCreateWithoutLabTestBillsInput, FinanceStaffUncheckedCreateWithoutLabTestBillsInput>
   }
 
   export type PatientUpsertWithoutLabTestBillsInput = {
@@ -33970,6 +34137,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutLabTestBillInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33985,6 +34153,7 @@ export namespace Prisma {
     doctorId?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -33993,27 +34162,29 @@ export namespace Prisma {
     labResult?: LabResultUncheckedUpdateOneWithoutLabRequestNestedInput
   }
 
-  export type LabTechnicianUpsertWithoutLabTestBillsInput = {
-    update: XOR<LabTechnicianUpdateWithoutLabTestBillsInput, LabTechnicianUncheckedUpdateWithoutLabTestBillsInput>
-    create: XOR<LabTechnicianCreateWithoutLabTestBillsInput, LabTechnicianUncheckedCreateWithoutLabTestBillsInput>
-    where?: LabTechnicianWhereInput
+  export type FinanceStaffUpsertWithoutLabTestBillsInput = {
+    update: XOR<FinanceStaffUpdateWithoutLabTestBillsInput, FinanceStaffUncheckedUpdateWithoutLabTestBillsInput>
+    create: XOR<FinanceStaffCreateWithoutLabTestBillsInput, FinanceStaffUncheckedCreateWithoutLabTestBillsInput>
+    where?: FinanceStaffWhereInput
   }
 
-  export type LabTechnicianUpdateToOneWithWhereWithoutLabTestBillsInput = {
-    where?: LabTechnicianWhereInput
-    data: XOR<LabTechnicianUpdateWithoutLabTestBillsInput, LabTechnicianUncheckedUpdateWithoutLabTestBillsInput>
+  export type FinanceStaffUpdateToOneWithWhereWithoutLabTestBillsInput = {
+    where?: FinanceStaffWhereInput
+    data: XOR<FinanceStaffUpdateWithoutLabTestBillsInput, FinanceStaffUncheckedUpdateWithoutLabTestBillsInput>
   }
 
-  export type LabTechnicianUpdateWithoutLabTestBillsInput = {
+  export type FinanceStaffUpdateWithoutLabTestBillsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutLabTechnicianNestedInput
-    labResults?: LabResultUpdateManyWithoutLabTechnicianNestedInput
+    approvedFinances?: AppointmentFinanceUpdateManyWithoutFinanceStaffNestedInput
+    medicationBills?: MedicationBillUpdateManyWithoutFinanceStaffNestedInput
+    user?: UserUpdateOneRequiredWithoutFinanceStaffNestedInput
   }
 
-  export type LabTechnicianUncheckedUpdateWithoutLabTestBillsInput = {
+  export type FinanceStaffUncheckedUpdateWithoutLabTestBillsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    labResults?: LabResultUncheckedUpdateManyWithoutLabTechnicianNestedInput
+    approvedFinances?: AppointmentFinanceUncheckedUpdateManyWithoutFinanceStaffNestedInput
+    medicationBills?: MedicationBillUncheckedUpdateManyWithoutFinanceStaffNestedInput
   }
 
   export type PatientCreateWithoutMedicalRecordInput = {
@@ -34106,6 +34277,7 @@ export namespace Prisma {
     id?: string
     doctorId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -34146,7 +34318,7 @@ export namespace Prisma {
   export type LabTestBillCreateManyPatientInput = {
     id?: string
     labRequestId: string
-    labTechnicianId: string
+    financeStaffId: string
     tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
@@ -34192,6 +34364,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34206,6 +34379,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     doctorId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34219,6 +34393,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     doctorId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34325,13 +34500,13 @@ export namespace Prisma {
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
     labRequest?: LabRequestUpdateOneRequiredWithoutLabTestBillNestedInput
-    labTechnician?: LabTechnicianUpdateOneRequiredWithoutLabTestBillsNestedInput
+    financeStaff?: FinanceStaffUpdateOneRequiredWithoutLabTestBillsNestedInput
   }
 
   export type LabTestBillUncheckedUpdateWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
     labRequestId?: StringFieldUpdateOperationsInput | string
-    labTechnicianId?: StringFieldUpdateOperationsInput | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
     tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
@@ -34341,7 +34516,7 @@ export namespace Prisma {
   export type LabTestBillUncheckedUpdateManyWithoutPatientInput = {
     id?: StringFieldUpdateOperationsInput | string
     labRequestId?: StringFieldUpdateOperationsInput | string
-    labTechnicianId?: StringFieldUpdateOperationsInput | string
+    financeStaffId?: StringFieldUpdateOperationsInput | string
     tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
@@ -34376,6 +34551,7 @@ export namespace Prisma {
     id?: string
     patientId: string
     status?: $Enums.LabRequestStatus
+    approvalStatus?: $Enums.ApprovalStatus
     notes?: string | null
     priority?: $Enums.LabRequestPriority | null
     tests: JsonNullValueInput | InputJsonValue
@@ -34474,6 +34650,7 @@ export namespace Prisma {
   export type LabRequestUpdateWithoutDoctorInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34488,6 +34665,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34501,6 +34679,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     patientId?: StringFieldUpdateOperationsInput | string
     status?: EnumLabRequestStatusFieldUpdateOperationsInput | $Enums.LabRequestStatus
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     priority?: NullableEnumLabRequestPriorityFieldUpdateOperationsInput | $Enums.LabRequestPriority | null
     tests?: JsonNullValueInput | InputJsonValue
@@ -34588,16 +34767,6 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type LabTestBillCreateManyLabTechnicianInput = {
-    id?: string
-    patientId: string
-    labRequestId: string
-    tests: JsonNullValueInput | InputJsonValue
-    totalAmount: number
-    approvalStatus?: $Enums.ApprovalStatus
-    paidAt?: Date | string
-  }
-
   export type LabResultUpdateWithoutLabTechnicianInput = {
     id?: StringFieldUpdateOperationsInput | string
     result?: JsonNullValueInput | InputJsonValue
@@ -34624,36 +34793,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LabTestBillUpdateWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tests?: JsonNullValueInput | InputJsonValue
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    patient?: PatientUpdateOneRequiredWithoutLabTestBillsNestedInput
-    labRequest?: LabRequestUpdateOneRequiredWithoutLabTestBillNestedInput
-  }
-
-  export type LabTestBillUncheckedUpdateWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    patientId?: StringFieldUpdateOperationsInput | string
-    labRequestId?: StringFieldUpdateOperationsInput | string
-    tests?: JsonNullValueInput | InputJsonValue
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LabTestBillUncheckedUpdateManyWithoutLabTechnicianInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    patientId?: StringFieldUpdateOperationsInput | string
-    labRequestId?: StringFieldUpdateOperationsInput | string
-    tests?: JsonNullValueInput | InputJsonValue
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
-    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type AppointmentFinanceCreateManyFinanceStaffInput = {
     id?: string
     appointmentId: string
@@ -34669,6 +34808,16 @@ export namespace Prisma {
     patientId: string
     prescriptionId: string
     medications: JsonNullValueInput | InputJsonValue
+    totalAmount: number
+    approvalStatus?: $Enums.ApprovalStatus
+    paidAt?: Date | string
+  }
+
+  export type LabTestBillCreateManyFinanceStaffInput = {
+    id?: string
+    patientId: string
+    labRequestId: string
+    tests: JsonNullValueInput | InputJsonValue
     totalAmount: number
     approvalStatus?: $Enums.ApprovalStatus
     paidAt?: Date | string
@@ -34729,6 +34878,36 @@ export namespace Prisma {
     patientId?: StringFieldUpdateOperationsInput | string
     prescriptionId?: StringFieldUpdateOperationsInput | string
     medications?: JsonNullValueInput | InputJsonValue
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestBillUpdateWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tests?: JsonNullValueInput | InputJsonValue
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    patient?: PatientUpdateOneRequiredWithoutLabTestBillsNestedInput
+    labRequest?: LabRequestUpdateOneRequiredWithoutLabTestBillNestedInput
+  }
+
+  export type LabTestBillUncheckedUpdateWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    labRequestId?: StringFieldUpdateOperationsInput | string
+    tests?: JsonNullValueInput | InputJsonValue
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestBillUncheckedUpdateManyWithoutFinanceStaffInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    labRequestId?: StringFieldUpdateOperationsInput | string
+    tests?: JsonNullValueInput | InputJsonValue
     totalAmount?: FloatFieldUpdateOperationsInput | number
     approvalStatus?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
     paidAt?: DateTimeFieldUpdateOperationsInput | Date | string
