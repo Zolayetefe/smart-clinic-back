@@ -50,3 +50,49 @@ exports.getPrescriptions = async () => {
     };
 };
 
+exports.dispenseMedication = async (pharmacistId, prescriptionId, medications) => {
+    const dispense = await prisma.dispense.create({
+        data: {
+            pharmacistId,
+            prescriptionId,
+            medications,
+        }
+    });
+    return dispense;
+};
+
+exports.getDispenses = async (pharmacistId) => {
+    const dispenses = await prisma.dispense.findMany({
+        where: { pharmacistId },
+        include: {
+            prescription: {
+                include: {
+                    patient: {
+                        include: {
+                            user: {
+                                select: {
+                                    name: true,
+                                    email: true,
+                                    phone: true,
+                                }
+                            },
+                        }
+                    },
+                }
+            },
+        }
+    });
+    return dispenses.map(dispense => ({
+        id: dispense.id,
+        prescriptionId: dispense.prescriptionId,
+        medications: dispense.medications,
+        patientName: dispense.prescription.patient.user.name,
+        patientEmail: dispense.prescription.patient.user.email,
+        patientPhone: dispense.prescription.patient.user.phone,
+        doctorName: dispense.prescription.doctor.user.name,
+        doctorEmail: dispense.prescription.doctor.user.email,
+        doctorPhone: dispense.prescription.doctor.user.phone,
+        notes: dispense.notes,
+        dispensedAt: dispense.dispensedAt,
+    }));
+};
