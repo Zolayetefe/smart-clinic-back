@@ -196,4 +196,118 @@ exports.getLabResults = async (doctorId) => {
     }));
 };
 
+exports.getLabResultById = async (labResultId) => {
+    try {
+        const labResult = await prisma.labResult.findUnique({
+            where: { id: labResultId },
+            include: {
+                labRequest: {
+                    include: {
+                        patient: true,
+                        doctor: true
+                    }
+                },
+                labTechnician: {
+                    include: {
+                        user: true
+                    }
+                }
+            }
+        });
+        return labResult;
+    } catch (error) {
+        console.error('Error fetching lab result:', error);
+        throw error;
+    }
+};
 
+exports.createPrescription = async (doctorId, prescriptionData) => {
+    try {
+        const { patientId, labResultId, notes, medications, prescribedAt } = prescriptionData;
+
+        // Validate required fields
+        if (!doctorId || !patientId || !labResultId || !medications || !Array.isArray(medications)) {
+            throw new Error('Missing or invalid required fields');
+        }
+
+        // Validate medications array structure
+        if (!medications.every(med => med.name && med.dosage && med.frequency && med.duration)) {
+            throw new Error('Each medication must have name, dosage, frequency, and duration');
+        }
+
+        // First verify that the lab result exists and is not already prescribed
+        const existingLabResult = await prisma.labResult.findUnique({
+            where: { id: labResultId },
+            include: { 
+                prescription: true,
+                labRequest: true
+            }
+        });
+
+        if (!existingLabResult) {
+            throw new Error(`Lab result with ID ${labResultId} not found. Please verify the lab result ID.`);
+        }
+
+        // Verify that the lab result belongs to the correct patient
+        if (existingLabResult.labRequest.patientId !== patientId) {
+            throw new Error('Lab result does not belong to the specified patient');
+        }
+
+        if (existingLabResult.prescription) {
+            throw new Error('This lab result already has a prescription');
+        }
+
+        const prescription = await prisma.prescription.create({
+            data: {
+                doctorId,
+                patientId,
+                labResultId,
+                notes,
+                medications,
+                prescribedAt: prescribedAt ? new Date(prescribedAt) : new Date(),
+                status: 'active'
+            },
+            include: {
+                doctor: {
+                    include: {
+                        user: true
+                    }
+                },
+                patient: {
+                    include: {
+                        user: true
+                    }
+                },
+                labResult: true,
+                medicationBill: true,
+                dispense: true
+            }
+        });
+
+        return {
+            id: prescription.id,
+            doctorId: prescription.doctorId,
+            doctorName: prescription.doctor.user.name,
+            patientId: prescription.patientId,
+            patientName: prescription.patient.user.name,
+            labResultId: prescription.labResultId,
+            medications: prescription.medications,
+            notes: prescription.notes,
+            prescribedAt: prescription.prescribedAt,
+            status: prescription.status,
+            dispenseStatus: prescription.dispense ? 'dispensed' : 'pending',
+            medicationBills: prescription.medicationBill
+        };
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            if (error.code === 'P2003') {
+                throw new Error('Invalid doctor, patient, or lab result ID');
+            }
+            if (error.code === 'P2002') {
+                throw new Error('A prescription for this lab result already exists');
+            }
+        }
+        console.error('Error details:', error);
+        throw error;
+    }
+};

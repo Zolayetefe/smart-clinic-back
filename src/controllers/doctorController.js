@@ -114,4 +114,110 @@ exports.getLabResults = async (req, res) => {
     }
 };
 
+exports.getLabResult = async (req, res) => {
+    try {
+        const labResult = await doctorService.getLabResultById(req.params.id);
+        if (!labResult) {
+            return res.status(404).json({
+                success: false,
+                message: 'Lab result not found'
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            data: labResult
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message || 'Error fetching lab result',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+};
+
+exports.createPrescription = async (req, res) => {
+    try {
+        const { id } = req.user;
+        
+        // Find the doctor record associated with the user
+        const userWithDoctor = await prisma.user.findUnique({
+            where: { id },
+            select: {
+                doctor: {
+                    select: {
+                        id: true
+                    }
+                }
+            }
+        });
+
+        if (!userWithDoctor || !userWithDoctor.doctor) {
+            return res.status(403).json({
+                success: false,
+                message: 'User is not authorized as a doctor'
+            });
+        }
+
+        const doctorId = userWithDoctor.doctor.id;
+        
+        // Validate request body
+        const { patientId, labResultId, medications, notes, prescribedAt } = req.body;
+        
+        // First check if the lab result exists
+        const labResult = await doctorService.getLabResultById(labResultId);
+        if (!labResult) {
+            return res.status(404).json({
+                success: false,
+                message: `Lab result with ID ${labResultId} not found. Please verify the lab result ID.`
+            });
+        }
+
+        if (!patientId || !labResultId || !medications || !Array.isArray(medications)) {
+            return res.status(400).json({
+                success: false,
+                message: 'patientId, labResultId, and medications array are required'
+            });
+        }
+
+        // Validate medications array
+        if (!medications.every(med => 
+            med.name && 
+            med.dosage && 
+            med.frequency && 
+            med.duration && 
+            med.instructions
+        )) {
+            return res.status(400).json({
+                success: false,
+                message: 'Each medication must include name, dosage, frequency, duration, and instructions'
+            });
+        }
+
+        // Create prescription with all the data
+        const prescription = await doctorService.createPrescription(doctorId, {
+            patientId,
+            labResultId,
+            medications,
+            notes,
+            prescribedAt
+        });
+
+        return res.status(201).json({
+            success: true,
+            data: prescription
+        });
+    } catch (error) {
+        console.error('Prescription creation error:', error);
+        return res.status(error.message.includes('not found') || error.message.includes('already exists') 
+            ? 400 
+            : 500
+        ).json({
+            success: false,
+            message: error.message || 'Error creating prescription',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+};
+
 

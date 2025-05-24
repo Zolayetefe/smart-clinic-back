@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const pharmacistController = require('../controllers/pharmacistController');
+const { isAuthenticated , isPharmacist} = require('../middlewares/authMiddleware');
+
+
+router.get('/prescriptions', isAuthenticated, isPharmacist, pharmacistController.getPrescriptions);
+router.post('/dispense', isAuthenticated, isPharmacist, pharmacistController.dispenseMedication);
+router.get('/dispenses', isAuthenticated, isPharmacist, pharmacistController.getPrescriptions);
+router.post('/dispense', isAuthenticated, isPharmacist, pharmacistController.createDispense);
+
+module.exports = router;

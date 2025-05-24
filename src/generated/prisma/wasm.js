@@ -213,9 +213,11 @@ exports.Prisma.PrescriptionScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
   patientId: 'patientId',
+  labResultId: 'labResultId',
   medications: 'medications',
   status: 'status',
-  createdAt: 'createdAt'
+  notes: 'notes',
+  prescribedAt: 'prescribedAt'
 };
 
 exports.Prisma.LabRequestScalarFieldEnum = {
@@ -239,14 +241,6 @@ exports.Prisma.LabResultScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.PharmacyScalarFieldEnum = {
-  id: 'id',
-  prescriptionId: 'prescriptionId',
-  pharmacistId: 'pharmacistId',
-  status: 'status',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.AppointmentFinanceScalarFieldEnum = {
   id: 'id',
   appointmentId: 'appointmentId',
@@ -256,6 +250,28 @@ exports.Prisma.AppointmentFinanceScalarFieldEnum = {
   approvedAt: 'approvedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MedicationBillScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  prescriptionId: 'prescriptionId',
+  financeStaffId: 'financeStaffId',
+  medications: 'medications',
+  totalAmount: 'totalAmount',
+  approvalStatus: 'approvalStatus',
+  paidAt: 'paidAt'
+};
+
+exports.Prisma.LabTestBillScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  labRequestId: 'labRequestId',
+  labTechnicianId: 'labTechnicianId',
+  tests: 'tests',
+  totalAmount: 'totalAmount',
+  approvalStatus: 'approvalStatus',
+  paidAt: 'paidAt'
 };
 
 exports.Prisma.MedicalRecordScalarFieldEnum = {
@@ -326,7 +342,7 @@ exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
 };
 
 exports.PrescriptionStatus = exports.$Enums.PrescriptionStatus = {
-  pending: 'pending',
+  active: 'active',
   fulfilled: 'fulfilled',
   cancelled: 'cancelled'
 };
@@ -339,12 +355,6 @@ exports.LabRequestStatus = exports.$Enums.LabRequestStatus = {
 exports.LabRequestPriority = exports.$Enums.LabRequestPriority = {
   urgent: 'urgent',
   routine: 'routine'
-};
-
-exports.PharmacyStatus = exports.$Enums.PharmacyStatus = {
-  approved: 'approved',
-  dispensed: 'dispensed',
-  rejected: 'rejected'
 };
 
 exports.ApprovalStatus = exports.$Enums.ApprovalStatus = {
@@ -369,8 +379,9 @@ exports.Prisma.ModelName = {
   Prescription: 'Prescription',
   LabRequest: 'LabRequest',
   LabResult: 'LabResult',
-  Pharmacy: 'Pharmacy',
   AppointmentFinance: 'AppointmentFinance',
+  MedicationBill: 'MedicationBill',
+  LabTestBill: 'LabTestBill',
   MedicalRecord: 'MedicalRecord'
 };
 

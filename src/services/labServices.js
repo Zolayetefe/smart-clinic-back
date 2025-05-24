@@ -31,8 +31,10 @@ exports.getLabRequests = async () => {
             id: labRequest.id,
             patientId: labRequest.patientId,
             patient: labRequest.patient.user.name,
+            patientEmail: labRequest.patient.user.email,
             doctorId: labRequest.doctorId,
             doctor: labRequest.doctor.user.name,
+            doctorEmail: labRequest.doctor.user.email,
             priority: labRequest.priority,
             notes: labRequest.notes,
             tests: labRequest.tests,
@@ -54,7 +56,7 @@ exports.getLabResults = async (labTechnicianId) => {
                             user: {
                                 select: {
                                     name: true,
-                                    email: true
+                                    email: true,
                                 }
                             }
                         }

@@ -21,9 +21,9 @@ model User {
   nurse            Nurse?
   patient          Patient?
   labTechnician    LabTechnician?
-  pharmacist       Pharmacist?
   financeStaff     FinanceStaff?
   receptionist     Receptionist?
+  pharmacist       Pharmacist?
 }
 
 model Patient {
@@ -38,7 +38,9 @@ model Patient {
   medicalRecord    MedicalRecord?
   user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   prescriptions    Prescription[]
+  medicationBills  MedicationBill[]
   triages          Triage[]
+  labTestBills     LabTestBill[]
 }
 
 model Doctor {
@@ -54,10 +56,10 @@ model Doctor {
 }
 
 model Nurse {
-  id     String @id @default(uuid())
-  userId String @unique
+  id      String @id @default(uuid())
+  userId  String @unique
   triages Triage[]
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model LabTechnician {
@@ -65,19 +67,20 @@ model LabTechnician {
   userId      String      @unique
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   labResults  LabResult[]
+  labTestBills LabTestBill[]
 }
 
 model Pharmacist {
-  id          String      @id @default(uuid())
-  userId      String      @unique
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  pharmacies  Pharmacy[]
-}
+  id               String           @id @default(uuid())
+  userId           String           @unique
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}  
 
 model FinanceStaff {
   id               String               @id @default(uuid())
   userId           String               @unique
   approvedFinances AppointmentFinance[]
+  medicationBills  MedicationBill[]
   user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -141,15 +144,18 @@ model Triage {
 }
 
 model Prescription {
-  id          String             @id @default(uuid())
-  doctorId    String
-  patientId   String
-  medications Json[]
-  status      PrescriptionStatus
-  createdAt   DateTime           @default(now())
-  pharmacy    Pharmacy?
-  doctor      Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  patient     Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  id              String             @id @default(uuid())
+  doctorId        String
+  patientId       String
+  labResultId     String?            @unique  // Added unique constraint for one-to-one relation
+  medications     Json[]
+  status          PrescriptionStatus @default(active)
+  notes           String?            
+  prescribedAt    DateTime           @default(now())
+  medicationBill  MedicationBill[] 
+  doctor          Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient         Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  labResult       LabResult?         @relation(fields: [labResultId], references: [id])
 }
 
 model LabRequest {
@@ -162,6 +168,7 @@ model LabRequest {
   tests         Json             // Array of lab tests as JSON
   requestedAt   DateTime         @default(now())
   completedAt   DateTime?
+  labTestBill   LabTestBill?
 
   doctor        Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   patient       Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
@@ -172,23 +179,14 @@ model LabResult {
   id              String         @id @default(uuid())
   labRequestId    String         @unique
   labTechnicianId String
-  result          Json       // URL to PDF/image file
+  result          Json           // URL to PDF/image file
   notes           String?
   createdAt       DateTime       @default(now())
-
+  prescription    Prescription?
   labRequest      LabRequest     @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
   labTechnician   LabTechnician  @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
 }
 
-model Pharmacy {
-  id             String         @id @default(uuid())
-  prescriptionId String         @unique
-  pharmacistId   String
-  status         PharmacyStatus
-  updatedAt      DateTime       @updatedAt
-  pharmacist     Pharmacist     @relation(fields: [pharmacistId], references: [id], onDelete: Cascade)
-  prescription   Prescription   @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
-}
 
 model AppointmentFinance {
   id             String         @id @default(uuid())
@@ -198,9 +196,40 @@ model AppointmentFinance {
   financeStaffId String
   approvedAt     DateTime?
   appointment    Appointment    @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
-  financeStaff   FinanceStaff  @relation(fields: [financeStaffId], references: [id], onDelete: Cascade)
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  financeStaff   FinanceStaff   @relation(fields: [financeStaffId], references: [id], onDelete: Cascade)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+}
+
+model MedicationBill {
+  id              String         @id @default(uuid())
+  patientId       String
+  prescriptionId  String
+  financeStaffId  String
+  medications     Json           // Contains medication details, prices, etc.
+  totalAmount     Float
+  approvalStatus  ApprovalStatus @default(pending)
+  paidAt          DateTime       @default(now())
+  
+  financeStaff    FinanceStaff   @relation(fields: [financeStaffId], references: [id], onDelete: Cascade)
+  patient         Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  prescription    Prescription   @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+}
+
+model LabTestBill {
+  id              String         @id @default(uuid())
+  patientId       String
+  labRequestId    String         @unique
+  labTechnicianId String
+  tests           Json           // List of performed tests and their prices
+  totalAmount     Float
+  approvalStatus  ApprovalStatus @default(pending)
+  paidAt          DateTime       @default(now())
+
+  patient         Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  labRequest      LabRequest     @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
+  labTechnician   LabTechnician  @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
 }
 
 model MedicalRecord {
@@ -242,13 +271,10 @@ enum AppointmentStatus {
   rescheduled
 }
 
-enum SubmitterRole {
-  nurse
-  patient
-}
+
 
 enum PrescriptionStatus {
-  pending
+  active
   fulfilled
   cancelled
 }
@@ -258,11 +284,7 @@ enum LabRequestStatus {
   completed
 }
 
-enum PharmacyStatus {
-  approved
-  dispensed
-  rejected
-}
+
 
 enum ApprovalStatus {
   pending
