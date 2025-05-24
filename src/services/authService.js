@@ -171,3 +171,27 @@ exports.registerPatient = async (data) => {
     throw error;
   }
 };
+
+exports.changePassword = async ({ userId, oldPassword, newPassword }) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch) {
+    throw new Error('Incorrect old password');
+  }
+
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { id: userId },
+    data: { password: hashedNewPassword },
+  });
+
+  return { message: 'Password changed successfully' };
+};
