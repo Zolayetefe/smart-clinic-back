@@ -171,3 +171,66 @@ exports.registerPatient = async (data) => {
     throw error;
   }
 };
+
+exports.changePassword = async ({ userId, oldPassword, newPassword }) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch) {
+    throw new Error('Incorrect old password');
+  }
+
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { id: userId },
+    data: { password: hashedNewPassword },
+  });
+
+  return { message: 'Password changed successfully' };
+};
+
+exports.updateProfile = async (id, data) => {
+  if ('email' in data || 'password' in data) {
+    throw new Error('Updating email or password is not allowed in this route');
+  }
+
+  // Update main user fields
+  const updatedUser = await prisma.user.update({
+    where: { id },
+    data: {
+      name: data.name,
+      phone: data.phone,
+      // You can also add role update if needed: role: data.role
+      patient: {
+        update: {
+          dateOfBirth: new Date(data.dateOfBirth),
+          gender: data.gender,
+          address: data.address,
+          emergencyContact: data.emergencyContact
+        }
+      }
+    },
+    include: {
+      patient: true
+    }
+  });
+
+  return {
+    message: 'Profile updated successfully',
+    user: {
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      phone: updatedUser.phone,
+      patient: updatedUser.patient
+    }
+  };
+};

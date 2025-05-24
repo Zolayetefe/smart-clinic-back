@@ -18,4 +18,5 @@ router.get('/patients', isAuthenticated, isAdmin, adminController.getPatients);
 // router.put('/users/:id', isAuthenticated, isAdmin, adminController.updateUserById);
 // router.delete('/users/:id', isAuthenticated, isAdmin, adminController.deleteUserById);
 
+router.patch('/staff/:userId/status', adminController.toggleStaffStatusController);
 module.exports = router;

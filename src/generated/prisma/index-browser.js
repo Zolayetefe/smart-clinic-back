@@ -127,6 +127,7 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   phone: 'phone',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -225,6 +226,7 @@ exports.Prisma.LabRequestScalarFieldEnum = {
   doctorId: 'doctorId',
   patientId: 'patientId',
   status: 'status',
+  approvalStatus: 'approvalStatus',
   notes: 'notes',
   priority: 'priority',
   tests: 'tests',
@@ -323,6 +325,11 @@ exports.Role = exports.$Enums.Role = {
   admin: 'admin'
 };
 
+exports.UserStatus = exports.$Enums.UserStatus = {
+  active: 'active',
+  suspend: 'suspend'
+};
+
 exports.Weekday = exports.$Enums.Weekday = {
   MONDAY: 'MONDAY',
   TUESDAY: 'TUESDAY',
@@ -352,15 +359,15 @@ exports.LabRequestStatus = exports.$Enums.LabRequestStatus = {
   completed: 'completed'
 };
 
-exports.LabRequestPriority = exports.$Enums.LabRequestPriority = {
-  urgent: 'urgent',
-  routine: 'routine'
-};
-
 exports.ApprovalStatus = exports.$Enums.ApprovalStatus = {
   pending: 'pending',
   approved: 'approved',
   rejected: 'rejected'
+};
+
+exports.LabRequestPriority = exports.$Enums.LabRequestPriority = {
+  urgent: 'urgent',
+  routine: 'routine'
 };
 
 exports.Prisma.ModelName = {

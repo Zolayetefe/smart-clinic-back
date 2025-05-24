@@ -61,3 +61,29 @@ exports.registerPatient= async (req,res)=>{
     res.status(400).json({ message: err.message });
   }
 }
+
+exports.changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const userId = req.user.id; // Assumes you're using middleware to set req.user
+
+    const result = await authService.changePassword({ userId, oldPassword, newPassword });
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error('Change password error:', err);
+    res.status(400).json({ error: err.message });
+  }
+};
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const data = req.body;
+
+    const result = await authService.updateProfile(userId, data);
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
