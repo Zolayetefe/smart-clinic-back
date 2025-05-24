@@ -15,6 +15,7 @@ model User {
   email            String           @unique
   password         String
   phone            String
+  status           UserStatus?      @default(active)       
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
   doctor           Doctor?
@@ -163,6 +164,7 @@ model LabRequest {
   doctorId      String
   patientId     String
   status        LabRequestStatus @default(requested)
+  approvalStatus ApprovalStatus @default(pending)
   notes         String?
   priority      LabRequestPriority?
   tests         Json             // Array of lab tests as JSON
@@ -295,4 +297,8 @@ enum ApprovalStatus {
 enum LabRequestPriority {
   urgent
   routine
+}
+enum UserStatus{
+  active
+  suspend
 }

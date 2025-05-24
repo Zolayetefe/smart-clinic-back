@@ -6,7 +6,6 @@ const { isAuthenticated , isPharmacist} = require('../middlewares/authMiddleware
 
 router.get('/prescriptions', isAuthenticated, isPharmacist, pharmacistController.getPrescriptions);
 router.post('/dispense', isAuthenticated, isPharmacist, pharmacistController.dispenseMedication);
-router.get('/dispenses', isAuthenticated, isPharmacist, pharmacistController.getPrescriptions);
-router.post('/dispense', isAuthenticated, isPharmacist, pharmacistController.createDispense);
+router.get('/dispenses', isAuthenticated, isPharmacist, pharmacistController.getDispenses);
 
 module.exports = router;

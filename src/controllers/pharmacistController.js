@@ -55,9 +55,25 @@ exports.getPrescriptions = async (req, res) => {
     res.status(200).json(prescriptions);
 };
 
-exports.createDispense = async (req, res) => {
+exports.getDispenses = async (req, res) => {
     const { id } = req.user;
-    const { prescriptionId, medications } = req.body;
-    const dispense = await pharmacistService.createDispense(id, prescriptionId, medications);
-    res.status(200).json(dispense);
+    const userWithPharmacist = await prisma.user.findUnique({
+        where: { id },
+        select: {
+            pharmacist: {
+                select: {
+                    id: true
+                }
+            }
+        }
+    });
+    if (!userWithPharmacist || !userWithPharmacist.pharmacist) {
+        return res.status(403).json({
+            success: false,
+            message: 'User is not authorized as a pharmacist'
+        });
+    }
+    const pharmacistId = userWithPharmacist.pharmacist.id;
+    const dispenses = await pharmacistService.getDispenses(pharmacistId);
+    res.status(200).json(dispenses);
 };
