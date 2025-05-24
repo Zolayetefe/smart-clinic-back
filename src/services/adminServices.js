@@ -383,3 +383,22 @@ exports.getPatients = async () => {
   });
   return patients;
 };
+exports.toggleStaffStatus = async (userId) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { status: true }, // only fetch the status field
+  });
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  const newStatus = user.status === 'active' ? 'suspend' : 'active';
+
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data: { status: newStatus },
+  });
+
+  return updatedUser;
+};
