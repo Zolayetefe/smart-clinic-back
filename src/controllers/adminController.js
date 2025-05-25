@@ -47,3 +47,23 @@ exports.dashboard = (req, res) => {
     const result = await adminService.getPatients();
     res.status(200).json(result);
   };
+
+  exports.getTPatient = async (req, res) => {
+    const result = await adminService.getTPatient();
+    res.status(200).json(result);
+  };
+
+  exports.todayAppointment = async (req, res) => {
+    const result = await adminService.todayAppointment();
+    res.status(200).json(result);
+  };
+
+  exports.getTotalActiveStaff = async (req, res)=> {
+    const result = await adminService.getTotalActiveStaff();
+    res.status(200).json(result)
+  }
+
+  exports.getMonthlyRevenue = async(req, res) => {
+    const result = await adminService.getMonthlyRevenue();
+    res.status(200).json(result)
+  }

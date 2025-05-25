@@ -509,3 +509,42 @@ exports.getAppointments = async (user) => {
         throw new Error('Failed to fetch appointments');
     }
 };
+
+exports.getMedicalHistory = async (user) => {
+    const { id: userId, role } = user;
+    try {
+        const medicalHistory = await prisma.triage.findMany({
+            where: { patientId: userId },
+            include: {
+                doctor: {
+                    include: {
+                        user: true
+                    }
+                }
+            }
+        });
+        return {
+            medicalHistory: medicalHistory.map(triage => ({
+                id: triage.id,
+                symptoms: triage.symptoms,
+                diagnosis: triage.diagnosis,
+                prescription: triage.prescription,
+                treatment: triage.treatment,
+                notes: triage.notes,
+                timestamp: triage.timestamp,
+                doctor: {
+                    id: triage.doctor.id,
+                    name: triage.doctor.user.name,
+                    email: triage.doctor.user.email,
+                    phone: triage.doctor.user.phone,
+                    department: triage.doctor.user.department,
+                    specialization: triage.doctor.specialization
+                }
+            }))
+        };
+    }
+    catch (error) {
+        console.error('Error fetching medical history:', error);
+        throw new Error('Failed to fetch medical history');
+    }
+}   

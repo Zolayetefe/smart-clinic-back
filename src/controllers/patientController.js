@@ -20,3 +20,9 @@ exports.getAppointments = async (req, res) => {
     const appointments = await patientService.getAppointments(req.user);
     res.status(200).json(appointments);
 };
+
+
+exports.getMedicalHistory = async (req, res) => {
+    const medicalHistory = await patientService.getMedicalHistory(req.user);
+    res.status(200).json(medicalHistory);
+};

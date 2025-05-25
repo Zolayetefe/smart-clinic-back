@@ -14,9 +14,10 @@ router.delete('/staff/:id', isAuthenticated, isAdmin, adminController.deleteStaf
 // router.get('/users', isAuthenticated, isAdmin, adminController.getUsers);
 router.get('/patients', isAuthenticated, isAdmin, adminController.getPatients);
 
-// router.get('/users/:id', isAuthenticated, isAdmin, adminController.getUserById);
-// router.put('/users/:id', isAuthenticated, isAdmin, adminController.updateUserById);
-// router.delete('/users/:id', isAuthenticated, isAdmin, adminController.deleteUserById);
+router.get('/getTPatient', isAuthenticated, isAdmin, adminController.getTPatient);
+router.get('/todayAppointment',isAuthenticated,isAdmin,adminController.todayAppointment)
+router.get('/totalActiveStaff',isAuthenticated,isAdmin,adminController.getTotalActiveStaff)
+router.get('/monthlyRevenue',isAuthenticated,isAdmin,adminController.getMonthlyRevenue)
 
-router.patch('/staff/:userId/status', adminController.toggleStaffStatusController);
+router.put('/staff/:userId/status', adminController.toggleStaffStatusController);
 module.exports = router;

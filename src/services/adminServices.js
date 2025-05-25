@@ -314,6 +314,7 @@ exports.getStaff = async () => {
       email: staff.email,
       role: staff.role,
       phone: staff.phone,
+      status: staff.status,
       doctor: staff.doctor ? {
         ...staff.doctor,
         availabilities: staff.doctor.availabilities.map(availability => ({
@@ -402,3 +403,89 @@ exports.toggleStaffStatus = async (userId) => {
 
   return updatedUser;
 };
+
+exports.getTPatient = async () => {
+  const patients = await prisma.user.count({
+    where: { role: 'patient' }
+  });
+  return {
+    totalPatients: patients
+  };
+};
+
+
+exports.todayAppointment = async () => {
+  const startOfDay = new Date();
+  startOfDay.setUTCHours(0, 0, 0, 0);
+
+  const endOfDay = new Date();
+  endOfDay.setUTCHours(23, 59, 59, 999);
+
+  const appointments = await prisma.appointment.count({
+    where: {
+      dateTime: {
+        gte: startOfDay,
+        lte: endOfDay
+      }
+    }
+  });
+
+  return {
+    totalAppointments: appointments
+  };
+};
+
+exports.getTotalActiveStaff = async () => {
+  const totalActiveStaff = await prisma.user.count({
+    where: {
+      status: 'active',
+      role: {
+        in: [
+          "doctor",
+          "nurse",
+          "lab_technician",
+          "pharmacist",
+          "finance",
+          "receptionist",
+          "admin"
+        ]
+      }
+    }
+  });
+
+  return {
+    totalActiveStaff
+  };
+};
+
+exports.getMonthlyRevenue = async () => {
+  const monthlyAppointmentRevenue = await prisma.appointmentFinance.aggregate({
+    _sum: {
+      amount: true
+    }
+  });
+
+  const monthlyMedicineRevenue = await prisma.medicationBill.aggregate({
+    _sum: {
+      totalAmount: true
+    }
+  });
+
+  const monthlyLabRevenue = await prisma.labTestBill.aggregate({
+    _sum: {
+      totalAmount: true
+    }
+  });
+
+  const totalAppointment = monthlyAppointmentRevenue._sum.amount || 0;
+  const totalMedicine = monthlyMedicineRevenue._sum.totalAmount || 0;
+  const totalLab = monthlyLabRevenue._sum.totalAmount || 0;
+
+  const monthlyTotalRevenue = totalAppointment + totalMedicine + totalLab;
+
+  return { monthlyTotalRevenue };
+};
+
+
+
+
