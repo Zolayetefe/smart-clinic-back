@@ -227,3 +227,8 @@ const doctorId = userWithDoctor.doctor.id;
         });
     }
 };
+
+
+exports.getTodayAppointment = async (req, res)=>{
+    
+}

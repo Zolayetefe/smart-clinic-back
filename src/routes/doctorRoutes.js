@@ -14,4 +14,6 @@ router.get("/lab-results", isAuthenticated, doctorController.getLabResults);
 router.get("/prescriptions", isAuthenticated, doctorController.getPrescriptions);
 router.post("/prescription", isAuthenticated, doctorController.createPrescription);
 
+router.get('/totalAppointment',isAuthenticated,doctorController.getTodayAppointment)
+
 module.exports = router;
