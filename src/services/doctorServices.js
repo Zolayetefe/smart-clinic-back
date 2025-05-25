@@ -53,7 +53,8 @@ exports.createLabRequest = async ({ patientId, priority, notes, tests, status },
                 notes,
                 priority,
                 tests: tests,
-                requestedAt: new Date()
+                requestedAt: new Date(),
+                approvalStatus: 'pending'
             },
             include: {
                 doctor: {
@@ -223,7 +224,7 @@ exports.getLabResultById = async (labResultId) => {
 
 exports.createPrescription = async (doctorId, prescriptionData) => {
     try {
-        const { patientId, labResultId, notes, medications, prescribedAt } = prescriptionData;
+        const { patientId, labResultId, notes, medications } = prescriptionData;
 
         // Validate required fields
         if (!doctorId || !patientId || !labResultId || !medications || !Array.isArray(medications)) {
@@ -264,8 +265,6 @@ exports.createPrescription = async (doctorId, prescriptionData) => {
                 labResultId,
                 notes,
                 medications,
-                prescribedAt: prescribedAt ? new Date(prescribedAt) : new Date(),
-                status: 'active'
             },
             include: {
                 doctor: {
@@ -280,7 +279,6 @@ exports.createPrescription = async (doctorId, prescriptionData) => {
                 },
                 labResult: true,
                 medicationBill: true,
-                dispense: true
             }
         });
 
@@ -293,10 +291,8 @@ exports.createPrescription = async (doctorId, prescriptionData) => {
             labResultId: prescription.labResultId,
             medications: prescription.medications,
             notes: prescription.notes,
-            prescribedAt: prescription.prescribedAt,
-            status: prescription.status,
-            dispenseStatus: prescription.dispense ? 'dispensed' : 'pending',
-            medicationBills: prescription.medicationBill
+            prescribedAt: prescription.prescribedAt
+
         };
     } catch (error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {

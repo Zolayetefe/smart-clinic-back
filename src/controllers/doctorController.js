@@ -200,7 +200,6 @@ exports.createPrescription = async (req, res) => {
             labResultId,
             medications,
             notes,
-            prescribedAt
         });
 
         return res.status(201).json({

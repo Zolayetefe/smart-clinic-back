@@ -205,18 +205,14 @@ exports.getLabRequests = async () => {
         labTestBillId: labRequest.labTestBill?.id,
         tests: labRequest.tests,
         apporovalStatus:labRequest.approvalStatus,
-        labTestBill: labRequest.labTestBill,
         totalAmount: labRequest.labTestBill?.totalAmount,
         paidAt: labRequest.labTestBill?.paidAt,
         requestedAt: labRequest.dateTime,
-        approvalStatus: labRequest.labTestBill?.approvalStatus,
-        totalAmount: labRequest.labTestBill?.totalAmount,
-        tests: labRequest.labTestBill?.tests,
     }));
 };
 
 
-exports.    approveLabRequest = async (requestLabId,financeStaffId, tests, totalAmount, patientId) => { 
+exports.approveLabRequest = async (requestLabId,financeStaffId, tests, totalAmount, patientId) => { 
 console.log('patientId',patientId);
 console.log('requestLabId from service',requestLabId);
     const labTest = await prisma.labTestBill.create({
@@ -234,7 +230,9 @@ console.log('requestLabId from service',requestLabId);
     }
     const updatedLabRequest = await prisma.labRequest.update({
         where: { id: requestLabId },
-        data: { approvalStatus: 'approved' }
+        data: { approvalStatus: 'approved',
+            tests:tests
+         }
     }); 
     return updatedLabRequest;
 };

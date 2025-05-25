@@ -1,4 +1,4 @@
-const { PrismaClient } = require('../generated/prisma');
+const { PrismaClient, ApprovalStatus } = require('../generated/prisma');
 const prisma = new PrismaClient();
 
 exports.getLabRequests = async () => {
@@ -26,6 +26,7 @@ exports.getLabRequests = async () => {
             },
         }
     });
+
     return {
         labRequests: labRequests.map(labRequest => ({
             id: labRequest.id,
@@ -39,6 +40,7 @@ exports.getLabRequests = async () => {
             notes: labRequest.notes,
             tests: labRequest.tests,
             status: labRequest.status,
+            apporovalStatus: labRequest.approvalStatus,
             createdAt: labRequest.requestedAt,
         }))
     };
