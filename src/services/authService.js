@@ -38,6 +38,7 @@ exports.login = async ({ email, password }) => {
       id: user.id,
       name: user.name,   
       email: user.email,
+      phone: user.phone,
       role: user.role,
       patient: user.patient,
       doctor: user.doctor,
@@ -201,25 +202,40 @@ exports.updateProfile = async (id, data) => {
     throw new Error('Updating email or password is not allowed in this route');
   }
 
-  // Update main user fields
+  // Fetch user to determine role
+  const existingUser = await prisma.user.findUnique({
+    where: { id },
+    include: { patient: true },
+  });
+
+  if (!existingUser) {
+    throw new Error('User not found');
+  }
+
+  // Base update data
+  const updateData = {
+    name: data.name,
+    phone: data.phone,
+  };
+
+  // If patient, add patient-specific updates
+  if (existingUser.role === 'patient') {
+    updateData.patient = {
+      update: {
+        ...(data.dateOfBirth && { dateOfBirth: new Date(data.dateOfBirth) }),
+        ...(data.gender && { gender: data.gender }),
+        ...(data.address && { address: data.address }),
+        ...(data.emergencyContact && { emergencyContact: data.emergencyContact }),
+      },
+    };
+  }
+
   const updatedUser = await prisma.user.update({
     where: { id },
-    data: {
-      name: data.name,
-      phone: data.phone,
-      // You can also add role update if needed: role: data.role
-      patient: {
-        update: {
-          dateOfBirth: new Date(data.dateOfBirth),
-          gender: data.gender,
-          address: data.address,
-          emergencyContact: data.emergencyContact
-        }
-      }
-    },
+    data: updateData,
     include: {
-      patient: true
-    }
+      patient: true,
+    },
   });
 
   return {
@@ -230,7 +246,7 @@ exports.updateProfile = async (id, data) => {
       email: updatedUser.email,
       role: updatedUser.role,
       phone: updatedUser.phone,
-      patient: updatedUser.patient
-    }
+      patient: updatedUser.patient,
+    },
   };
 };
