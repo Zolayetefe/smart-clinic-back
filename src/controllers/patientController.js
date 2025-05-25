@@ -1,4 +1,8 @@
 const patientService = require('../services/patientServices');
+const { PrismaClient } = require('../generated/prisma');
+const prisma = new PrismaClient();
+
+
 
 exports.getDoctors = async (req, res) => {
     const doctors = await patientService.getDoctors();
@@ -23,6 +27,24 @@ exports.getAppointments = async (req, res) => {
 
 
 exports.getMedicalHistory = async (req, res) => {
-    const medicalHistory = await patientService.getMedicalHistory(req.user);
+  
+    const { id } = req.user;
+
+    // Find the doctor record associated with the user
+    const userWithPatient = await prisma.user.findUnique({
+        where: { id},
+        include: {
+            patient: true
+        }
+    });
+
+    if (!userWithPatient || !userWithPatient.patient) {
+        return res.status(403).json({
+            success: false,
+            message: 'User is not authorized as a doctor'
+        });
+    }
+    const patientId = userWithPatient.patient.id;
+    const medicalHistory = await patientService.getMedicalHistory(patientId);
     res.status(200).json(medicalHistory);
 };
