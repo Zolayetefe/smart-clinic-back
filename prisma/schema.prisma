@@ -69,7 +69,6 @@ model LabTechnician {
   userId      String      @unique
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   labResults  LabResult[]
-  labTestBills LabTestBill[]
 }
 
 model Pharmacist {
@@ -83,6 +82,7 @@ model FinanceStaff {
   userId           String               @unique
   approvedFinances AppointmentFinance[]
   medicationBills  MedicationBill[]
+  labTestBills     LabTestBill[]
   user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -223,16 +223,16 @@ model MedicationBill {
 model LabTestBill {
   id              String         @id @default(uuid())
   patientId       String
-  labRequestId    String         @unique
-  labTechnicianId String
+  labRequestId    String    @unique
+  financeStaffId  String     
   tests           Json           // List of performed tests and their prices
   totalAmount     Float
-  approvalStatus  ApprovalStatus @default(pending)
-  paidAt          DateTime       @default(now())
+  approvalStatus  ApprovalStatus @default(approved)
+  paidAt          DateTime     @default(now())
 
   patient         Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
   labRequest      LabRequest     @relation(fields: [labRequestId], references: [id], onDelete: Cascade)
-  labTechnician   LabTechnician  @relation(fields: [labTechnicianId], references: [id], onDelete: Cascade)
+  financeStaff    FinanceStaff   @relation(fields:  [financeStaffId], references:  [id],onDelete: Cascade )
 }
 
 model MedicalRecord {

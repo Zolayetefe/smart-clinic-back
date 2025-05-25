@@ -154,3 +154,87 @@ exports.getAppointmentsByStatus = async (status) => {
         financeStatus: appointment.finance?.approvalStatus || null
     }));
 };
+
+
+
+
+
+
+// lab requests service
+
+exports.getLabRequests = async () => {
+    const labRequests = await prisma.labRequest.findMany({
+        include: {
+            patient: {
+                include: {
+                    user: {
+                        select: {
+                            name: true,
+                            email: true,    
+                            phone: true
+                        }
+                    }
+                }
+            },
+            doctor: {
+                include: {
+                    user: {
+                        select: {
+                            name: true,
+                            email: true,
+                            phone: true
+                        }
+                    }
+                }
+            },
+            labTestBill: true
+         
+        }
+    });
+
+    return labRequests.map(labRequest => ({
+        id: labRequest.id,
+        patient: labRequest.patient.user.name,
+        patientId :labRequest.patient.id,
+        doctor: labRequest.doctor.user.name,
+        doctorId: labRequest.doctorId,
+        doctorEmail: labRequest.doctor.user.email,
+        patientId: labRequest.patientId,
+        patientEmail: labRequest.patient.user.email,
+        patientPhone: labRequest.patient.user.phone,
+        labTestBillId: labRequest.labTestBill?.id,
+        tests: labRequest.tests,
+        apporovalStatus:labRequest.approvalStatus,
+        labTestBill: labRequest.labTestBill,
+        totalAmount: labRequest.labTestBill?.totalAmount,
+        paidAt: labRequest.labTestBill?.paidAt,
+        requestedAt: labRequest.dateTime,
+        approvalStatus: labRequest.labTestBill?.approvalStatus,
+        totalAmount: labRequest.labTestBill?.totalAmount,
+        tests: labRequest.labTestBill?.tests,
+    }));
+};
+
+
+exports.    approveLabRequest = async (requestLabId,financeStaffId, tests, totalAmount, patientId) => { 
+console.log('patientId',patientId);
+console.log('requestLabId from service',requestLabId);
+    const labTest = await prisma.labTestBill.create({
+        data: {
+            patientId,
+            labRequestId: requestLabId,
+            financeStaffId,
+            tests,
+            totalAmount,
+            financeStaffId
+        }
+    });
+    if (!labTest) {
+        throw new Error('Lab test not found');
+    }
+    const updatedLabRequest = await prisma.labRequest.update({
+        where: { id: requestLabId },
+        data: { approvalStatus: 'approved' }
+    }); 
+    return updatedLabRequest;
+};

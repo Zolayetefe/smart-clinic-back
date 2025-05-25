@@ -13,8 +13,8 @@ router.get('/appointments/status/:status', isAuthenticated, isFinanceStaff, fina
 // router.get('/medication/status/:status', isAuthenticated, isFinanceStaff, financeController.getMedicationBillsByStatus);
 
 
-// router.get('/lab-tests', isAuthenticated, isFinanceStaff, financeController.getLabTests);
-// router.post('/lab-tests/:id/approve', isAuthenticated, isFinanceStaff, financeController.approveLabTest);
+router.get('/labRequests', isAuthenticated, isFinanceStaff, financeController.getLabRequests);
+router.post('/labRequests/:id/approve', isAuthenticated, isFinanceStaff, financeController.approveLabRequest);
 // router.get('/lab-tests/status/:status', isAuthenticated, isFinanceStaff, financeController.getLabTestsByStatus);
 
 module.exports = router;
