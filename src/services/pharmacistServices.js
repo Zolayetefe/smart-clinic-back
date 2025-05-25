@@ -31,33 +31,65 @@ exports.getPrescriptions = async () => {
 
 
 }});
+
     return {
         prescriptions: prescriptions.map(prescription => ({
             id: prescription.id,
             patientId: prescription.patientId,
+            patientName: prescription.patient.user.name,
+            patientPhone: prescription.patient.user.phone,
+            patientEmail: prescription.patient.user.email,
+            patientBirthDate: prescription.patient.user.birthDate,
+            patientGender: prescription.patient.user.gender,
             labResultId: prescription.labResultId,
             medications: prescription.medications,
             doctorName: prescription.doctor.user.name,
-            patientName: prescription.patient.user.name,
             doctorEmail: prescription.doctor.user.email,
-            patientEmail: prescription.patient.user.email,
+            doctorSpeciality: prescription.doctor.specialization,
             doctorPhone: prescription.doctor.user.phone,
-            patientPhone: prescription.patient.user.phone,
             notes: prescription.notes,
             prescribedAt: prescription.prescribedAt,
             approvalStatus: prescription.approvalStatus,
+            dispenseStatus: prescription.dispenseStatus,
         }))
     };
 };
 
-exports.dispenseMedication = async (pharmacistId, prescriptionId, medications) => {
+
+exports.dispenseMedication = async (pharmacistId, {prescriptionId, medications, notes}) => {
+    // check if prescription is already dispensed
+    const prescription = await prisma.prescription.findUnique({
+        where: { id: prescriptionId },
+        include: {
+            patient: true
+        }
+    });
+    
+    if (!prescription) {
+        throw new Error("Prescription not found");
+    }
+    
+    if (prescription.dispenseStatus === "dispensed") {
+        throw new Error("Prescription already dispensed");
+    }
+
     const dispense = await prisma.dispense.create({
         data: {
             pharmacistId,
             prescriptionId,
             medications,
+            patientId: prescription.patientId, // Use the patient ID from the prescription
+            notes,
+            status: "dispensed"
         }
     });
+
+    // update prescription dispenseStatus to completed
+    await prisma.prescription.update({
+        where: { id: prescriptionId },
+        data: { dispenseStatus: "dispensed" }
+    });
+
     return dispense;
 };
 

@@ -155,11 +155,6 @@ exports.getAppointmentsByStatus = async (status) => {
     }));
 };
 
-
-
-
-
-
 // lab requests service
 
 exports.getLabRequests = async () => {
@@ -258,6 +253,7 @@ exports.getPrescriptions = async () => {
             
         }
     });
+    console.log("prescriptions from finance service",prescriptions.medicationBill);
     return prescriptions.map(prescription => ({
         id: prescription.id,
         patientId: prescription.patientId,

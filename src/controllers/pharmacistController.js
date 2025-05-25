@@ -24,8 +24,8 @@ exports.dispenseMedication = async (req, res) => {
 
     const pharmacistId = userWithPharmacist.pharmacist.id;
     
-    const { prescriptionId, medications } = req.body;
-    const dispense = await pharmacistService.dispenseMedication(pharmacistId, prescriptionId, medications);
+    const { prescriptionId, medications,patientId,notes } = req.body;
+    const dispense = await pharmacistService.dispenseMedication(pharmacistId,{prescriptionId, medications,patientId,notes});
     res.status(200).json(dispense);
 };
 

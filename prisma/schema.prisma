@@ -38,6 +38,7 @@ model Patient {
   appointments     Appointment[]
   labRequests      LabRequest[]
   medicalRecord    MedicalRecord?
+  dispense        Dispense[]
   user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   prescriptions    Prescription[]
   medicationBills  MedicationBill[]
@@ -74,6 +75,7 @@ model LabTechnician {
 model Pharmacist {
   id               String           @id @default(uuid())
   userId           String           @unique
+  dispense        Dispense[]
   user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 }  
 
@@ -150,12 +152,13 @@ model Prescription {
   doctorId        String
   patientId       String
   labResultId     String?          @unique
-  
+  dispenseStatus  DispenseStatus?    @default(pending)
   medications     Json[]
   approvalStatus  ApprovalStatus    @default(pending)
   notes           String?            
   prescribedAt    DateTime           @default(now())
   medicationBill  MedicationBill[] 
+  dispense        Dispense?
   doctor          Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   patient         Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
   labResult       LabResult?         @relation(fields: [labResultId], references:[id])
@@ -245,6 +248,23 @@ model MedicalRecord {
   patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
 }
 
+
+model Dispense {
+  id              String       @id @default(uuid())
+  prescriptionId  String       @unique
+  pharmacistId    String       
+  patientId       String
+  dispensedAt     DateTime     @default(now())
+  medications     Json[]       // Array of medications with quantity dispensed, etc.
+  notes           String?
+  status          DispenseStatus @default(pending)
+
+  // Relations
+  prescription    Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  pharmacist      Pharmacist   @relation(fields: [pharmacistId], references: [id], onDelete: Cascade)
+  patient         Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
 enum Role {
   receptionist
   nurse
@@ -294,4 +314,9 @@ enum UserStatus{
   suspend
 }
 
+enum DispenseStatus {
+dispensed
+pending
+
+}
 
