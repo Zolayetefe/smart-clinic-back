@@ -214,6 +214,7 @@ exports.getPrescriptions = async (req, res) => {
         }
     }
 }); 
+
 const doctorId = userWithDoctor.doctor.id;
         const prescriptions = await doctorService.getPrescriptions(doctorId);
         res.status(200).json(prescriptions);

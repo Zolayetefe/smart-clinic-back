@@ -292,7 +292,11 @@ exports.getPrescriptions = async (doctorId) => {
     const prescriptions = await prisma.prescription.findMany({
         where: { doctorId: doctorId },
         include: {
-            patient: true,
+            patient: {
+                include: {
+                    user: true
+                }
+            },
             labResult: true,
             medicationBill: true
         }
