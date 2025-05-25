@@ -45,7 +45,7 @@ exports.getPrescriptions = async () => {
             patientPhone: prescription.patient.user.phone,
             notes: prescription.notes,
             prescribedAt: prescription.prescribedAt,
-            status: prescription.status,
+            approvalStatus: prescription.approvalStatus,
         }))
     };
 };

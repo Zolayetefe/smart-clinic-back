@@ -211,7 +211,6 @@ exports.getLabRequests = async () => {
     }));
 };
 
-
 exports.approveLabRequest = async (requestLabId,financeStaffId, tests, totalAmount, patientId) => { 
 console.log('patientId',patientId);
 console.log('requestLabId from service',requestLabId);
@@ -236,3 +235,70 @@ console.log('requestLabId from service',requestLabId);
     }); 
     return updatedLabRequest;
 };
+
+
+
+// prescription service
+
+exports.getPrescriptions = async () => {
+    const prescriptions = await prisma.prescription.findMany({
+        include: {
+            patient: {
+                include: {
+                    user: true
+                }
+            },
+            doctor: {
+                include: {
+                    user: true
+                }
+            },
+            labResult: true,    
+            medicationBill: true
+            
+        }
+    });
+    return prescriptions.map(prescription => ({
+        id: prescription.id,
+        patientId: prescription.patientId,
+        patientName: prescription.patient.user.name,
+        patientEmail: prescription.patient.user.email,
+        patientPhone: prescription.patient.user.phone,
+        prescribedBy: prescription.doctor.user.name,
+        prescribedById: prescription.doctorId,
+        prescribedAt: prescription.prescribedAt,
+        approvalStatus: prescription.approvalStatus,
+        medications: prescription.medications,
+        totalAmount: prescription.medicationBill?.totalAmount,
+        paidAt: prescription.medicationBill?.paidAt,
+        requestedAt: prescription.prescribedAt,
+    }));
+};
+
+exports.approvePrescription = async (prescriptionId,financeStaffId,patientId,medications,totalAmount) => {
+    const prescription = await prisma.prescription.findUnique({
+        where: { id: prescriptionId }
+    });
+    if (!prescription) {
+        throw new Error('Prescription not found');
+    }
+    // create medication bill
+    const medicationBill = await prisma.medicationBill.create({
+        data: {
+            patientId,
+            prescriptionId,
+            medications,
+            totalAmount,
+            financeStaffId
+        }
+    });
+
+    // update prescription
+    const updatedPrescription = await prisma.prescription.update({
+        where: { id: prescriptionId },
+        data: { approvalStatus: 'approved',
+            medications: medications,
+        }
+    });
+    return updatedPrescription;
+};  

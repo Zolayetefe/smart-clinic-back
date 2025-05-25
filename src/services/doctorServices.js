@@ -111,7 +111,8 @@ exports.getLabRequests = async (doctorId) => {
                     user: true
                 }
             },
-            labResult: true
+            labResult: true,
+
         }
     });
 
@@ -134,6 +135,7 @@ exports.getLabRequests = async (doctorId) => {
 
 
 exports.getLabResults = async (doctorId) => {
+    console.log("Results from doctor service",doctorId);
     const labResults = await prisma.labResult.findMany({
         where: {
             labRequest: {
@@ -174,7 +176,8 @@ exports.getLabResults = async (doctorId) => {
                         }
                     }
                 }
-            }
+            },
+            prescription: true
         }
     });
 
@@ -193,34 +196,10 @@ exports.getLabResults = async (doctorId) => {
         result: result.result,
         notes: result.notes,
         createdAt: result.createdAt,
-        status: result.status
+        prescriptionId: result.prescription?.id || null
     }));
 };
 
-exports.getLabResultById = async (labResultId) => {
-    try {
-        const labResult = await prisma.labResult.findUnique({
-            where: { id: labResultId },
-            include: {
-                labRequest: {
-                    include: {
-                        patient: true,
-                        doctor: true
-                    }
-                },
-                labTechnician: {
-                    include: {
-                        user: true
-                    }
-                }
-            }
-        });
-        return labResult;
-    } catch (error) {
-        console.error('Error fetching lab result:', error);
-        throw error;
-    }
-};
 
 exports.createPrescription = async (doctorId, prescriptionData) => {
     try {
@@ -232,9 +211,9 @@ exports.createPrescription = async (doctorId, prescriptionData) => {
         }
 
         // Validate medications array structure
-        if (!medications.every(med => med.name && med.dosage && med.frequency && med.duration)) {
-            throw new Error('Each medication must have name, dosage, frequency, and duration');
-        }
+        // if (!medications.every(med => med.name && med.dosage && med.frequency && med.duration)) {
+        //     throw new Error('Each medication must have name, dosage, frequency, and duration');
+        // }
 
         // First verify that the lab result exists and is not already prescribed
         const existingLabResult = await prisma.labResult.findUnique({
@@ -306,4 +285,28 @@ exports.createPrescription = async (doctorId, prescriptionData) => {
         console.error('Error details:', error);
         throw error;
     }
+};
+
+
+exports.getPrescriptions = async (doctorId) => {
+    const prescriptions = await prisma.prescription.findMany({
+        where: { doctorId: doctorId },
+        include: {
+            patient: true,
+            labResult: true,
+            medicationBill: true
+        }
+    }); 
+    return prescriptions.map(prescription => ({
+        id: prescription.id,
+        patientId: prescription.patientId,
+        patientName: prescription.patient.user.name,
+        patientEmail: prescription.patient.user.email,
+        patientPhone: prescription.patient.user.phone,
+        labResultId: prescription.labResultId,
+        medications: prescription.medications,
+        notes: prescription.notes,
+        prescribedAt: prescription.prescribedAt,
+        approvalStatus: prescription.approvalStatus,
+    }));
 };

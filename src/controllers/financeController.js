@@ -158,4 +158,50 @@ exports.approveLabRequest = async (req, res) => {
 
 
 
-// medication controller
+// prescription controller
+
+exports.getPrescriptions = async (req, res) => {
+    try {
+    
+       const prescriptions = await financeService.getPrescriptions();
+        res.status(200).json({
+            data: prescriptions
+        });
+    } catch (error) {
+        console.error('Error getting prescriptions:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Error fetching prescriptions'
+        });
+    }
+};
+
+exports.approvePrescription = async (req, res) => {
+    const { id:userId } = req.user;
+    try {
+              const userWithFinanceStaff = await prisma.user.findUnique({
+        where: { id:userId },
+        select: {
+        financeStaff: {
+            select: {
+                id: true
+            }
+        }
+    }
+}); 
+const financeStaffId = userWithFinanceStaff.financeStaff.id;
+        const { id:prescriptionId } = req.params;
+        const {medications,totalAmount,patientId} = req.body;
+        const result = await financeService.approvePrescription(prescriptionId,financeStaffId,patientId,medications,totalAmount);
+        res.status(200).json({
+            message: 'Prescription approved successfully',
+            data: result
+        });
+    } catch (error) {
+        console.error('Error approving prescription:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Error approving prescription'
+        });
+    }
+};

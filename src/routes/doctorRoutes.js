@@ -7,9 +7,11 @@ const { isAuthenticated } = require('../middlewares/authMiddleware');
 
 router.get("/appointments/:id", isAuthenticated, doctorController.getAppointments);
 router.post("/lab-requests", isAuthenticated, doctorController.createLabRequest);
+
 router.get("/lab-requests", isAuthenticated, doctorController.getLabRequests);
 router.get("/lab-results", isAuthenticated, doctorController.getLabResults);
-// router.get("/prescriptions", isAuthenticated, doctorController.getPrescriptions);
+
+router.get("/prescriptions", isAuthenticated, doctorController.getPrescriptions);
 router.post("/prescription", isAuthenticated, doctorController.createPrescription);
 
 module.exports = router;

@@ -30,28 +30,7 @@ exports.dispenseMedication = async (req, res) => {
 };
 
 exports.getPrescriptions = async (req, res) => {  
-    const { id } = req.user;
-    const userWithPharmacist = await prisma.user.findUnique({
-        where: { id },
-        select: {
-            pharmacist: {
-                select: {
-                    id: true
-                }
-            }
-        }
-    });
-
-    if (!userWithPharmacist || !userWithPharmacist.pharmacist) {
-        return res.status(403).json({
-            success: false,
-            message: 'User is not authorized as a pharmacist'
-        });
-    }
-
-    const pharmacistId = userWithPharmacist.pharmacist.id;
-    
-    const prescriptions = await pharmacistService.getPrescriptions(pharmacistId);
+       const prescriptions = await pharmacistService.getPrescriptions();
     res.status(200).json(prescriptions);
 };
 

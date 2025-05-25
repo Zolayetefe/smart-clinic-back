@@ -68,9 +68,6 @@ exports.createLabRequest = async (req, res) => {
         });
     }
 };
-
-
-
 exports.getLabRequests = async (req, res) => {
     const { id } = req.user;
     const userWithDoctor = await prisma.user.findUnique({
@@ -104,7 +101,7 @@ exports.getLabResults = async (req, res) => {
     }); 
     const doctorId = userWithDoctor.doctor.id;
     const labResults = await doctorService.getLabResults(doctorId);
-    res.status(200).json(labResults);
+    res.status(200).json(labResults);   
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -114,40 +111,17 @@ exports.getLabResults = async (req, res) => {
     }
 };
 
-exports.getLabResult = async (req, res) => {
-    try {
-        const labResult = await doctorService.getLabResultById(req.params.id);
-        if (!labResult) {
-            return res.status(404).json({
-                success: false,
-                message: 'Lab result not found'
-            });
-        }
-        return res.status(200).json({
-            success: true,
-            data: labResult
-        });
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error.message || 'Error fetching lab result',
-            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-        });
-    }
-};
 
 exports.createPrescription = async (req, res) => {
     try {
         const { id } = req.user;
-        
-        // Find the doctor record associated with the user
+
+        // Step 1: Verify the user is a doctor
         const userWithDoctor = await prisma.user.findUnique({
             where: { id },
             select: {
                 doctor: {
-                    select: {
-                        id: true
-                    }
+                    select: { id: true }
                 }
             }
         });
@@ -160,18 +134,9 @@ exports.createPrescription = async (req, res) => {
         }
 
         const doctorId = userWithDoctor.doctor.id;
-        
-        // Validate request body
-        const { patientId, labResultId, medications, notes, prescribedAt } = req.body;
-        
-        // First check if the lab result exists
-        const labResult = await doctorService.getLabResultById(labResultId);
-        if (!labResult) {
-            return res.status(404).json({
-                success: false,
-                message: `Lab result with ID ${labResultId} not found. Please verify the lab result ID.`
-            });
-        }
+
+        // Step 2: Validate request body
+        const { patientId, labResultId, medications, notes } = req.body;
 
         if (!patientId || !labResultId || !medications || !Array.isArray(medications)) {
             return res.status(400).json({
@@ -180,21 +145,35 @@ exports.createPrescription = async (req, res) => {
             });
         }
 
-        // Validate medications array
-        if (!medications.every(med => 
-            med.name && 
-            med.dosage && 
-            med.frequency && 
-            med.duration && 
-            med.instructions
-        )) {
-            return res.status(400).json({
+        // // Step 3: Validate each medication
+        // const validMedications = medications.every(med =>
+        //     med.medicineName &&
+        //     med.dosage &&
+        //     med.frequency &&
+        //     med.duration &&
+        //     med.instructions
+        // );
+
+        // if (!validMedications) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Each medication must include medicineName, dosage, frequency, duration, and instructions'
+        //     });
+        // }
+
+        // Step 4: Optionally check if LabResult exists
+        const labResult = await prisma.labResult.findUnique({
+            where: { id: labResultId }
+        });
+
+        if (!labResult) {
+            return res.status(404).json({
                 success: false,
-                message: 'Each medication must include name, dosage, frequency, duration, and instructions'
+                message: `LabResult with ID ${labResultId} not found.`
             });
         }
 
-        // Create prescription with all the data
+        // Step 5: Create the prescription
         const prescription = await doctorService.createPrescription(doctorId, {
             patientId,
             labResultId,
@@ -204,11 +183,13 @@ exports.createPrescription = async (req, res) => {
 
         return res.status(201).json({
             success: true,
+            message: 'Prescription created successfully',
             data: prescription
         });
+
     } catch (error) {
         console.error('Prescription creation error:', error);
-        return res.status(error.message.includes('not found') || error.message.includes('already exists') 
+        return res.status(error.message?.includes('not found') || error.message?.includes('already exists') 
             ? 400 
             : 500
         ).json({
@@ -219,4 +200,29 @@ exports.createPrescription = async (req, res) => {
     }
 };
 
+exports.getPrescriptions = async (req, res) => {
+    const { id } = req.user;
+    try {
 
+    const userWithDoctor = await prisma.user.findUnique({
+        where: { id },
+        select: {
+        doctor: {
+            select: {
+                id: true
+            }
+        }
+    }
+}); 
+const doctorId = userWithDoctor.doctor.id;
+        const prescriptions = await doctorService.getPrescriptions(doctorId);
+        res.status(200).json(prescriptions);
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message || 'Error getting prescriptions',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+};

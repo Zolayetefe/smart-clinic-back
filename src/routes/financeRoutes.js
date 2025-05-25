@@ -8,8 +8,8 @@ router.post('/appointments/:id/approve', isAuthenticated, isFinanceStaff, financ
 router.get('/appointments/status/:status', isAuthenticated, isFinanceStaff, financeController.getAppointmentsByStatus);
 
 
-// router.get('/medications', isAuthenticated, isFinanceStaff, financeController.getMedications);
-// router.post('/medication/:id/approve', isAuthenticated, isFinanceStaff, financeController.approveMedication);
+router.get('/prescriptions', isAuthenticated, isFinanceStaff, financeController.getPrescriptions);
+router.post('/prescription/:id/approve', isAuthenticated, isFinanceStaff, financeController.approvePrescription);
 // router.get('/medication/status/:status', isAuthenticated, isFinanceStaff, financeController.getMedicationBillsByStatus);
 
 
