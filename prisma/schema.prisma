@@ -292,6 +292,7 @@ enum AppointmentStatus {
   cancelled
   completed
   rescheduled
+  expired
 }
 
 enum LabRequestStatus {
