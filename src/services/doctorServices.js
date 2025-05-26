@@ -160,7 +160,8 @@ exports.getLabResults = async (doctorId) => {
                             user: {
                                 select: {
                                     name: true,
-                                    email: true
+                                    email: true,
+
                                 }
                             }
                         }
@@ -186,11 +187,17 @@ exports.getLabResults = async (doctorId) => {
         labRequestId: result.labRequestId,
         labTechnicianId: result.labTechnicianId,
         patientId: result.labRequest.patientId,
-        doctorId: result.labRequest.doctorId,
         patientName: result.labRequest.patient.user.name,
         patientEmail: result.labRequest.patient.user.email,
+        patientPhone: result.labRequest.patient.user.phone,
+        patientAddress: result.labRequest.patient.address,
+        patientGender: result.labRequest.patient.gender,
+        patientBirthDate: result.labRequest.patient.dateOfBirth,
+        doctorId: result.labRequest.doctorId,
         doctorName: result.labRequest.doctor.user.name,
         doctorEmail: result.labRequest.doctor.user.email,
+        doctorPhone: result.labRequest.doctor.user.phone,
+        doctorSpecialization: result.labRequest.doctor.specialization,
         labTechnicianName: result.labTechnician.user.name,
         labTechnicianEmail: result.labTechnician.user.email,
         result: result.result,
@@ -313,4 +320,11 @@ exports.getPrescriptions = async (doctorId) => {
         prescribedAt: prescription.prescribedAt,
         approvalStatus: prescription.approvalStatus,
     }));
+};
+
+exports.getReferral = async (doctorId) => {
+    const referrals = await prisma.referral.findMany({
+        where: { doctorId: doctorId },
+    });
+    return referrals;
 };

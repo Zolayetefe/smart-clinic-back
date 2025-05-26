@@ -232,3 +232,20 @@ const doctorId = userWithDoctor.doctor.id;
 exports.getTodayAppointment = async (req, res)=>{
     
 }
+
+exports.getReferral = async (req, res)=>{
+    const { id } = req.user;
+    const userWithDoctor = await prisma.user.findUnique({
+        where: { id },
+        select: {
+            doctor: {
+                select: {
+                    id: true
+                }
+            }
+        }
+    });
+    const doctorId = userWithDoctor.doctor.id;
+    const referrals = await doctorService.getReferral(doctorId);
+    res.status(200).json(referrals);
+};

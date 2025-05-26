@@ -15,5 +15,5 @@ router.get("/prescriptions", isAuthenticated, doctorController.getPrescriptions)
 router.post("/prescription", isAuthenticated, doctorController.createPrescription);
 
 router.get('/totalAppointment',isAuthenticated,doctorController.getTodayAppointment)
-
+router.get('/referral',isAuthenticated,doctorController.getReferral)
 module.exports = router;
