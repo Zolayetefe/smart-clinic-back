@@ -19,6 +19,9 @@ exports.login = async ({ email, password }) => {
   if (!user) {
     throw new Error('User not found');
   }
+  if(user.status === 'suspend'){
+    throw new Error('User is inactive');
+  }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {

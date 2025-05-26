@@ -229,7 +229,10 @@ exports.getDoctorsBySpeciality = async (speciality) => {
                 specialization: {
                     equals: speciality,
                     mode: 'insensitive'  // Case-insensitive matching
-                }
+                },
+               user: {
+                status: 'active'
+               }
             } : {},
             include: {
                 user: {
