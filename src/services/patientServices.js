@@ -328,6 +328,7 @@ exports.bookAppointment = async (appointmentData) => {
 
             if (slot.isBooked) {
                 throw new Error('This time slot is already booked');
+             
             }
 
             if (slot.doctorId !== doctorId) {
@@ -341,7 +342,11 @@ exports.bookAppointment = async (appointmentData) => {
 
             // Verify the appointment is not in the past
             if (appointmentDate < new Date()) {
-                throw new Error('Cannot book appointments in the past');
+                // throw new Error('Cannot book appointments in the past');
+                return {
+                    message: 'Cannot book appointments in the past',
+                    status: 'error'
+                }
             }
 
             // 5. Create the appointment
